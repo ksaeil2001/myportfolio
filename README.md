@@ -52,15 +52,17 @@ Next.js(App Router) + Tailwind CSS + TypeScript 기반으로 제작되었으며,
 
 ---
 
-## 🛠️ 기술 스택 (Tech Stack)
+## 🛠️ 사용 기술 (Tech Stack)
 
-| 항목 | 사용 기술 |
-|------|-----------|
-| 프레임워크 | [Next.js (App Router)](https://nextjs.org/) |
-| 스타일링 | [Tailwind CSS](https://tailwindcss.com/) |
-| 언어 | TypeScript |
-| 배포 | [Vercel](https://vercel.com/) |
-| 기타 도구 | ESLint, Prettier, GitHub |
+<p>
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" />
+  <img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint" />
+  <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black" alt="Prettier" />
+  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+</p>
 
 ---
 
