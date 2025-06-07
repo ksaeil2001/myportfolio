@@ -34,3 +34,49 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+# 💼 MyPortfolio
+
+개인 개발자로서의 정체성과 프로젝트 경험을 소개하는 포트폴리오 웹사이트입니다.  
+Next.js(App Router) + Tailwind CSS + TypeScript 기반으로 제작되었으며, 반응형 UI와 시각적 정보 전달에 중점을 두었습니다.
+
+---
+
+## ✨ 주요 특징 (Features)
+
+- ✅ **App Router 기반의 최신 Next.js 구조**
+- 🎨 **Tailwind CSS로 빠르게 구성된 반응형 UI**
+- ⚙️ **ESLint + TypeScript로 안정적인 코드 품질 확보**
+- 🌐 **Vercel 자동 배포 지원 (GitHub 연동)**
+- 📊 **기술 스택, 프로젝트 이력, 자기소개, 연락처 등 구성**
+
+---
+
+## 🛠️ 기술 스택 (Tech Stack)
+
+| 항목 | 사용 기술 |
+|------|-----------|
+| 프레임워크 | [Next.js (App Router)](https://nextjs.org/) |
+| 스타일링 | [Tailwind CSS](https://tailwindcss.com/) |
+| 언어 | TypeScript |
+| 배포 | [Vercel](https://vercel.com/) |
+| 기타 도구 | ESLint, Prettier, GitHub |
+
+---
+
+## 📁 폴더 구조
+
+```bash
+myportfolio/
+├── app/                # Next.js App Router 기반 라우팅
+│   ├── page.tsx        # 메인 페이지
+│   └── layout.tsx      # 공통 레이아웃
+├── src/
+│   └── components/     # UI 컴포넌트
+├── public/             # 정적 자산 (이미지, resume.pdf 등)
+├── styles/             # 글로벌 스타일
+├── .eslintrc.json      # ESLint 설정
+├── tailwind.config.ts  # Tailwind 설정
+├── package.json        # 의존성 정보
+└── tsconfig.json       # TypeScript 설정
+```
