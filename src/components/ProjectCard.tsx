@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type ProjectCardProps = {
@@ -17,11 +18,13 @@ export function ProjectCard({ title, description, image, stack, slug }: ProjectC
       aria-label={title}
     >
       <div className="relative aspect-[16/9] w-full overflow-hidden">
-        <img
+        <Image
           src={image}
           alt={`${title} 대표 이미지`}
-          className="w-full h-full object-cover"
-          loading="lazy"
+          className="object-cover"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          priority={false}
         />
       </div>
       <div className="flex-1 flex flex-col p-6">
