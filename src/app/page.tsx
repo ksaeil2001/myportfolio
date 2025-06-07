@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { StatsSection } from "@/components/StatsSection";
+import { HeroSection } from "@/components/HeroSection";
 
 export default function Home() {
   return (
@@ -25,6 +26,8 @@ export default function Home() {
             Save and see your changes instantly.
           </li>
         </ol>
+
+        <HeroSection />
 
         <StatsSection />
 
