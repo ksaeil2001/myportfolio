@@ -2,12 +2,12 @@ import { projects } from "@/data/projects";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-export default async function Page({
+export default function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params;
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
