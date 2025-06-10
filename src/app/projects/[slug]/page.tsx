@@ -1,15 +1,15 @@
 import { projects } from "@/data/projects";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import type { PageProps } from "next";
-
-interface AsyncParamsPageProps extends Omit<PageProps<{ slug: string }>, "params"> {
-  params: Promise<{ slug: string }>;
-}
-
-export default async function Page({ params }: AsyncParamsPageProps) {
+import type { JSX } from "react";
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string | string[] | undefined }>;
+}): Promise<JSX.Element> {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const slugValue = Array.isArray(slug) ? slug[0] : slug;
+  const project = projects.find((p) => p.slug === slugValue);
 
   if (!project) {
     notFound();
