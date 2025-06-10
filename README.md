@@ -71,6 +71,17 @@ pnpm dev
 bun dev
 ```
 
+이메일 전송을 위해 `.env` 파일에 다음 값을 설정합니다.
+
+```bash
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+`public/resume.pdf` 경로에 PDF 이력서 파일을 두면 연락처 페이지에서 다운로드
+링크가 활성화됩니다. 저장소에는 포함하지 않으므로 배포 전에 직접 추가하세요.
+
 ## 📌 포트폴리오 웹사이트 UI/UX 핵심 기능 요약
 
 ### 🌐 전역 레이아웃 및 네비게이션
@@ -111,7 +122,7 @@ bun dev
 
 ### 📬 연락처 섹션
 - **기능 목적:** 방문자가 쉽게 연락할 수 있도록 명확한 소통 경로 제공
-- **UI 구성:** 이메일, GitHub, 블로그 등 아이콘 중심의 깔끔한 구성과 PDF 이력서 다운로드 버튼 제공, 선택적 연락 폼(Contact Form) 배치 가능
+- **UI 구성:** 이메일, GitHub, 블로그 링크와 PDF 이력서 다운로드 버튼을 포함하며 실제 동작하는 연락 폼(Contact Form)을 제공합니다
 
 ---
 

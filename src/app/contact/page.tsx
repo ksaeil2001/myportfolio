@@ -1,3 +1,5 @@
+import { ContactForm } from "@/components/ContactForm";
+
 export const metadata = {
   title: "Contact",
 };
@@ -12,12 +14,24 @@ export default function ContactPage() {
           Contact Info
         </h2>
         <p className="text-lg text-gray-700 dark:text-gray-300">
-          이메일: <a href="mailto:hello@example.com" className="text-blue-600 dark:text-blue-400 hover:underline">hello@example.com</a>
+          이메일: <a href="mailto:contact@saeil.dev" className="text-blue-600 dark:text-blue-400 hover:underline">contact@saeil.dev</a>
         </p>
         <p className="text-lg text-gray-700 dark:text-gray-300">
-          GitHub: <a href="https://github.com/username" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">github.com/username</a>
+          GitHub: <a href="https://github.com/saeil" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">github.com/saeil</a>
         </p>
+        <p className="text-lg text-gray-700 dark:text-gray-300">
+          블로그: <a href="https://blog.saeil.dev" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">blog.saeil.dev</a>
+        </p>
+        <a
+          href="/resume.pdf"
+          className="inline-block text-sm text-blue-600 dark:text-blue-400 hover:underline"
+          download
+        >
+          PDF 이력서 다운로드
+        </a>
       </section>
+
+      <ContactForm />
     </main>
   );
 }
