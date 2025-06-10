@@ -1,7 +1,8 @@
-import { projects } from "@/data/projects";
 import { ProjectCard } from "./ProjectCard";
+import { getProjects } from "@/lib/projects";
 
-export function ProjectsSection() {
+export async function ProjectsSection() {
+  const projects = await getProjects();
   return (
     <section aria-labelledby="projects-heading" className="w-full mt-24">
       <h2

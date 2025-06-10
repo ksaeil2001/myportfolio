@@ -1,4 +1,4 @@
-import { projects } from "@/data/projects";
+import { getProjects } from "@/lib/projects";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { JSX } from "react";
@@ -9,6 +9,7 @@ export default async function Page({
 }): Promise<JSX.Element> {
   const { slug } = await params;
   const slugValue = Array.isArray(slug) ? slug[0] : slug;
+  const projects = await getProjects();
   const project = projects.find((p) => p.slug === slugValue);
 
   if (!project) {
@@ -84,6 +85,15 @@ export default async function Page({
           ))}
         </ul>
       </section>
+
+      {project.contentHtml && (
+        <section className="prose dark:prose-invert mt-8" aria-labelledby="detail-heading">
+          <h2 id="detail-heading" className="sr-only">
+            상세 설명
+          </h2>
+          <div dangerouslySetInnerHTML={{ __html: project.contentHtml }} />
+        </section>
+      )}
     </main>
   );
 }

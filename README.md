@@ -246,6 +246,10 @@ myportfolio/
 - [x] ESLint 기반 코드 린팅
 - [x] GitHub API를 통한 통계 데이터 연결
 
+### 📄 PDF 이력서 생성
+- `npm run generate:resume` 명령으로 `content/projects`의 최신 정보를 기반으로 `public/resume.pdf` 파일이 생성됩니다.
+- 빌드 전 또는 필요 시 실행하여 최신 이력서를 갱신합니다.
+
 ### 🧪 추후 예정 작업
 - [ ] Jest, React Testing Library 기반 테스트 도입
 - [ ] GitHub Actions 기반 CI 파이프라인 구성
@@ -257,3 +261,4 @@ myportfolio/
 - Implemented page loading progress bar using Next.js router events.
 - Introduced global toast system and integrated with contact form.
 - Enhanced accessibility: skip link, form validation messages with ARIA live, and improved focus order.
+- 2025-06-11 (Codex) 프로젝트 데이터 구조 개선, Markdown 기반 관리 도입, PDF 이력서 자동 생성 스크립트 추가.
