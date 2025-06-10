@@ -191,21 +191,53 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
 ---
 
-## 🚀 배포 및 운영
+## 🚀 배포 정보
 
-- **배포:** Vercel 자동 배포 파이프라인 연동
-- **코드 품질:** ESLint, TypeScript, Prettier, 환경변수 관리
-- **문서화:** README, 코드 주석, 환경설정 안내 등 정기 유지보수
+- 본 프로젝트는 [Vercel](https://vercel.com/) 플랫폼을 통해 배포됩니다.
+- GitHub 저장소와 연동된 자동 빌드 및 배포(CI/CD)가 설정되어 있습니다.
+- `next.config.ts` 파일을 통해 이미지 도메인, output 디렉터리 등 기본 설정이 구성되어 있습니다.
+- 배포 명령어:
+```bash
+npm run build && npm run start
+```
+---
+
+### 🧩 2. 환경 변수 설정 안내 → 🔄 부분 누락
+
+- `.env.local` 예시는 일부 제공되었지만, 어떤 값이 필수인지 명확하지 않음
+- `EmailJS` 설정 외에 `.env` 파일 유무, Vercel 환경변수 연결 방식 누락
+
+✅ **보완 예시:**
+
+## 🔐 환경 변수 설정
+EmailJS 연동을 위해 다음 변수를 `.env.local` 또는 Vercel 환경 변수에 설정해야 합니다:
+
+
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+.env.local 파일은 Git에 커밋되지 않도록 .gitignore에 등록되어 있습니다.
+```
+배포 환경에서는 Vercel 대시보드 → Project Settings → Environment Variables에서 동일하게 설정해야 합니다.
 
 ---
 
-## 📚 참고/관련 링크
+### 🧩 3. 테스트 전략 → ❗ 완전 누락
 
-- [ksaeil2001/myportfolio (GitHub)](https://github.com/ksaeil2001/myportfolio)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Next.js App Router](https://nextjs.org/docs/app)
-- [EmailJS 공식 문서](https://www.emailjs.com/docs/)
+- Jest, React Testing Library 등 **테스트 도구는 전혀 사용되지 않음**
+- 그러나 수동 테스트 기반으로 개발이 완료된 점을 **명확히 서술**하는 것이 중요
 
+✅ **보완 예시:**
+
+## 🧪 테스트 전략
+
+현재 본 프로젝트는 테스트 프레임워크를 도입하지 않았습니다.  
+주요 기능들은 브라우저 기반의 수동 테스트를 통해 기능 정상 작동을 검증하였습니다.
+
+추후 다음 도구 도입 예정:
+- [ ] Jest
+- [ ] React Testing Library
 ---
 
 ## 📁 폴더 구조 & 구성요소 설명
