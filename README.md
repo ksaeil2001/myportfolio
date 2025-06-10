@@ -1,9 +1,10 @@
 # 💼 MyPortfolio
 
-개인 포트폴리오 웹사이트 저장소
+개발자로서의 역량과 프로젝트 경험을 효과적으로 보여주기 위한 개인 포트폴리오 웹사이트입니다.  
+Next.js 기반의 최신 기술 스택을 활용하여, 반응형 디자인, 접근성, 다크모드 지원 등 실무 중심의 UI/UX 구현을 목표로 개발하였습니다.
 
-[Demo Site](https://your-deployed-site.vercel.app/)  
-[GitHub Repository](https://github.com/ksaeil2001/myportfolio)
+[![Deploy to Vercel](https://img.shields.io/badge/Vercel-Live-black?style=flat-square&logo=vercel)](https://myportfolio-kseail.vercel.app)
+[![GitHub Repo](https://img.shields.io/badge/Repository-myportfolio-blue?style=flat-square&logo=github)](https://github.com/ksaeil2001/myportfolio)
 
 ---
 
