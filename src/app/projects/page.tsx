@@ -1,4 +1,4 @@
-import { projects } from "@/data/projects";
+import { getProjects } from "@/lib/projects";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ProjectFilterBar } from "@/components/ProjectFilterBar";
 import type { Metadata } from "next";
@@ -13,6 +13,7 @@ export default async function ProjectsPage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const params = await searchParams;
+  const projects = await getProjects();
   const stackParam = Array.isArray(params.stack) ? params.stack[0] : params.stack;
   const yearParam = Array.isArray(params.year) ? params.year[0] : params.year;
   const contributionParam = Array.isArray(params.contribution)

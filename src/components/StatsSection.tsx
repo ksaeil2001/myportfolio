@@ -1,5 +1,5 @@
 import { StatsCard } from "./StatsCard";
-import { projects } from "@/data/projects";
+import { getProjects } from "@/lib/projects";
 
 async function getGithubStats() {
   try {
@@ -36,8 +36,9 @@ async function getGithubStats() {
 export async function StatsSection() {
   const github = await getGithubStats();
 
-  const projectCount = projects.length;
-  const stackList = projects.flatMap((p) => p.stack);
+  const projectList = await getProjects();
+  const projectCount = projectList.length;
+  const stackList = projectList.flatMap((p) => p.stack);
   const uniqueStacks = Array.from(new Set(stackList));
   const stackFrequency = stackList.reduce<Record<string, number>>((acc, cur) => {
     acc[cur] = (acc[cur] ?? 0) + 1;
