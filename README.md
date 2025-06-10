@@ -7,6 +7,35 @@
 
 ---
 
+## 🛠 개발 환경 및 기술 스택
+
+### 📁 개발 환경
+
+- 💻 **개발 프레임워크**: [Next.js (App Router)](https://nextjs.org/)
+- 🎨 **스타일링**: [Tailwind CSS](https://tailwindcss.com/)
+- 💡 **언어**: TypeScript
+- 🛠 **개발 도구**: ESLint, Prettier, Vite (개별 구성 없음)
+- 🔒 **환경 변수 관리**: `.env.local`
+- 🚀 **배포 플랫폼**: [Vercel](https://vercel.com/)
+
+### 🧰 주요 사용 라이브러리 및 API
+
+- ✉️ **Email 전송**: [EmailJS](https://www.emailjs.com/)
+- 🌐 **GitHub API 연동**: 사용자 별(star) 수 실시간 계산
+- 📦 **이미지 최적화**: `next/image` 사용
+- 🧪 **클라이언트 상태 관리**: 기본 React Hooks 기반 (Zustand/Redux 사용 안함)
+
+### 🧱 기술 스택 요약
+
+| 분류 | 사용 기술 |
+|------|-----------|
+| Frontend | `Next.js`, `React`, `TypeScript`, `Tailwind CSS` |
+| Backend 연동 | `EmailJS`, `GitHub REST API` |
+| 배포 | `Vercel` |
+| 품질 도구 | `ESLint`, `Prettier` |
+
+---
+
 ## 📦 환경설정 및 리소스 준비
 
 - **Email 전송용 환경 변수**
