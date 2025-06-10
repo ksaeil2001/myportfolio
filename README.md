@@ -64,13 +64,31 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
 ## 📝 작업 내역
 
-- [x] 프로젝트 목록 페이지 필터/정렬 기능 구현
-- [x] 실시간 GitHub API 연동 통계 카드 개발
-- [x] 소개 페이지 타임라인 및 가치관 섹션 구현
-- [x] ContactForm + EmailJS 연동 및 입력 검증
-- [x] 반응형 내비게이션 및 모바일 햄버거 메뉴 구현
-- [x] 다크 모드 및 접근성(키보드, ARIA) 강화
-- [x] PDF 이력서/프로젝트 이미지 리소스 구조화
+- [x] Next.js App Router 기반 라우팅 구조 설계
+- [x] 전역 레이아웃(`layout.tsx`) 구성 및 SEO 메타 설정
+- [x] 홈 페이지 구성: HeroSection + StatsSection + ProjectsSection
+- [x] GitHub API 연동 통계 카드 구현 (`stargazers_count` 합산)
+- [x] About 페이지 구성: 개발자 타임라인 + 철학 + 기술 스택 시각화
+- [x] Projects 목록 페이지 구현 (필터링 및 정렬 기능 포함)
+- [x] Project 상세 페이지 구현 (동적 라우팅, 주요 기능 및 배운 점 포함)
+- [x] 연락처 페이지 구현: 이메일 링크, GitHub, 블로그, PDF 이력서 다운로드
+- [x] EmailJS 연동 ContactForm 개발 (폼 전송 상태 피드백 포함)
+- [x] NotFound(404) 페이지 커스터마이징
+- [x] 반응형 웹 대응 (Tailwind CSS + 모바일 메뉴 + Grid/Flex 구성)
+- [x] 다크 모드 구현 (시스템 설정 연동 방식)
+- [x] 전 페이지 접근성 보완: aria-label, alt, tabIndex, 키보드 포커스 등
+- [x] ESLint + Prettier 설정을 통한 코드 품질 관리
+- [x] 프로젝트용 `.env` 환경변수 적용 및 `.gitignore` 구성
+
+---
+
+## 추가로 고려할 수 있는 향후 항목 (예정 체크박스)
+
+- [ ] GitHub Actions를 이용한 CI/CD 설정 추가
+- [ ] Lighthouse를 활용한 성능 최적화 점검 및 개선
+- [ ] 프로젝트별 스크린샷 이미지 최적화 및 lazy loading 적용
+- [ ] 방문자 트래킹을 위한 Google Analytics 연동
+- [ ] 기술 스택/기여도/기간별 프로젝트 정렬 알고리즘 고도화
 
 ---
 
