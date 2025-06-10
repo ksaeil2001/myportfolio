@@ -92,20 +92,53 @@
 ```plaintext
 myportfolio/
 ├── public/
-│   ├── projects/            # 프로젝트 이미지
-│   └── resume.pdf           # 이력서 파일
+│   ├── projects/             # 프로젝트 썸네일 이미지 저장 위치 (image URL 경로 참조)
+│   └── resume.pdf            # PDF 이력서 (존재 시 contact 페이지에 다운로드 버튼 표시)
+│
 ├── src/
-│   ├── app/
-│   │   ├── page.tsx         # 홈
-│   │   ├── layout.tsx       # 전역 레이아웃
-│   │   ├── about/           # 소개
-│   │   ├── projects/        # 목록 + 상세
-│   │   ├── contact/         # 연락처
-│   │   └── not-found.tsx    # 404
-│   ├── components/          # 공통 컴포넌트
-│   ├── data/                # 프로젝트 데이터
-│   ├── styles/              # 전역 CSS
-│   └── utils/               # API 함수
+│   ├── app/                  # Next.js App Router 기반 페이지 디렉터리
+│   │   ├── layout.tsx        # 전역 레이아웃 구성 (헤더, 메타데이터, 폰트 포함)
+│   │   ├── page.tsx          # 홈 페이지 (Hero, Stats, ProjectsSection 포함)
+│   │
+│   │   ├── about/
+│   │   │   └── page.tsx      # 자기소개 페이지 (타임라인 및 기술 철학 시각화)
+│   │
+│   │   ├── projects/
+│   │   │   ├── page.tsx      # 프로젝트 목록 페이지 (필터/정렬 UI 포함)
+│   │   │   └── [slug]/       
+│   │   │       └── page.tsx  # 개별 프로젝트 상세 페이지 (동적 라우팅 기반)
+│   │
+│   │   ├── contact/
+│   │   │   └── page.tsx      # 연락처 페이지 (EmailJS 연동 ContactForm)
+│   │
+│   │   └── not-found.tsx     # 커스텀 404 페이지
+│
+│   ├── components/           # 재사용 가능한 UI 컴포넌트 모음
+│   │   ├── Header.tsx             # 반응형 상단 내비게이션 바
+│   │   ├── HeroSection.tsx        # 홈 상단 자기소개 섹션
+│   │   ├── StatsSection.tsx       # 통계 카드 리스트
+│   │   ├── StatsCard.tsx          # 개별 통계 카드
+│   │   ├── ProjectsSection.tsx    # 홈에 표시되는 대표 프로젝트 3개 카드
+│   │   ├── ProjectCard.tsx        # 목록/홈에서 사용되는 프로젝트 카드
+│   │   ├── ProjectFilterBar.tsx   # 프로젝트 필터링/정렬 UI
+│   │   ├── TimelineItem.tsx       # 소개 페이지에서 타임라인 항목 렌더링
+│   │   └── ContactForm.tsx        # EmailJS 연동 연락 폼
+│
+│   ├── data/
+│   │   └── projects.ts        # 프로젝트 메타데이터 배열 (title, slug, stack 등 포함)
+│
+│   ├── styles/
+│   │   └── globals.css        # Tailwind 전역 스타일, 커스텀 클래스 정의
+│
+│   └── utils/
+│       └── github.ts          # GitHub API 통계를 호출하는 함수 (stargazers 수 등)
+│
+├── .env.local                 # 로컬 개발용 환경변수 설정 파일 (Git에 커밋 금지)
+├── next.config.ts            # Next.js 설정 파일 (i18n 제거, 이미지 도메인 등)
+├── tailwind.config.ts        # Tailwind CSS 설정 파일 (color, font 등 테마 설정)
+├── tsconfig.json             # TypeScript 설정 파일
+├── package.json              # 프로젝트 의존성 및 명령어 스크립트 정의
+└── README.md                 # 프로젝트 문서
 ```
 
 ---
