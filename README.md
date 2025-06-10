@@ -93,6 +93,8 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
 본 프로젝트는 **Next.js App Router** 기반 구조로 구성되어 있으며,  
 **Tailwind CSS**, **TypeScript**, **EmailJS**, **GitHub API 연동** 등을 포함하고 있습니다.
+
+```
 myportfolio/
 ├── public/
 │ ├── projects/ # 프로젝트 썸네일 이미지 저장 폴더
@@ -132,3 +134,4 @@ myportfolio/
 ├── tsconfig.json # TypeScript 설정 파일
 ├── package.json # 프로젝트 메타데이터 및 의존성
 └── README.md # 프로젝트 설명 문서
+```
