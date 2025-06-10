@@ -57,9 +57,11 @@
 ## 📦 환경설정 및 리소스 준비
 
 - **Email 전송용 환경 변수**
+```
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+```
 위 값을 `.env` 파일에 정확히 기입해야 Contact Form가 정상 작동합니다.
 
 - **PDF 이력서 업로드**
