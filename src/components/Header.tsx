@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 export function Header() {
   return (
@@ -21,8 +22,9 @@ export function Header() {
             Contact
           </Link>
         </nav>
+        <ThemeToggle />
         <details className="relative md:hidden">
-          <summary className="flex h-8 w-8 items-center justify-center rounded hover:bg-gray-100 dark:hover:bg-neutral-800 cursor-pointer">
+          <summary tabIndex={0} className="flex h-8 w-8 items-center justify-center rounded hover:bg-gray-100 dark:hover:bg-neutral-800 cursor-pointer">
             <span className="sr-only">메뉴 열기</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
               <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />

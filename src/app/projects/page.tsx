@@ -66,7 +66,7 @@ export default async function ProjectsPage({
   );
 
   return (
-    <main className="mx-auto w-full max-w-5xl p-8 sm:p-20">
+    <main id="main-content" className="mx-auto w-full max-w-5xl p-8 sm:p-20">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
         프로젝트 목록
       </h1>

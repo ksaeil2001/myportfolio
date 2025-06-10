@@ -251,3 +251,9 @@ myportfolio/
 - [ ] GitHub Actions 기반 CI 파이프라인 구성
 - [ ] 프로젝트 상세 스크린샷 lazy loading 적용
 - [ ] 소개 페이지에 기술 스택 애니메이션 추가
+
+## Patch Notes
+- Added dark mode toggle with localStorage persistence.
+- Implemented page loading progress bar using Next.js router events.
+- Introduced global toast system and integrated with contact form.
+- Enhanced accessibility: skip link, form validation messages with ARIA live, and improved focus order.

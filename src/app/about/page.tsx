@@ -34,7 +34,7 @@ const timeline = [
 
 export default function AboutPage() {
   return (
-    <main className="mx-auto w-full max-w-5xl space-y-16 p-8 sm:p-20">
+    <main id="main-content" className="mx-auto w-full max-w-5xl space-y-16 p-8 sm:p-20">
       <section aria-labelledby="about-heading">
         <h1 id="about-heading" className="text-3xl font-bold text-gray-900 dark:text-white">
           About Me

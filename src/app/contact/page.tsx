@@ -6,7 +6,7 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="mx-auto w-full max-w-5xl p-8 sm:p-20">
+    <main id="main-content" className="mx-auto w-full max-w-5xl p-8 sm:p-20">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white">연락처</h1>
       <p className="mt-2 text-gray-600 dark:text-gray-400">아래 정보로 언제든지 연락해주세요.</p>
       <section className="mt-8 space-y-4" aria-labelledby="contact-heading">

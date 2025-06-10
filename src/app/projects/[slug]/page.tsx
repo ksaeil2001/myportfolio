@@ -16,7 +16,7 @@ export default async function Page({
   }
 
   return (
-    <main className="mx-auto w-full max-w-5xl p-8">
+    <main id="main-content" className="mx-auto w-full max-w-5xl p-8">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
         {project.title}
       </h1>
