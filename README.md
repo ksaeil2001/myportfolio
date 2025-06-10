@@ -217,8 +217,8 @@ EmailJS 연동을 위해 다음 변수를 `.env.local` 또는 Vercel 환경 변�
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-.env.local 파일은 Git에 커밋되지 않도록 .gitignore에 등록되어 있습니다.
 ```
+.env.local 파일은 Git에 커밋되지 않도록 .gitignore에 등록되어 있습니다.
 배포 환경에서는 Vercel 대시보드 → Project Settings → Environment Variables에서 동일하게 설정해야 합니다.
 
 ---
@@ -238,6 +238,7 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 추후 다음 도구 도입 예정:
 - [ ] Jest
 - [ ] React Testing Library
+
 ---
 
 ## 📁 폴더 구조 & 구성요소 설명
