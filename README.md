@@ -133,21 +133,51 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
 ## 📝 작업 내역
 
-- [x] Next.js App Router 기반 라우팅 구조 설계
-- [x] 전역 레이아웃(`layout.tsx`) 구성 및 SEO 메타 설정
-- [x] 홈 페이지 구성: HeroSection + StatsSection + ProjectsSection
-- [x] GitHub API 연동 통계 카드 구현 (`stargazers_count` 합산)
-- [x] About 페이지 구성: 개발자 타임라인 + 철학 + 기술 스택 시각화
-- [x] Projects 목록 페이지 구현 (필터링 및 정렬 기능 포함)
-- [x] Project 상세 페이지 구현 (동적 라우팅, 주요 기능 및 배운 점 포함)
-- [x] 연락처 페이지 구현: 이메일 링크, GitHub, 블로그, PDF 이력서 다운로드
-- [x] EmailJS 연동 ContactForm 개발 (폼 전송 상태 피드백 포함)
-- [x] NotFound(404) 페이지 커스터마이징
-- [x] 반응형 웹 대응 (Tailwind CSS + 모바일 메뉴 + Grid/Flex 구성)
-- [x] 다크 모드 구현 (시스템 설정 연동 방식)
-- [x] 전 페이지 접근성 보완: aria-label, alt, tabIndex, 키보드 포커스 등
-- [x] ESLint + Prettier 설정을 통한 코드 품질 관리
-- [x] 프로젝트용 `.env` 환경변수 적용 및 `.gitignore` 구성
+### ✅ 페이지 라우팅 및 전역 레이아웃
+- [x] App Router 기반 Next.js 페이지 구조 구성 (`/app`)
+- [x] 공통 레이아웃 `layout.tsx` 구현 (메타데이터, 폰트 포함)
+- [x] 커스텀 404 페이지 (`not-found.tsx`) 작성
+
+### ✅ 홈 페이지 (Hero, Stats, Projects)
+- [x] `HeroSection.tsx` 구현: 소개 문구 + CTA 버튼
+- [x] `StatsSection.tsx` 구현: GitHub API 기반 통계
+- [x] `ProjectsSection.tsx` 구현: 대표 프로젝트 카드 3개 하이라이트
+
+### ✅ 프로젝트 목록 페이지 (/projects)
+- [x] 프로젝트 목록 페이지 라우팅 구성
+- [x] 프로젝트 카드(`ProjectCard.tsx`) 목록 출력
+- [x] 프로젝트 필터/정렬 바 UI 구현 (`ProjectFilterBar.tsx`)
+- [x] 기술, 기여도, 연도 기준 필터링 기능
+- [x] 최신순, 이름순 정렬 기능
+
+### ✅ 프로젝트 상세 페이지 ([slug])
+- [x] 동적 라우팅 기반 상세 페이지 구성 (`projects/[slug]/page.tsx`)
+- [x] 프로젝트별 설명, 스택, 이미지, 배운 점 출력
+- [x] 존재하지 않는 slug 접근 시 `notFound()` 처리
+
+### ✅ 자기소개 페이지 (/about)
+- [x] 자기소개 페이지 구성 (`about/page.tsx`)
+- [x] 개발자 여정 타임라인 구현 (`TimelineItem.tsx`)
+- [x] 기술 철학, 가치관 요약 표시
+
+### ✅ 연락처 페이지 (/contact)
+- [x] 이메일, GitHub, 블로그 링크 출력
+- [x] PDF 이력서 다운로드 버튼 활성화 (`resume.pdf` 존재 시)
+- [x] EmailJS 연동 ContactForm 구현
+- [x] 메시지 전송 성공/실패 안내 처리
+
+### ✅ 전역 기능
+- [x] 반응형 디자인 적용 (Tailwind 기반)
+- [x] 다크 모드 시스템 연동
+- [x] ESLint 설정 및 타입 검사 완료
+- [x] GitHub API 연동 (별 수 통계)
+
+### 🚧 향후 개선 예정
+- [ ] GitHub Actions 기반 CI/CD 도입
+- [ ] 테스트 프레임워크 도입 (Jest / React Testing Library)
+- [ ] 프로젝트 스크린샷 lazy loading 처리
+- [ ] About 페이지 기술 스택에 animation 추가
+
 
 ---
 
