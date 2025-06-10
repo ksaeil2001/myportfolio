@@ -88,3 +88,51 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Next.js App Router](https://nextjs.org/docs/app)
 - [EmailJS 공식 문서](https://www.emailjs.com/docs/)
+
+## 📁 폴더 구조 & 구성요소 설명
+
+본 프로젝트는 **Next.js App Router** 기반 구조로 구성되어 있으며,  
+**Tailwind CSS**, **TypeScript**, **EmailJS**, **GitHub API 연동** 등을 포함하고 있습니다.
+
+myportfolio/
+├── public/
+│ ├── projects/ # 프로젝트 썸네일 이미지 저장 폴더
+│ └── resume.pdf # 연락처 페이지에서 다운로드할 이력서 PDF
+├── src/
+│ ├── app/
+│ │ ├── layout.tsx # 공통 레이아웃 (헤더, 메타데이터 포함)
+│ │ ├── page.tsx # 홈 페이지 (Hero, Stats, Projects 섹션 포함)
+│ │ ├── about/
+│ │ │ └── page.tsx # 자기소개 페이지 (타임라인, 기술 철학 등)
+│ │ ├── projects/
+│ │ │ ├── page.tsx # 프로젝트 목록 페이지 (필터링/정렬 포함)
+│ │ │ └── [slug]/
+│ │ │ └── page.tsx # 개별 프로젝트 상세 페이지
+│ │ ├── contact/
+│ │ │ └── page.tsx # 연락처 페이지 (이메일/ContactForm)
+│ │ └── not-found.tsx # 404 페이지
+│ ├── components/
+│ │ ├── Header.tsx # 전역 내비게이션 헤더 (반응형 지원)
+│ │ ├── HeroSection.tsx # 홈 상단 히어로 섹션
+│ │ ├── StatsSection.tsx # 통계 카드 섹션
+│ │ ├── StatsCard.tsx # 개별 통계 카드 컴포넌트
+│ │ ├── ProjectsSection.tsx # 홈 페이지 내 프로젝트 하이라이트
+│ │ ├── ProjectCard.tsx # 개별 프로젝트 카드 (목록용)
+│ │ ├── ProjectFilterBar.tsx # 프로젝트 목록 페이지용 필터/정렬 UI
+│ │ ├── TimelineItem.tsx # 소개 페이지 내 타임라인 항목 컴포넌트
+│ │ └── ContactForm.tsx # EmailJS 연동 연락 폼
+│ ├── data/
+│ │ └── projects.ts # 프로젝트 메타데이터 배열 (slug, title, stack 등)
+│ ├── styles/
+│ │ └── globals.css # 전역 Tailwind CSS 스타일 및 변수
+│ └── utils/
+│ └── github.ts # GitHub API 통계 호출 함수 (stargazer 수 등)
+├── .env.local # EmailJS 관련 환경변수 설정 (로컬용, gitignore 대상)
+├── next.config.ts # Next.js 설정 파일 (i18n 제거, 이미지 도메인 등)
+├── tailwind.config.ts # Tailwind CSS 설정 파일
+├── tsconfig.json # TypeScript 설정 파일
+├── package.json # 프로젝트 메타데이터 및 의존성
+└── README.md # 프로젝트 설명 문서
+
+
+> ✅ 폴더명과 파일명은 일관된 네이밍 컨벤션을 따르며, 재사용성과 가독성을 고려해 구성되어 있습니다.
