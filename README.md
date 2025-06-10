@@ -138,3 +138,7 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
 - 프로젝트 목록 페이지 필터/정렬 기능 구현 (#issue)
 
+### [2025-06-10] i18n 설정(App Router 미지원) 관련 변경
+- 기존 next.config.ts의 i18n 설정 제거 (빌드 경고 및 예기치 않은 동작 방지)
+- 다국어 지원 필요 시, App Router 공식 가이드에 따라 별도 구현 필요
+
