@@ -1,5 +1,6 @@
 import { projects } from "@/data/projects";
 import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectFilterBar } from "@/components/ProjectFilterBar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,24 +12,65 @@ export default async function ProjectsPage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const { filter, sort } = await searchParams;
+  const params = await searchParams;
+  const stackParam = Array.isArray(params.stack) ? params.stack[0] : params.stack;
+  const yearParam = Array.isArray(params.year) ? params.year[0] : params.year;
+  const contributionParam = Array.isArray(params.contribution)
+    ? params.contribution[0]
+    : params.contribution;
+  const sortParam = Array.isArray(params.sort) ? params.sort[0] : params.sort;
+
   let projectList = [...projects];
 
-  // Placeholder for future filtering
-  if (filter) {
-    projectList = projectList.filter(() => true);
+  if (stackParam) {
+    const stacks = stackParam.split(",").filter(Boolean);
+    projectList = projectList.filter((p) =>
+      stacks.every((s) => p.stack.includes(s)),
+    );
   }
 
-  // Placeholder for future sorting
-  if (sort) {
-    projectList = projectList.slice();
+  if (yearParam) {
+    const yearNum = Number(yearParam);
+    if (!Number.isNaN(yearNum)) {
+      projectList = projectList.filter((p) => p.year === yearNum);
+    }
   }
+
+  if (contributionParam) {
+    const min = Number(contributionParam);
+    if (!Number.isNaN(min)) {
+      projectList = projectList.filter((p) => p.contribution >= min);
+    }
+  }
+
+  switch (sortParam) {
+    case "latest":
+      projectList.sort((a, b) => b.year - a.year);
+      break;
+    case "oldest":
+      projectList.sort((a, b) => a.year - b.year);
+      break;
+    case "name":
+      projectList.sort((a, b) => a.title.localeCompare(b.title));
+      break;
+    case "contribution":
+      projectList.sort((a, b) => b.contribution - a.contribution);
+      break;
+    default:
+      break;
+  }
+
+  const stackOptions = Array.from(new Set(projects.flatMap((p) => p.stack))).sort();
+  const yearOptions = Array.from(new Set(projects.map((p) => p.year))).sort(
+    (a, b) => b - a,
+  );
 
   return (
     <main className="mx-auto w-full max-w-5xl p-8 sm:p-20">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
         프로젝트 목록
       </h1>
+      <ProjectFilterBar stacks={stackOptions} years={yearOptions} />
       <div
         role="list"
         className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
