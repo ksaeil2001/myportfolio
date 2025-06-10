@@ -6,6 +6,8 @@ export const projects = [
     image: "/next.svg",
     stack: ["React", "FastAPI"],
     slug: "meal-ai",
+    year: 2023,
+    contribution: 70,
     features: [
       "개인 맞춤 식단 분석",
       "영양소 기반 레시피 추천",
@@ -24,6 +26,8 @@ export const projects = [
     image: "/next.svg",
     stack: ["Vue.js", "OpenWeatherMap API"],
     slug: "weather-app",
+    year: 2022,
+    contribution: 50,
     features: [
       "실시간 날씨 조회",
       "주간 예보 그래프",
@@ -33,6 +37,26 @@ export const projects = [
       "Vue 컴포넌트 설계", 
       "API 요청 캐싱 전략",
       "반응형 차트 구현",
+    ],
+  },
+  {
+    id: "portfolio-site",
+    title: "포트폴리오 사이트",
+    description: "개인 프로젝트와 경력을 소개하는 반응형 웹페이지입니다.",
+    image: "/next.svg",
+    stack: ["Next.js", "Tailwind CSS"],
+    slug: "portfolio-site",
+    year: 2024,
+    contribution: 100,
+    features: [
+      "다크 모드 지원",
+      "프로젝트 필터 및 정렬",
+      "연락처 폼으로 이메일 전송",
+    ],
+    learnings: [
+      "Next.js App Router 활용",
+      "Tailwind CSS 커스터마이징",
+      "접근성 고려한 UI 구성",
     ],
   },
 ];
