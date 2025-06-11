@@ -5,6 +5,16 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Projects",
+  openGraph: {
+    images: [
+      {
+        url: "/api/og?title=Projects",
+        width: 1200,
+        height: 630,
+        alt: "Projects",
+      },
+    ],
+  },
 };
 
 export default async function ProjectsPage({

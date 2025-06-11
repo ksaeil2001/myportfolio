@@ -1,6 +1,21 @@
 import { HeroSection } from "@/components/HeroSection";
 import { StatsSection } from "@/components/StatsSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home",
+  openGraph: {
+    images: [
+      {
+        url: "/api/og?title=MyPortfolio",
+        width: 1200,
+        height: 630,
+        alt: "MyPortfolio",
+      },
+    ],
+  },
+};
 
 export default function Home() {
   return (

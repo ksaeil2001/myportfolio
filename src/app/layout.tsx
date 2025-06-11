@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import Providers from "@/components/Providers";
 import ProgressBar from "@/components/ProgressBar";
+import Analytics from "@/components/Analytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,14 @@ export const metadata: Metadata = {
     siteName: "MyPortfolio",
     locale: "ko_KR",
     type: "website",
+    images: [
+      {
+        url: "/api/og?title=MyPortfolio",
+        width: 1200,
+        height: 630,
+        alt: "MyPortfolio",
+      },
+    ],
   },
   robots: "index, follow",
   icons: {
@@ -56,6 +65,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           <ProgressBar />
+          <Analytics />
           <a href="#main-content" className="sr-only focus:not-sr-only absolute top-0 left-0 m-2 rounded bg-white p-2 text-black z-50">
             본문 바로가기
           </a>
