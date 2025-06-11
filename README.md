@@ -49,8 +49,9 @@
   <img src="https://img.shields.io/badge/GitHub API-181717?style=for-the-badge&logo=github&logoColor=white" />
 </p>
 
-**🚀 CI/CD 및 환경변수**  
+**🚀 CI/CD 및 환경변수**
 > Vercel을 통해 GitHub 연동 자동 배포를 수행하며, 환경변수는 `.env.local` 또는 Vercel 설정에서 관리합니다.
+> - `BLOG_RSS_URL`: 블로그 RSS 피드 주소를 지정하여 `/api/blog`에서 사용합니다.
 
 <p>
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
