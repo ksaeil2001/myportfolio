@@ -21,6 +21,12 @@ learnings:
   - Vue 컴포넌트 설계
   - API 요청 캐싱 전략
   - 반응형 차트 구현
+team:
+  - name: 김세일
+    role: Front-end
+    github: https://github.com/saeil
+reviews:
+  - https://example.com/review3
 ---
 
 실시간 날씨 조회와 주간 예보 그래프를 지원합니다.

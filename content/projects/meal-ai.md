@@ -21,6 +21,12 @@ learnings:
   - AI 추천 알고리즘 이해
   - FastAPI와 프론트엔드 통신 최적화
   - 사용자 피드백을 통한 반복 개선
+team:
+  - name: 김세일
+    role: Front-end
+    github: https://github.com/saeil
+reviews:
+  - https://example.com/review1
 ---
 
 개인 맞춤 식단 분석과 영양소 기반 레시피 추천을 제공하는 서비스입니다.

@@ -1,6 +1,7 @@
 import { HeroSection } from "@/components/HeroSection";
 import { StatsSection } from "@/components/StatsSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
+import { BlogSection } from "@/components/BlogSection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function Home() {
       <HeroSection />
       <StatsSection />
       <ProjectsSection />
+      <BlogSection />
     </main>
   );
 }
