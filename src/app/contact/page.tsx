@@ -2,6 +2,16 @@ import { ContactForm } from "@/components/ContactForm";
 
 export const metadata = {
   title: "Contact",
+  openGraph: {
+    images: [
+      {
+        url: "/api/og?title=Contact",
+        width: 1200,
+        height: 630,
+        alt: "Contact",
+      },
+    ],
+  },
 };
 
 export default function ContactPage() {

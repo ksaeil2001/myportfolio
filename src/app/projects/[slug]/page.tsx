@@ -2,6 +2,28 @@ import { getProjects } from "@/lib/projects";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { JSX } from "react";
+import type { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string | string[] | undefined }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const slugValue = Array.isArray(slug) ? slug[0] : slug;
+  const projects = await getProjects();
+  const project = projects.find((p) => p.slug === slugValue);
+  const title = project ? project.title : "Project";
+  return {
+    title,
+    openGraph: {
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(title)}`,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+  };
+}
 export default async function Page({
   params,
 }: {
@@ -32,6 +54,7 @@ export default async function Page({
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 800px"
           className="object-cover"
+          loading="lazy"
         />
       </section>
 

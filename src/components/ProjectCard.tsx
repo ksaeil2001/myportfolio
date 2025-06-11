@@ -24,7 +24,7 @@ export function ProjectCard({ title, description, image, stack, slug }: ProjectC
           className="object-cover"
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          priority={false}
+          loading="lazy"
         />
       </div>
       <div className="flex-1 flex flex-col p-6">

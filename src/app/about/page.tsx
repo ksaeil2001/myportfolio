@@ -2,6 +2,16 @@ import { TimelineItem } from "@/components/TimelineItem";
 
 export const metadata = {
   title: "About",
+  openGraph: {
+    images: [
+      {
+        url: "/api/og?title=About",
+        width: 1200,
+        height: 630,
+        alt: "About",
+      },
+    ],
+  },
 };
 
 const timeline = [

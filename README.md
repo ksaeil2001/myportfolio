@@ -262,3 +262,9 @@ myportfolio/
 - Introduced global toast system and integrated with contact form.
 - Enhanced accessibility: skip link, form validation messages with ARIA live, and improved focus order.
 - 2025-06-11 (Codex) 프로젝트 데이터 구조 개선, Markdown 기반 관리 도입, PDF 이력서 자동 생성 스크립트 추가.
+1. 2025-06-12 (Codex) - SEO 및 CI/CD 고도화
+   - 동적 OG 이미지 API 추가 및 각 페이지 메타데이터 연동
+   - sitemap.xml과 robots.txt 자동 생성 라우트 구현
+   - Google Analytics와 Vercel Analytics 통합
+   - 프로젝트 이미지 lazy loading 적용
+   - GitHub Actions 워크플로우로 lint · build 자동화
