@@ -14,5 +14,14 @@ export interface Project {
   };
   features: string[];
   learnings: string[];
+  team?: TeamMember[];
+  reviews?: string[];
   contentHtml?: string;
+}
+
+export interface TeamMember {
+  name: string;
+  role: string;
+  github?: string;
+  linkedin?: string;
 }

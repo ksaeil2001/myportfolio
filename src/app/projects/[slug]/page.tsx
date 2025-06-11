@@ -93,6 +93,69 @@ export default async function Page({
         </ul>
       </section>
 
+      {project.team?.length ? (
+        <section className="mt-8" aria-labelledby="team-heading">
+          <h2
+            id="team-heading"
+            className="text-2xl font-semibold text-gray-900 dark:text-white"
+          >
+            팀원 소개
+          </h2>
+          <ul className="mt-4 space-y-2">
+            {project.team.map((member, i) => (
+              <li key={i} className="text-gray-700 dark:text-gray-300">
+                {member.name} - {member.role}
+                {member.github && (
+                  <a
+                    href={member.github}
+                    className="ml-2 text-blue-600 dark:text-blue-400 hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub
+                  </a>
+                )}
+                {member.linkedin && (
+                  <a
+                    href={member.linkedin}
+                    className="ml-2 text-blue-600 dark:text-blue-400 hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    LinkedIn
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {project.reviews?.length ? (
+        <section className="mt-8" aria-labelledby="review-heading">
+          <h2
+            id="review-heading"
+            className="text-2xl font-semibold text-gray-900 dark:text-white"
+          >
+            외부 리뷰
+          </h2>
+          <ul className="mt-4 list-disc list-inside space-y-2">
+            {project.reviews.map((link, i) => (
+              <li key={i}>
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  {link}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       <section className="mt-8" aria-labelledby="learnings-heading">
         <h2
           id="learnings-heading"

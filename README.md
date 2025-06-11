@@ -268,3 +268,8 @@ myportfolio/
    - Google Analytics와 Vercel Analytics 통합
    - 프로젝트 이미지 lazy loading 적용
    - GitHub Actions 워크플로우로 lint · build 자동화
+2. 2025-06-11 (Codex) - 블로그 RSS 연동 및 데이터 구조 확장
+   - `/api/blog` 라우트에서 RSS 파싱 후 최신 글 제공
+   - 홈 페이지 `BlogSection` 컴포넌트로 최근 글 5개 표시
+   - 프로젝트 타입에 팀원(`team`)과 리뷰(`reviews`) 필드 추가
+   - 프로젝트 상세 페이지에 팀원 소개 및 외부 리뷰 섹션 노출

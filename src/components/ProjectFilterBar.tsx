@@ -103,6 +103,7 @@ export function ProjectFilterBar({
           <option value="oldest">오래된순</option>
           <option value="name">이름순</option>
           <option value="contribution">기여도순</option>
+          <option value="usage">사용 빈도순</option>
         </select>
       </label>
 

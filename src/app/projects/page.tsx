@@ -67,6 +67,17 @@ export default async function ProjectsPage({
     case "contribution":
       projectList.sort((a, b) => b.contribution - a.contribution);
       break;
+    case "usage":
+      const freq: Record<string, number> = {};
+      projects.flatMap(p => p.stack).forEach(s => {
+        freq[s] = (freq[s] ?? 0) + 1;
+      });
+      projectList.sort((a, b) => {
+        const aScore = a.stack.reduce((sum, s) => sum + (freq[s] ?? 0), 0);
+        const bScore = b.stack.reduce((sum, s) => sum + (freq[s] ?? 0), 0);
+        return bScore - aScore;
+      });
+      break;
     default:
       break;
   }

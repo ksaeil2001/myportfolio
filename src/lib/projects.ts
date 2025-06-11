@@ -30,6 +30,8 @@ export async function getProjects(): Promise<Project[]> {
       links: data.links,
       features: data.features || [],
       learnings: data.learnings || [],
+      team: data.team || [],
+      reviews: data.reviews || [],
       contentHtml: htmlContent,
     });
   }

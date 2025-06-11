@@ -21,6 +21,12 @@ learnings:
   - Next.js App Router 활용
   - Tailwind CSS 커스터마이징
   - 접근성 고려한 UI 구성
+team:
+  - name: 김세일
+    role: Full-stack
+    github: https://github.com/saeil
+reviews:
+  - https://example.com/review2
 ---
 
 다크 모드와 프로젝트 필터 기능을 갖춘 포트폴리오 사이트입니다.
