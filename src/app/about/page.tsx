@@ -96,10 +96,11 @@ export default function AboutPage() {
             "TypeScript",
             "Tailwind CSS",
             "Node.js",
-          ].map((skill) => (
+          ].map((skill, i) => (
             <li
               key={skill}
-              className="rounded bg-gray-100 px-3 py-1 text-sm text-gray-700 dark:bg-gray-700 dark:text-gray-200"
+              className="rounded bg-gray-100 px-3 py-1 text-sm text-gray-700 dark:bg-gray-700 dark:text-gray-200 opacity-0 animate-fade-in-up"
+              style={{ animationDelay: `${i * 0.1}s` }}
             >
               {skill}
             </li>
