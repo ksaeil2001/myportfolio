@@ -282,3 +282,6 @@ myportfolio/
 
 - 외부 CDN 이미지 사용 시 next/image `Invalid src prop` 오류 수정  
   (next.config.js `images.domains`에 `cdn.example.com` 추가)
+
+- 홈 화면 ‘프로젝트 보기’ 버튼 동작 미구현 오류 수정  
+  (목적에 따라 앵커 이동/페이지 이동 기능 구현 및 테스트 완료)
