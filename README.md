@@ -125,7 +125,8 @@ UI 컴포넌트는 `src/components/`에서 기능별로 분리 구성되어 있�
 - **데이터 처리:** EmailJS public key를 `.env.local`에서 읽어 연동 처리
 - **기능 특징:**
   - 제출 성공/실패 안내 UI 표시
-  - `public/resume.pdf` 존재 시 “이력서 다운로드” 버튼 활성화
+  - `public/resume.pdf` 존재 여부를 확인해 다운로드 버튼을 활성/비활성 처리
+  - 파일이 없을 경우 안내 문구 "이력서 준비 중입니다" 표시
 - **UI 구성:** 
   - 좌측은 정보 링크, 우측은 입력 폼
   - 모바일 대응을 위한 1열 정렬 자동 전환
@@ -155,7 +156,7 @@ UI 컴포넌트는 `src/components/`에서 기능별로 분리 구성되어 있�
 myportfolio/
 ├── public/
 │   ├── projects/             # 프로젝트 썸네일 이미지 저장 위치 (image URL 경로 참조)
-│   └── resume.pdf            # PDF 이력서 (존재 시 contact 페이지에 다운로드 버튼 표시)
+│   └── resume.pdf            # PDF 이력서 (없으면 다운로드 버튼 대신 안내 문구 노출)
 │
 ├── src/
 │   ├── app/                  # Next.js App Router 기반 페이지 디렉터리
@@ -237,7 +238,7 @@ myportfolio/
 - [x] GitHub, 블로그, 이메일 링크 연결
 - [x] EmailJS 연동 ContactForm 구현
 - [x] 전송 성공/실패 시 피드백 출력
-- [x] resume.pdf 존재 시 이력서 다운로드 버튼 활성화
+- [x] resume.pdf 존재 시 이력서 다운로드 버튼 활성화 (없을 경우 안내 표시)
 
 ### 🌍 전역 기능 및 접근성
 - [x] 반응형 레이아웃 구현 (모바일/태블릿 대응)
@@ -251,10 +252,10 @@ myportfolio/
 - 빌드 전 또는 필요 시 실행하여 최신 이력서를 갱신합니다.
 
 ### 🧪 추후 예정 작업
-- [ ] Jest, React Testing Library 기반 테스트 도입
-- [ ] GitHub Actions 기반 CI 파이프라인 구성
-- [ ] 프로젝트 상세 스크린샷 lazy loading 적용
-- [ ] 소개 페이지에 기술 스택 애니메이션 추가
+- [x] Jest, React Testing Library 기반 테스트 도입
+- [x] GitHub Actions 기반 CI 파이프라인 구성
+- [x] 프로젝트 상세 스크린샷 lazy loading 적용
+- [x] 소개 페이지에 기술 스택 애니메이션 추가
 
 ## Patch Notes
 - Added dark mode toggle with localStorage persistence.
@@ -277,6 +278,12 @@ myportfolio/
    - `LoadingProvider` 컨텍스트 도입으로 페이지 전환과 폼 제출 시 상단 로딩 바 표시
    - 이력서 다운로드 링크 클릭 시 토스트 알림 제공
    - 기존 `ProgressBar` 컴포넌트 삭제 및 레이아웃 구조 정리
+4. 2025-06-14 (Codex) - 테스트 & CI 강화
+   - resume.pdf 존재 여부 확인 후 버튼 비활성화 및 안내 처리
+   - Jest + React Testing Library 환경 도입 및 기본 테스트 추가
+   - GitHub Actions 워크플로우로 lint · test · build 자동화
+   - 소개 페이지 기술 스택 애니메이션 구현
+   - 사용되지 않던 `src/data/projects.ts` 파일 삭제
 
 ## Changelog
 
