@@ -1,3 +1,5 @@
+import ResumeDownloadLink from "./ResumeDownloadLink";
+
 export function HeroSection() {
   return (
     <section
@@ -18,13 +20,12 @@ export function HeroSection() {
         >
           프로젝트 보기
         </a>
-        <a
-          href="/resume.pdf"
+        <ResumeDownloadLink
           className="border border-gray-300 dark:border-gray-600 px-6 py-3 rounded-lg font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus-visible:outline focus-visible:ring-2 focus-visible:ring-blue-500"
           aria-label="이력서 다운로드"
         >
           이력서 다운로드
-        </a>
+        </ResumeDownloadLink>
       </div>
     </section>
   );

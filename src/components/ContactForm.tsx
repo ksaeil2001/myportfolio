@@ -3,12 +3,14 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 import emailjs from "emailjs-com";
 import { useToast } from "./Providers";
+import { useLoading } from "./LoadingProvider";
 
 export function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"IDLE" | "SUCCESS" | "ERROR">("IDLE");
   const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
   const { show } = useToast();
+  const { start, done } = useLoading();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -28,6 +30,7 @@ export function ContactForm() {
       return;
     }
     setErrors({});
+    start();
     try {
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
@@ -46,6 +49,8 @@ export function ContactForm() {
       console.error(err);
       setStatus("ERROR");
       show("전송 중 오류가 발생했습니다.", "error");
+    } finally {
+      done();
     }
   };
 
