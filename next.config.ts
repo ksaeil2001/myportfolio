@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
       process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
     NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
     NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
+    GITHUB_TOKEN: process.env.GITHUB_TOKEN,
   },
   async redirects() {
     return [

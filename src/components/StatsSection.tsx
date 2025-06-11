@@ -3,16 +3,27 @@ import { getProjects } from "@/lib/projects";
 
 async function getGithubStats() {
   try {
+    const token = process.env.GITHUB_TOKEN;
+    const userHeaders: Record<string, string> = {
+      Accept: "application/vnd.github+json",
+    };
+    if (token) {
+      userHeaders["Authorization"] = `token ${token}`;
+    }
     const res = await fetch("https://api.github.com/users/ksaeil2001", {
-      headers: { Accept: "application/vnd.github+json" },
+      headers: userHeaders,
       next: { revalidate: 3600 },
     });
     if (!res.ok) throw new Error("Failed to fetch GitHub data");
     const data = await res.json();
 
+    const repoHeaders: Record<string, string> = {};
+    if (token) {
+      repoHeaders["Authorization"] = `token ${token}`;
+    }
     const repoRes = await fetch(
       "https://api.github.com/users/ksaeil2001/repos?per_page=100",
-      { next: { revalidate: 3600 } },
+      Object.keys(repoHeaders).length ? { headers: repoHeaders, next: { revalidate: 3600 } } : { next: { revalidate: 3600 } },
     );
     if (!repoRes.ok) throw new Error("Failed to fetch repo list");
     const repos: { stargazers_count?: number }[] = await repoRes.json();
