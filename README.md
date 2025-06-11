@@ -277,3 +277,8 @@ myportfolio/
    - `LoadingProvider` 컨텍스트 도입으로 페이지 전환과 폼 제출 시 상단 로딩 바 표시
    - 이력서 다운로드 링크 클릭 시 토스트 알림 제공
    - 기존 `ProgressBar` 컴포넌트 삭제 및 레이아웃 구조 정리
+
+## Changelog
+
+- 외부 CDN 이미지 사용 시 next/image `Invalid src prop` 오류 수정  
+  (next.config.js `images.domains`에 `cdn.example.com` 추가)

@@ -3,7 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["raw.githubusercontent.com", "images.unsplash.com"],
+    domains: [
+      "raw.githubusercontent.com",
+      "images.unsplash.com",
+      "cdn.example.com",
+    ],
   },
   env: {
     NEXT_PUBLIC_EMAILJS_SERVICE_ID: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
