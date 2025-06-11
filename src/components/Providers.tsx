@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState, createContext, useContext, ReactNode } from "react";
+import LoadingProvider from "./LoadingProvider";
 
 // Theme context
 interface ThemeContextValue {
@@ -104,7 +105,9 @@ export function useToast() {
 export default function Providers({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider>
-      <ToastProvider>{children}</ToastProvider>
+      <LoadingProvider>
+        <ToastProvider>{children}</ToastProvider>
+      </LoadingProvider>
     </ThemeProvider>
   );
 }

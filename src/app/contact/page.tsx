@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/ContactForm";
+import ResumeDownloadLink from "@/components/ResumeDownloadLink";
 
 export const metadata = {
   title: "Contact",
@@ -32,13 +33,11 @@ export default function ContactPage() {
         <p className="text-lg text-gray-700 dark:text-gray-300">
           블로그: <a href="https://blog.saeil.dev" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">blog.saeil.dev</a>
         </p>
-        <a
-          href="/resume.pdf"
+        <ResumeDownloadLink
           className="inline-block text-sm text-blue-600 dark:text-blue-400 hover:underline"
-          download
         >
           PDF 이력서 다운로드
-        </a>
+        </ResumeDownloadLink>
       </section>
 
       <ContactForm />
