@@ -52,6 +52,7 @@
 **🚀 CI/CD 및 환경변수**
 > Vercel을 통해 GitHub 연동 자동 배포를 수행하며, 환경변수는 `.env.local` 또는 Vercel 설정에서 관리합니다.
 > - `BLOG_RSS_URL`: 블로그 RSS 피드 주소를 지정하여 `/api/blog`에서 사용합니다.
+> - `GITHUB_TOKEN`: GitHub API 요청 시 인증 헤더에 사용하며, 미설정 시 비인증 요청으로 동작합니다.
 
 <p>
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
