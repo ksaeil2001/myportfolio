@@ -338,3 +338,6 @@ myportfolio/
   - EmailJS 관련 환경 변수 문서화 및 예시 값 추가
   - CI에서 EmailJS 환경 변수를 secrets로 주입하도록 수정
   - 환경 변수 누락 시 오류 토스트 표시 로직 추가 및 테스트 반영
+- 2025-06-20 (Codex) - Header와 HeroSection 컴포넌트 클라이언트 모드 명시
+  - `useRouter` 등 클라이언트 훅 사용에 맞게 "use client" 지시문 추가
+  - 빌드 오류를 유발하던 App Router 환경의 컴포넌트 초기화 문제 해결
