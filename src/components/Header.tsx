@@ -1,25 +1,28 @@
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import { useTranslations, useLocale } from "next-intl";
 
 export function Header() {
+  const t = useTranslations('menu');
+  const locale = useLocale();
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur dark:border-gray-700 dark:bg-neutral-900/80">
       <div className="mx-auto flex max-w-5xl items-center justify-between p-4 sm:p-6">
-        <Link href="/" className="text-lg font-bold text-gray-900 dark:text-white">
+        <Link href={{ pathname: '/', query: {} }} locale={locale} className="text-lg font-bold text-gray-900 dark:text-white">
           MyPortfolio
         </Link>
         <nav className="hidden gap-6 font-medium text-gray-700 dark:text-gray-300 md:flex">
-          <Link href="/" className="hover:underline">
-            Home
+          <Link href={{ pathname: '/' }} locale={locale} className="hover:underline">
+            {t('home')}
           </Link>
-          <Link href="/about" className="hover:underline">
-            About
+          <Link href={{ pathname: '/about' }} locale={locale} className="hover:underline">
+            {t('about')}
           </Link>
-          <Link href="/projects" className="hover:underline">
-            Projects
+          <Link href={{ pathname: '/projects' }} locale={locale} className="hover:underline">
+            {t('projects')}
           </Link>
-          <Link href="/contact" className="hover:underline">
-            Contact
+          <Link href={{ pathname: '/contact' }} locale={locale} className="hover:underline">
+            {t('contact')}
           </Link>
         </nav>
         <ThemeToggle />
@@ -33,23 +36,23 @@ export function Header() {
           <nav className="absolute right-0 mt-2 w-40 rounded-md border border-gray-200 bg-white p-2 shadow-lg dark:border-gray-700 dark:bg-neutral-900">
             <ul className="flex flex-col divide-y divide-gray-200 dark:divide-gray-700">
               <li>
-                <Link href="/" className="block px-2 py-2 hover:underline">
-                  Home
+                <Link href={{ pathname: '/' }} locale={locale} className="block px-2 py-2 hover:underline">
+                  {t('home')}
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="block px-2 py-2 hover:underline">
-                  About
+                <Link href={{ pathname: '/about' }} locale={locale} className="block px-2 py-2 hover:underline">
+                  {t('about')}
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="block px-2 py-2 hover:underline">
-                  Projects
+                <Link href={{ pathname: '/projects' }} locale={locale} className="block px-2 py-2 hover:underline">
+                  {t('projects')}
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="block px-2 py-2 hover:underline">
-                  Contact
+                <Link href={{ pathname: '/contact' }} locale={locale} className="block px-2 py-2 hover:underline">
+                  {t('contact')}
                 </Link>
               </li>
             </ul>

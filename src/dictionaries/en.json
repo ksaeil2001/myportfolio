@@ -1,0 +1,30 @@
+{
+  "hero": {
+    "greeting": "Hello, I'm Saeil Kim",
+    "intro": "I build user-centric interfaces that leave an impression.",
+    "projects": "View Projects",
+    "download": "Download Resume"
+  },
+  "stats": {
+    "projects": "Projects",
+    "stacks": "Tech Used",
+    "representative": "Top Stack",
+    "stars": "GitHub Stars",
+    "errorValue": "Fetch Failed",
+    "error": "Failed to fetch GitHub info"
+  },
+  "projects": {
+    "heading": "Projects"
+  },
+  "menu": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "desc": "The page you are looking for might have been removed.",
+    "home": "Go home"
+  }
+}

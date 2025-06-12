@@ -7,9 +7,17 @@ import type { Project } from '@/data/types';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content', 'projects');
 
+type Cache = { data: Project[]; timestamp: number } | null
+const CACHE_DURATION = 60 * 60 * 1000 // 1 hour
+let cache: Cache = null
+
 export async function getProjects(): Promise<Project[]> {
-  const files = await fs.readdir(CONTENT_DIR);
-  const projects: Project[] = [];
+  if (cache && Date.now() - cache.timestamp < CACHE_DURATION) {
+    return cache.data
+  }
+
+  const files = await fs.readdir(CONTENT_DIR)
+  const projects: Project[] = []
 
   for (const file of files) {
     if (!file.endsWith('.md')) continue;
@@ -36,5 +44,7 @@ export async function getProjects(): Promise<Project[]> {
     });
   }
 
-  return projects.sort((a, b) => b.year - a.year);
+  const sorted = projects.sort((a, b) => b.year - a.year)
+  cache = { data: sorted, timestamp: Date.now() }
+  return sorted
 }

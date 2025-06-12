@@ -216,7 +216,7 @@ myportfolio/
 │       └── github.ts          # GitHub API 통계를 호출하는 함수 (stargazers 수 등)
 │
 ├── .env.local                 # 로컬 개발용 환경변수 설정 파일 (Git에 커밋 금지)
-├── next.config.ts            # Next.js 설정 파일 (i18n 제거, 이미지 도메인 등)
+├── next.config.ts            # Next.js 설정 파일 (i18n, 이미지 도메인 등)
 ├── tailwind.config.ts        # Tailwind CSS 설정 파일 (color, font 등 테마 설정)
 ├── tsconfig.json             # TypeScript 설정 파일
 ├── package.json              # 프로젝트 의존성 및 명령어 스크립트 정의
@@ -302,7 +302,15 @@ myportfolio/
    - Jest + React Testing Library 환경 도입 및 기본 테스트 추가
    - GitHub Actions 워크플로우로 lint · test · build 자동화
    - 소개 페이지 기술 스택 애니메이션 구현
-   - 사용되지 않던 `src/data/projects.ts` 파일 삭제
+- 사용되지 않던 `src/data/projects.ts` 파일 삭제
+- 2025-06-15 (Codex) - i18n 및 기능 개선
+  - 한국어/영어 다국어 라우팅 구조 도입
+  - GitHub 통계 조회 실패 시 명확한 안내 메시지 표시
+  - PDF 이력서에 프로젝트 설명과 기술 스택 추가
+  - 주요 컴포넌트 테스트 확대 및 프로젝트 데이터 캐싱 적용
+
+### 다국어 전환 방법
+기본 언어는 한국어이며 `/en` 경로로 접속하면 영어 페이지가 제공됩니다. 예) `/en/projects`.
 
 ## Changelog
 

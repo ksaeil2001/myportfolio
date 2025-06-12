@@ -1,5 +1,6 @@
 import { StatsCard } from "./StatsCard";
 import { getProjects } from "@/lib/projects";
+import { getTranslations } from "next-intl/server";
 
 async function getGithubStats() {
   try {
@@ -35,16 +36,19 @@ async function getGithubStats() {
     return {
       followers: data.followers as number,
       stars: totalStars,
+      error: false,
     };
   } catch {
     return {
       followers: 0,
       stars: 0,
+      error: true,
     };
   }
 }
 
 export async function StatsSection() {
+  const t = await getTranslations('stats');
   const github = await getGithubStats();
 
   const projectList = await getProjects();
@@ -60,10 +64,13 @@ export async function StatsSection() {
   )[0]?.[0];
 
   const stats = [
-    { title: "프로젝트 수", value: String(projectCount) },
-    { title: "사용 기술 수", value: String(uniqueStacks.length) },
-    { title: "대표 기술", value: representativeTech ?? "-" },
-    { title: "GitHub Stars", value: String(github.stars) },
+    { title: t('projects'), value: String(projectCount) },
+    { title: t('stacks'), value: String(uniqueStacks.length) },
+    { title: t('representative'), value: representativeTech ?? '-' },
+    {
+      title: t('stars'),
+      value: github.error ? t('errorValue') : String(github.stars),
+    },
   ];
 
   return (
@@ -76,6 +83,11 @@ export async function StatsSection() {
           <StatsCard key={i} {...stat} />
         ))}
       </div>
+      {github.error && (
+        <div aria-live="assertive" className="sr-only">
+          {t('error')}
+        </div>
+      )}
     </section>
   );
 }
