@@ -1,7 +1,12 @@
 export function getEmailJsEnv() {
   const { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID } = process.env
   if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_USER_ID) {
-    throw new Error('Missing EmailJS environment variables')
+    console.warn('Missing EmailJS environment variables. Using default values.')
+    return {
+      serviceId: EMAILJS_SERVICE_ID || 'default_service_id',
+      templateId: EMAILJS_TEMPLATE_ID || 'default_template_id',
+      userId: EMAILJS_USER_ID || 'default_user_id',
+    }
   }
   return {
     serviceId: EMAILJS_SERVICE_ID,
