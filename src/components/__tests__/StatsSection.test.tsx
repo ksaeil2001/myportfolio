@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-require-imports */
 import { render, screen } from '@testing-library/react'
 
 jest.mock('next-intl/server', () => ({
@@ -61,7 +60,7 @@ test('shows github stars on success', async () => {
     .fn()
     .mockResolvedValueOnce({ ok: true, json: async () => ({ followers: 1 }) })
     .mockResolvedValueOnce({ ok: true, json: async () => [{ stargazers_count: 5 }] })
-  const { StatsSection } = require('../StatsSection')
+  const { StatsSection } = await import('../StatsSection')
   render(await StatsSection())
   expect(await screen.findByText('GitHub Stars')).toBeInTheDocument()
   expect(screen.getByText('5')).toBeInTheDocument()
@@ -69,7 +68,7 @@ test('shows github stars on success', async () => {
 
 test('shows fallback message on github failure', async () => {
   global.fetch = jest.fn().mockRejectedValue(new Error('fail'))
-  const { StatsSection } = require('../StatsSection')
+  const { StatsSection } = await import('../StatsSection')
   render(await StatsSection())
   expect(await screen.findByText('조회 실패')).toBeInTheDocument()
   expect(screen.getByText('GitHub 정보를 불러오지 못했습니다.')).toBeInTheDocument()
