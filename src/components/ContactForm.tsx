@@ -70,7 +70,10 @@ export function ContactForm() {
         (err as Error).message || err,
       );
       setStatus("ERROR");
-      show("전송 중 오류가 발생했습니다. 서비스 상태를 확인해주세요.", "error");
+      show(
+        "There was an error sending the message. Please try again later.",
+        "error",
+      );
     } finally {
       done();
     }

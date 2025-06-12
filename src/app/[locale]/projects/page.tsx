@@ -4,6 +4,10 @@ import { ProjectFilterBar } from "@/components/ProjectFilterBar";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 
+interface PageProps {
+  searchParams: Record<string, string | string[] | undefined>;
+}
+
 export const metadata: Metadata = {
   title: "Projects",
   openGraph: {
@@ -18,11 +22,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function ProjectsPage({
-  searchParams,
-}: {
-  searchParams: Record<string, string | string[] | undefined>;
-}) {
+export default async function ProjectsPage({ searchParams }: PageProps) {
   const params = searchParams;
   const projects = await getProjects();
   const stackParam = Array.isArray(params.stack) ? params.stack[0] : params.stack;

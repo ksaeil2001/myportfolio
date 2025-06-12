@@ -84,7 +84,7 @@ describe('ContactForm', () => {
 
     await waitFor(() => expect(emailjs.send).toHaveBeenCalled());
     expect(showMock).toHaveBeenCalledWith(
-      '전송 중 오류가 발생했습니다. 서비스 상태를 확인해주세요.',
+      'There was an error sending the message. Please try again later.',
       'error'
     );
     expect(startMock).toHaveBeenCalled();
@@ -110,7 +110,7 @@ describe('ContactForm', () => {
 
     await waitFor(() => expect(emailjs.send).toHaveBeenCalled());
     expect(showMock).toHaveBeenCalledWith(
-      '전송 중 오류가 발생했습니다. 서비스 상태를 확인해주세요.',
+      'There was an error sending the message. Please try again later.',
       'error'
     );
     expect(startMock).toHaveBeenCalled();
