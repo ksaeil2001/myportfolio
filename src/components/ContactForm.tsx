@@ -62,7 +62,10 @@ export function ContactForm() {
       setForm({ name: "", email: "", message: "" });
       show("메시지가 전송되었습니다!", "success");
     } catch (err) {
-      console.error("Email service error details:", err);
+      console.error(
+        "Email service error details:",
+        (err as Error).message || err,
+      );
       setStatus("ERROR");
       show("전송 중 오류가 발생했습니다. 서비스 상태를 확인해주세요.", "error");
     } finally {

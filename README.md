@@ -358,3 +358,7 @@ myportfolio/
   - EmailJS 오류 로그 메시지를 "Email service error details"로 변경
   - .env.example의 EmailJS 값 가이드 형식 통일
   - CI 워크플로우에서 환경 변수 매핑 상태 재확인
+- 2025-06-28 (Codex) - EmailJS 디버그 스크립트 및 오류 메시지 개선
+  - 네트워크 오류 로그에 err.message 우선 출력하도록 수정
+  - .env.example에 EmailJS 설정 주석 추가
+  - EmailJS 테스트용 scripts/testEmailService.ts 스크립트 추가
