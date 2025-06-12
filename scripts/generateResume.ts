@@ -1,7 +1,8 @@
 import fs from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
-import { PDFDocument, StandardFonts } from 'pdf-lib'
+import { PDFDocument } from 'pdf-lib'
+import fontkit from '@pdf-lib/fontkit'
 
 interface ProjectFrontmatter {
   title: string
@@ -27,7 +28,23 @@ async function loadProjects(): Promise<ProjectFrontmatter[]> {
 async function generate() {
   const projects = await loadProjects()
   const doc = await PDFDocument.create()
-  const font = await doc.embedFont(StandardFonts.Helvetica)
+  doc.registerFontkit(fontkit)
+  const fontPath = path.join(__dirname, '../public/fonts/NotoSansKR-Regular.otf')
+  let fontBytes: Uint8Array
+  try {
+    fontBytes = await fs.readFile(fontPath)
+  } catch {
+    console.log('Font not found locally. Downloading...')
+    const res = await fetch(
+      'https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Korean/NotoSansCJKkr-Regular.otf'
+    )
+    if (!res.ok) throw new Error('Failed to download font')
+    const arrayBuf = await res.arrayBuffer()
+    fontBytes = new Uint8Array(arrayBuf)
+    await fs.mkdir(path.dirname(fontPath), { recursive: true })
+    await fs.writeFile(fontPath, fontBytes)
+  }
+  const font = await doc.embedFont(fontBytes)
   let page = doc.addPage([595, 842])
   let y = 800
   page.drawText('Resume Projects Overview', { x: 50, y, size: 20, font })
