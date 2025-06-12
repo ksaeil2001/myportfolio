@@ -25,3 +25,9 @@ export interface TeamMember {
   github?: string;
   linkedin?: string;
 }
+
+export interface TimelineEntry {
+  year: string;
+  title: string;
+  description: string;
+}

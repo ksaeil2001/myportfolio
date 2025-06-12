@@ -1,5 +1,7 @@
 import { TimelineItem } from "@/components/TimelineItem";
 import { getTranslations } from "next-intl/server";
+import type { TimelineEntry } from "@/data/types";
+import timelineData from "../../../../content/about/timeline.json";
 
 export const metadata = {
   title: "About",
@@ -15,33 +17,7 @@ export const metadata = {
   },
 };
 
-const timeline = [
-  {
-    year: "2019",
-    title: "컴퓨터공학과 입학",
-    description: "본격적으로 개발 세계에 발을 들였습니다.",
-  },
-  {
-    year: "2021",
-    title: "첫 개인 프로젝트 시작",
-    description: "React를 활용한 웹앱을 제작하며 경험을 쌓았습니다.",
-  },
-  {
-    year: "2022",
-    title: "스타트업 인턴",
-    description: "실제 서비스 개발과 협업을 배웠습니다.",
-  },
-  {
-    year: "2023",
-    title: "프론트엔드 개발자 취업",
-    description: "사용자 중심 UI를 고민하며 다양한 프로젝트에 참여 중입니다.",
-  },
-  {
-    year: "2024",
-    title: "포트폴리오 사이트 개설",
-    description: "그간의 경험과 배움을 정리하기 위해 이 사이트를 만들었습니다.",
-  },
-];
+const timeline: TimelineEntry[] = timelineData;
 
 export default async function AboutPage() {
   const t = await getTranslations('about');
