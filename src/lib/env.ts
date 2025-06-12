@@ -1,17 +1,25 @@
-function validate() {
-  const {
-    EMAILJS_SERVICE_ID,
-    EMAILJS_TEMPLATE_ID,
-    EMAILJS_USER_ID,
-    NEXT_PUBLIC_GA_ID,
-    BLOG_RSS_URL,
-    GITHUB_TOKEN,
-  } = process.env
-
+export function getEmailJsEnv() {
+  const { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID } = process.env
   if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_USER_ID) {
     throw new Error('Missing EmailJS environment variables')
   }
+  return {
+    serviceId: EMAILJS_SERVICE_ID,
+    templateId: EMAILJS_TEMPLATE_ID,
+    userId: EMAILJS_USER_ID,
+  }
+}
 
+export function getGoogleAnalyticsId() {
+  return process.env.NEXT_PUBLIC_GA_ID
+}
+
+export function getGithubToken() {
+  return process.env.GITHUB_TOKEN
+}
+
+export function getBlogRssUrl() {
+  const { BLOG_RSS_URL } = process.env
   if (BLOG_RSS_URL) {
     try {
       new URL(BLOG_RSS_URL)
@@ -19,16 +27,5 @@ function validate() {
       throw new Error('BLOG_RSS_URL must be a valid URL')
     }
   }
-  return {
-    emailJsServiceId: EMAILJS_SERVICE_ID,
-    emailJsTemplateId: EMAILJS_TEMPLATE_ID,
-    emailJsUserId: EMAILJS_USER_ID,
-    googleAnalyticsId: NEXT_PUBLIC_GA_ID,
-    blogRssUrl: BLOG_RSS_URL,
-    githubToken: GITHUB_TOKEN,
-  }
-}
-
-export function getEnv() {
-  return validate()
+  return BLOG_RSS_URL
 }

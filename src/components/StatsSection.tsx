@@ -1,11 +1,11 @@
 import { StatsCard } from "./StatsCard";
 import { getProjects } from "@/lib/projects";
 import { getTranslations } from "next-intl/server";
-import { getEnv } from "@/lib/env";
+import { getGithubToken } from "@/lib/env";
 
 async function getGithubStats() {
   try {
-    const { githubToken: token } = getEnv();
+    const token = getGithubToken();
     const userHeaders: Record<string, string> = {
       Accept: "application/vnd.github+json",
     };

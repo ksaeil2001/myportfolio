@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import Parser from 'rss-parser'
-import { getEnv } from '@/lib/env'
+import { getBlogRssUrl } from '@/lib/env'
 
 export const dynamic = 'force-dynamic'
 
@@ -9,8 +9,7 @@ const CACHE_DURATION = 10 * 60 * 1000 // 10 minutes
 let cache: { data: unknown; timestamp: number } | null = null
 
 export async function GET() {
-  const { blogRssUrl } = getEnv()
-  const feedUrl = blogRssUrl || 'https://hnrss.org/frontpage'
+  const feedUrl = getBlogRssUrl() || 'https://hnrss.org/frontpage'
 
   if (cache && Date.now() - cache.timestamp < CACHE_DURATION) {
     return NextResponse.json(cache.data)
