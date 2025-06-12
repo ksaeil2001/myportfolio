@@ -54,6 +54,9 @@ jest.mock('@/lib/projects', () => ({
 beforeEach(() => {
   jest.resetModules()
   jest.resetAllMocks()
+  process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID = 'svc'
+  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID = 'tpl'
+  process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY = 'key'
 })
 
 test('shows github stars on success', async () => {

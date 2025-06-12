@@ -1,8 +1,9 @@
 'use client'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 import Script from 'next/script'
+import { getEnv } from '@/lib/env'
 
-const gaId = process.env.NEXT_PUBLIC_GA_ID
+const { googleAnalyticsId: gaId } = getEnv()
 
 export default function Analytics() {
   return (

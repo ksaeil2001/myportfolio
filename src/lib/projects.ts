@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import sanitizeHtml from 'sanitize-html';
 import type { Project } from '@/data/types';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content', 'projects');
@@ -23,7 +24,8 @@ export async function getProjects(): Promise<Project[]> {
     if (!file.endsWith('.md')) continue;
     const raw = await fs.readFile(path.join(CONTENT_DIR, file), 'utf-8');
     const { data, content } = matter(raw);
-    const htmlContent = String(await remark().use(html).process(content));
+    const rawHtml = String(await remark().use(html).process(content));
+    const htmlContent = sanitizeHtml(rawHtml);
 
     projects.push({
       id: data.id,

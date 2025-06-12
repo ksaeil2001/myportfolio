@@ -369,3 +369,9 @@ myportfolio/
 - 2025-07-01 (Codex) - 빌드 스크립트 tsx 사용으로 업데이트
   - generateResume.ts 실행을 위해 devDependency로 tsx 추가
   - package.json의 generate:resume 스크립트 수정
+- 2025-07-02 (Codex) - 보안 및 품질 개선
+  - Markdown HTML 변환 결과 sanitize-html 적용
+  - 환경 변수 로딩 로직을 src/lib/env.ts로 통합
+  - 프로젝트 상세 페이지 테스트 추가
+  - Blog API 결과 메모리 캐싱 및 오류 메시지 강화
+  - 이력서 스크립트 폰트 다운로드 실패 시 대체 폰트/기본 글꼴 사용
