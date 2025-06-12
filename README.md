@@ -395,3 +395,6 @@ myportfolio/
   - 가져올 저장소 수를 인자로 받을 수 있도록 getGithubStats 함수 개선
   - StatsSection에서 새 유틸리티 사용하도록 수정
   - 관련 단위 테스트 추가
+- 2025-07-07 (Codex) - CI 환경 변수 검증 로직 개선 및 Secrets 점검
+  - GitHub Secrets에 EmailJS 서비스 ID, 템플릿 ID, 사용자 ID가 등록됐는지 재확인
+  - 누락 시 어떤 변수가 없는지 명확히 알 수 있도록 워크플로우 오류 메시지 수정

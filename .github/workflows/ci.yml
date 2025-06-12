@@ -21,10 +21,9 @@ jobs:
       - run: npm ci
       - name: Validate Environment Variables
         run: |
-          if [ -z "$EMAILJS_SERVICE_ID" ] || [ -z "$EMAILJS_TEMPLATE_ID" ] || [ -z "$EMAILJS_USER_ID" ]; then
-            echo "Missing one or more EmailJS environment variables.";
-            exit 1;
-          fi
+          : "${EMAILJS_SERVICE_ID:?'Missing EMAILJS_SERVICE_ID'}"
+          : "${EMAILJS_TEMPLATE_ID:?'Missing EMAILJS_TEMPLATE_ID'}"
+          : "${EMAILJS_USER_ID:?'Missing EMAILJS_USER_ID'}"
       - run: npm run lint
       - run: npm test
       - run: npm run build
