@@ -32,24 +32,6 @@ jest.mock('@/lib/projects', () => ({
   ]),
 }))
 
-jest.mock('@/lib/projects', () => ({
-  __esModule: true,
-  getProjects: jest.fn().mockResolvedValue([
-    {
-      id: 'p1',
-      title: 'proj',
-      description: 'desc',
-      image: '/img.png',
-      stack: ['React'],
-      slug: 'proj',
-      year: 2024,
-      contribution: 100,
-      features: [],
-      learnings: [],
-    },
-  ]),
-}))
-
 beforeEach(() => {
   jest.resetModules()
   jest.resetAllMocks()
