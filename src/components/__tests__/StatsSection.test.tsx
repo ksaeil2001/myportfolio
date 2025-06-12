@@ -53,9 +53,9 @@ jest.mock('@/lib/projects', () => ({
 beforeEach(() => {
   jest.resetModules()
   jest.resetAllMocks()
-  process.env.EMAILJS_SERVICE_ID = 'svc'
-  process.env.EMAILJS_TEMPLATE_ID = 'tpl'
-  process.env.EMAILJS_USER_ID = 'key'
+  delete process.env.EMAILJS_SERVICE_ID
+  delete process.env.EMAILJS_TEMPLATE_ID
+  delete process.env.EMAILJS_USER_ID
 })
 
 test('shows github stars on success', async () => {
