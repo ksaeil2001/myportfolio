@@ -31,32 +31,23 @@ export function ContactForm() {
       return;
     }
     setErrors({});
-    let serviceId: string
-    let templateId: string
-    let userId: string
-    try {
-      ;({ serviceId, templateId, userId } = getEmailJsEnv())
-    } catch (err) {
-      console.error('Missing EmailJS environment variables.', err)
+    const { serviceId, templateId, userId } = getEmailJsEnv()
+    if (
+      serviceId === 'default_service_id' ||
+      templateId === 'default_template_id' ||
+      userId === 'default_user_id'
+    ) {
+      console.error('Missing EmailJS environment variables.', {
+        serviceId,
+        templateId,
+        userId,
+      })
       show(
         'Email service is not configured properly. Please check the environment variables.',
         'error',
       )
       setStatus('ERROR')
       return
-    }
-
-    if (!serviceId || !templateId || !userId) {
-      console.error(
-        "Missing EmailJS environment variables. Ensure the following are set: EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID",
-        { serviceId, templateId, userId },
-      );
-      show(
-        "Email service is not configured properly. Please check the environment variables.",
-        "error",
-      );
-      setStatus("ERROR");
-      return;
     }
     start();
     try {

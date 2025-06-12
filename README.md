@@ -379,3 +379,7 @@ myportfolio/
   - EMAILJS_* 환경 변수명으로 통일하고 env.ts 검증 로직 업데이트
   - sanitize-html 타입 정의 추가
   - StatsSection 테스트의 eslint-disable 주석 제거
+- 2025-07-04 (Codex) - EmailJS CI 검증 및 fallback 로직 강화
+  - CI 워크플로우에 환경 변수 출력 및 누락 시 실패 단계 추가
+  - getEmailJsEnv에서 경고 로그와 기본값 fallback 처리
+  - 관련 유닛 테스트 추가
