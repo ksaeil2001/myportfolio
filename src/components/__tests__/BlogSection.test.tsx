@@ -12,9 +12,8 @@ jest.mock('next-intl', () => ({
   },
 }))
 
-jest.mock('swr', () => jest.fn())
-
-const useSWR = require('swr') as jest.Mock
+import useSWR from 'swr'
+jest.mock('swr')
 
 describe('BlogSection', () => {
   it('renders posts when data loaded', () => {

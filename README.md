@@ -312,8 +312,12 @@ myportfolio/
 - 2025-06-16 (Codex) - UI/로직 품질 및 국제화 개선
   - BlogSection 및 ProjectFilterBar 단위 테스트 추가
   - Header 로케일 스위처 구현
-  - 전 페이지 정적 텍스트 다국어화
+ - 전 페이지 정적 텍스트 다국어화
   - 이력서 생성 스크립트 TypeScript 전환 및 빌드 전 자동 실행
+- 2025-06-17 (Codex) - ESLint 규칙 및 테스트 코드 개선
+  - require() 사용을 표준 ES import 문으로 변경
+  - 불필요한 eslint-disable 지시어 제거 및 설정 파일 정비
+  - CI 환경에서 lint와 test가 안정적으로 동작하도록 수정
 
 ### 다국어 전환 방법
 기본 언어는 한국어이며 `/en` 경로로 접속하면 영어 페이지가 제공됩니다. 예) `/en/projects`.
