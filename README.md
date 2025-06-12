@@ -344,3 +344,5 @@ myportfolio/
 - 2025-06-22 (Codex) - ContactForm 이메일 서비스 오류 처리 강화
   - emailjs.send 실패 시 구체적인 로그와 사용자 친화 메시지 표시
   - 네트워크 오류 등 다양한 실패 케이스를 테스트에 추가
+- 2025-06-23 (Codex) - EmailJS 환경 변수 누락 로그 개선
+  - ContactForm에서 서비스 ID, 템플릿 ID, 공개 키 값을 함께 출력해 디버깅 편의성 향상

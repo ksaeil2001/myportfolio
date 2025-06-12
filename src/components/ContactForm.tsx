@@ -35,7 +35,11 @@ export function ContactForm() {
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
-      console.error("Missing EmailJS environment variables");
+      console.error("Missing EmailJS environment variables", {
+        serviceId,
+        templateId,
+        publicKey,
+      });
       show("이메일 서비스 설정이 잘못되었습니다.", "error");
       setStatus("ERROR");
       return;
