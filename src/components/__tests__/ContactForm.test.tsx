@@ -20,6 +20,9 @@ jest.mock('emailjs-com', () => ({
 
 beforeEach(() => {
   jest.clearAllMocks();
+  process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID = 'svc';
+  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID = 'tpl';
+  process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY = 'key';
 });
 
 describe('ContactForm', () => {
@@ -58,7 +61,7 @@ describe('ContactForm', () => {
   });
 
   it('shows error toast when emailjs fails', async () => {
-    (emailjs.send as jest.Mock).mockRejectedValue(new Error('fail'));
+    (emailjs.send as jest.Mock).mockRejectedValue(new Error('Email service error'));
 
     render(<ContactForm />);
 

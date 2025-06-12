@@ -30,17 +30,27 @@ export function ContactForm() {
       return;
     }
     setErrors({});
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error("Missing EmailJS environment variables");
+      show("이메일 서비스 설정이 잘못되었습니다.", "error");
+      setStatus("ERROR");
+      return;
+    }
     start();
     try {
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
+        serviceId,
+        templateId,
         {
           from_name: form.name,
           reply_to: form.email,
           message: form.message,
         },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+        publicKey
       );
       setStatus("SUCCESS");
       setForm({ name: "", email: "", message: "" });
