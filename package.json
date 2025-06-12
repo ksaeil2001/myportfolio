@@ -25,6 +25,7 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "rss-parser": "^3.13.0",
+    "sanitize-html": "^2.17.0",
     "swr": "^2.3.3"
   },
   "devDependencies": {
