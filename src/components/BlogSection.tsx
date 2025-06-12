@@ -1,5 +1,6 @@
 'use client'
 import useSWR from 'swr'
+import { useTranslations } from 'next-intl'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
 
@@ -10,19 +11,20 @@ type Post = {
 }
 
 export function BlogSection() {
-  const { data, error } = useSWR<{ items: Post[] }>( '/api/blog', fetcher)
+  const t = useTranslations('blog')
+  const { data, error } = useSWR<{ items: Post[] }>('/api/blog', fetcher)
 
   if (error) {
-    return <p className="mt-4 text-red-500">블로그 글을 불러오지 못했습니다.</p>
+    return <p className="mt-4 text-red-500">{t('error')}</p>
   }
   const posts = data?.items ?? []
   return (
     <section className="w-full mt-12" aria-labelledby="blog-heading">
       <h2 id="blog-heading" className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-        최신 글
+        {t('heading')}
       </h2>
       {posts.length === 0 ? (
-        <p className="text-gray-500 dark:text-gray-400">게시글이 없습니다.</p>
+        <p className="text-gray-500 dark:text-gray-400">{t('empty')}</p>
       ) : (
         <ul className="space-y-2">
           {posts.map((post, i) => (

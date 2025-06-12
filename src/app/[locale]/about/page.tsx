@@ -1,4 +1,5 @@
 import { TimelineItem } from "@/components/TimelineItem";
+import { getTranslations } from "next-intl/server";
 
 export const metadata = {
   title: "About",
@@ -42,16 +43,16 @@ const timeline = [
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const t = await getTranslations('about');
   return (
     <main id="main-content" className="mx-auto w-full max-w-5xl space-y-16 p-8 sm:p-20">
       <section aria-labelledby="about-heading">
         <h1 id="about-heading" className="text-3xl font-bold text-gray-900 dark:text-white">
-          About Me
+          {t('title')}
         </h1>
         <p className="mt-4 text-gray-700 dark:text-gray-300">
-          안녕하세요, 사람을 위한 UI를 고민하는 프론트엔드 개발자 김세일입니다.
-          아름답고 접근성 높은 인터페이스를 만들기 위해 꾸준히 노력하고 있습니다.
+          {t('intro')}
         </p>
       </section>
 
@@ -60,7 +61,7 @@ export default function AboutPage() {
           id="timeline-heading"
           className="mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          개발자 여정
+          {t('journey')}
         </h2>
         <ol className="relative border-l border-gray-300 dark:border-gray-700">
           {timeline.map((item, idx) => (
@@ -74,11 +75,10 @@ export default function AboutPage() {
           id="philosophy-heading"
           className="mb-4 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          기술 철학 & 가치관
+          {t('philosophyTitle')}
         </h2>
         <p className="mt-2 text-gray-700 dark:text-gray-300">
-          사용자의 문제를 해결하는 도구로서의 기술을 추구합니다. 협업을 중시하며
-          지속적인 학습과 지식 공유를 통해 모두가 성장하는 문화를 지향합니다.
+          {t('philosophyText')}
         </p>
       </section>
 
@@ -87,7 +87,7 @@ export default function AboutPage() {
           id="skills-heading"
           className="mb-4 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          핵심 스킬
+          {t('skills')}
         </h2>
         <ul className="flex flex-wrap gap-2" aria-label="주요 기술">
           {[

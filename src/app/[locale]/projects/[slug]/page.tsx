@@ -1,6 +1,7 @@
 import { getProjects } from "@/lib/projects";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import type { JSX } from "react";
 import type { Metadata } from "next";
 
@@ -38,6 +39,7 @@ export default async function Page({
     notFound();
   }
 
+  const t = await getTranslations('projects');
   return (
     <main id="main-content" className="mx-auto w-full max-w-5xl p-8">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
@@ -63,7 +65,7 @@ export default async function Page({
           id="stack-heading"
           className="text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          사용 기술
+          {t('stack')}
         </h2>
         <ul className="mt-4 flex flex-wrap gap-2" aria-label="사용된 기술">
           {project.stack.map((tech, i) => (
@@ -82,7 +84,7 @@ export default async function Page({
           id="features-heading"
           className="text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          주요 기능
+          {t('features')}
         </h2>
         <ul className="mt-4 list-disc list-inside space-y-2">
           {project.features.map((feature, i) => (
@@ -99,7 +101,7 @@ export default async function Page({
             id="team-heading"
             className="text-2xl font-semibold text-gray-900 dark:text-white"
           >
-            팀원 소개
+            {t('team')}
           </h2>
           <ul className="mt-4 space-y-2">
             {project.team.map((member, i) => (
@@ -137,7 +139,7 @@ export default async function Page({
             id="review-heading"
             className="text-2xl font-semibold text-gray-900 dark:text-white"
           >
-            외부 리뷰
+            {t('reviews')}
           </h2>
           <ul className="mt-4 list-disc list-inside space-y-2">
             {project.reviews.map((link, i) => (
@@ -161,7 +163,7 @@ export default async function Page({
           id="learnings-heading"
           className="text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          배운 점
+          {t('learnings')}
         </h2>
         <ul className="mt-4 list-disc list-inside space-y-2">
           {project.learnings.map((item, i) => (
@@ -175,7 +177,7 @@ export default async function Page({
       {project.contentHtml && (
         <section className="prose dark:prose-invert mt-8" aria-labelledby="detail-heading">
           <h2 id="detail-heading" className="sr-only">
-            상세 설명
+            {t('detail')}
           </h2>
           <div dangerouslySetInnerHTML={{ __html: project.contentHtml }} />
         </section>

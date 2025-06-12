@@ -1,6 +1,7 @@
 import { getProjects } from "@/lib/projects";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ProjectFilterBar } from "@/components/ProjectFilterBar";
+import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -87,10 +88,12 @@ export default async function ProjectsPage({
     (a, b) => b - a,
   );
 
+  const t = await getTranslations('projects');
+
   return (
     <main id="main-content" className="mx-auto w-full max-w-5xl p-8 sm:p-20">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-        프로젝트 목록
+        {t('heading')}
       </h1>
       <ProjectFilterBar stacks={stackOptions} years={yearOptions} />
       <div

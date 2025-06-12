@@ -14,17 +14,64 @@
     "error": "Failed to fetch GitHub info"
   },
   "projects": {
-    "heading": "Projects"
+    "heading": "Projects",
+    "stack": "Tech Stack",
+    "features": "Key Features",
+    "team": "Team Members",
+    "reviews": "External Reviews",
+    "learnings": "Learnings",
+    "detail": "Detail"
   },
   "menu": {
     "home": "Home",
     "about": "About",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "language": "Language",
+    "korean": "Korean",
+    "english": "English"
   },
   "notFound": {
     "title": "Page not found",
     "desc": "The page you are looking for might have been removed.",
     "home": "Go home"
+  },
+  "blog": {
+    "heading": "Latest Posts",
+    "empty": "No posts available.",
+    "error": "Failed to load posts."
+  },
+  "filter": {
+    "stack": "Tech Stack Filter",
+    "year": "Year",
+    "contribution": "Contribution",
+    "sort": "Sort",
+    "all": "All",
+    "latest": "Latest",
+    "oldest": "Oldest",
+    "name": "Name",
+    "contributionSort": "Contribution",
+    "usage": "Usage",
+    "reset": "Reset"
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "Hello, I'm Saeil, a frontend developer focused on user-centric UIs.",
+    "journey": "Developer Journey",
+    "philosophyTitle": "Tech Philosophy & Values",
+    "philosophyText": "Technology should solve user problems. I value collaboration and continuous learning.",
+    "skills": "Core Skills"
+  },
+  "contact": {
+    "title": "Contact",
+    "desc": "Feel free to reach me anytime via the channels below.",
+    "email": "Email",
+    "github": "GitHub",
+    "blog": "Blog",
+    "download": "Download PDF Resume"
+  },
+  "resumeLink": {
+    "unavailable": "Resume is not ready yet",
+    "toast": "Resume download started."
   }
 }
