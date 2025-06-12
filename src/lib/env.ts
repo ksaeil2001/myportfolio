@@ -1,14 +1,14 @@
 function validate() {
   const {
-    NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-    NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-    NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+    EMAILJS_SERVICE_ID,
+    EMAILJS_TEMPLATE_ID,
+    EMAILJS_USER_ID,
     NEXT_PUBLIC_GA_ID,
     BLOG_RSS_URL,
     GITHUB_TOKEN,
   } = process.env
 
-  if (!NEXT_PUBLIC_EMAILJS_SERVICE_ID || !NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || !NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
+  if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_USER_ID) {
     throw new Error('Missing EmailJS environment variables')
   }
 
@@ -20,9 +20,9 @@ function validate() {
     }
   }
   return {
-    emailJsServiceId: NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-    emailJsTemplateId: NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-    emailJsPublicKey: NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+    emailJsServiceId: EMAILJS_SERVICE_ID,
+    emailJsTemplateId: EMAILJS_TEMPLATE_ID,
+    emailJsUserId: EMAILJS_USER_ID,
     googleAnalyticsId: NEXT_PUBLIC_GA_ID,
     blogRssUrl: BLOG_RSS_URL,
     githubToken: GITHUB_TOKEN,

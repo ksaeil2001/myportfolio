@@ -2,11 +2,15 @@ import { render, screen } from '@testing-library/react'
 import { ProjectCard } from '../ProjectCard'
 import type { ComponentProps } from 'react'
 
-type MockProps = ComponentProps<'img'>
+type MockProps = ComponentProps<'img'> & { fill?: boolean }
 
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: (props: MockProps) => <img alt="" {...props} />,
+  default: (props: MockProps) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { fill, ...rest } = props
+    return <img alt="" {...rest} />
+  },
 }))
 
 const project = {

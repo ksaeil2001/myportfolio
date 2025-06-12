@@ -33,12 +33,12 @@ export function ContactForm() {
     setErrors({});
     let serviceId: string
     let templateId: string
-    let publicKey: string
+    let userId: string
     try {
       ;({
         emailJsServiceId: serviceId,
         emailJsTemplateId: templateId,
-        emailJsPublicKey: publicKey,
+        emailJsUserId: userId,
       } = getEnv())
     } catch (err) {
       console.error('Missing EmailJS environment variables.', err)
@@ -50,10 +50,10 @@ export function ContactForm() {
       return
     }
 
-    if (!serviceId || !templateId || !publicKey) {
+    if (!serviceId || !templateId || !userId) {
       console.error(
-        "Missing EmailJS environment variables. Ensure the following are set: NEXT_PUBLIC_EMAILJS_SERVICE_ID, NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, NEXT_PUBLIC_EMAILJS_PUBLIC_KEY",
-        { serviceId, templateId, publicKey },
+        "Missing EmailJS environment variables. Ensure the following are set: EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID",
+        { serviceId, templateId, userId },
       );
       show(
         "Email service is not configured properly. Please check the environment variables.",
@@ -72,7 +72,7 @@ export function ContactForm() {
           reply_to: form.email,
           message: form.message,
         },
-        publicKey
+        userId
       );
       setStatus("SUCCESS");
       setForm({ name: "", email: "", message: "" });

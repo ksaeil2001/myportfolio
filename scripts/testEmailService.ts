@@ -1,8 +1,8 @@
 import emailjs from 'emailjs-com'
 
-const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string
-const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string
-const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string
+const serviceId = process.env.EMAILJS_SERVICE_ID as string
+const templateId = process.env.EMAILJS_TEMPLATE_ID as string
+const userId = process.env.EMAILJS_USER_ID as string
 
 emailjs
   .send(
@@ -13,7 +13,7 @@ emailjs
       reply_to: 'test@example.com',
       message: 'This is a test message',
     },
-    publicKey,
+    userId,
   )
   .then(
     (result) => {

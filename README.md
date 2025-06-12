@@ -54,9 +54,9 @@
 > Vercel을 통해 GitHub 연동 자동 배포를 수행하며, 환경변수는 `.env.local` 또는 Vercel 설정에서 관리합니다.
 > - `BLOG_RSS_URL`: 블로그 RSS 피드 주소를 지정하여 `/api/blog`에서 사용합니다.
 > - `GITHUB_TOKEN`: GitHub API 요청 시 인증 헤더에 사용하며, 미설정 시 비인증 요청으로 동작합니다.
-> - `NEXT_PUBLIC_EMAILJS_SERVICE_ID`: EmailJS 서비스 ID
-> - `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`: EmailJS 템플릿 ID
-> - `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`: EmailJS 공개 키
+> - `EMAILJS_SERVICE_ID`: EmailJS 서비스 ID
+> - `EMAILJS_TEMPLATE_ID`: EmailJS 템플릿 ID
+> - `EMAILJS_USER_ID`: EmailJS 사용자 ID
 
 <p>
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
@@ -375,3 +375,7 @@ myportfolio/
   - 프로젝트 상세 페이지 테스트 추가
   - Blog API 결과 메모리 캐싱 및 오류 메시지 강화
   - 이력서 스크립트 폰트 다운로드 실패 시 대체 폰트/기본 글꼴 사용
+- 2025-07-03 (Codex) - EmailJS 변수명 및 타입 오류 수정
+  - EMAILJS_* 환경 변수명으로 통일하고 env.ts 검증 로직 업데이트
+  - sanitize-html 타입 정의 추가
+  - StatsSection 테스트의 eslint-disable 주석 제거
