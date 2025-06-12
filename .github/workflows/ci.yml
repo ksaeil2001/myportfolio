@@ -19,6 +19,8 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      - run: echo "Checking environment variables"
+      - run: echo $NEXT_PUBLIC_EMAILJS_SERVICE_ID && echo $NEXT_PUBLIC_EMAILJS_TEMPLATE_ID && echo $NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
       - run: npm run lint
       - run: npm test
       - run: npm run build
