@@ -19,27 +19,27 @@ const mockedUseSWR = useSWR as jest.Mock
 
 describe('BlogSection', () => {
   it('renders posts when data loaded', () => {
-    mockedUseSWR.mockReturnValue({ data: { items: [{ title: 'post', link: '/p' }] }, error: undefined })
+    mockedUseSWR.mockReturnValue({ data: { items: [{ title: 'post', link: '/p' }] }, error: undefined, isLoading: false })
     render(<BlogSection />)
     expect(screen.getByRole('heading', { name: '최신 글' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'post' })).toHaveAttribute('href', '/p')
   })
 
   it('shows empty message when no posts', () => {
-    mockedUseSWR.mockReturnValue({ data: { items: [] }, error: undefined })
+    mockedUseSWR.mockReturnValue({ data: { items: [] }, error: undefined, isLoading: false })
     render(<BlogSection />)
     expect(screen.getByText('게시글이 없습니다.')).toBeInTheDocument()
   })
 
   it('shows error message', () => {
-    mockedUseSWR.mockReturnValue({ data: undefined, error: new Error('fail') })
+    mockedUseSWR.mockReturnValue({ data: undefined, error: new Error('fail'), isLoading: false })
     render(<BlogSection />)
     expect(screen.getByText('블로그 글을 불러오지 못했습니다.')).toBeInTheDocument()
   })
 
-  it('shows empty during loading', () => {
-    mockedUseSWR.mockReturnValue({ data: undefined, error: undefined })
+  it('shows loading placeholder', () => {
+    mockedUseSWR.mockReturnValue({ data: undefined, error: undefined, isLoading: true })
     render(<BlogSection />)
-    expect(screen.getByText('게시글이 없습니다.')).toBeInTheDocument()
+    expect(screen.getByText('Loading...')).toBeInTheDocument()
   })
 })

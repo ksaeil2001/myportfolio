@@ -12,11 +12,18 @@ type Post = {
 
 export function BlogSection() {
   const t = useTranslations('blog')
-  const { data, error } = useSWR<{ items: Post[] }>('/api/blog', fetcher)
+  const { data, error, isLoading } = useSWR<{ items: Post[] }>('/api/blog', fetcher)
 
   if (error) {
     return <p className="mt-4 text-red-500">{t('error')}</p>
   }
+
+  if (isLoading) {
+    return (
+      <p className="mt-4 text-gray-500 dark:text-gray-400 animate-pulse">Loading...</p>
+    )
+  }
+
   const posts = data?.items ?? []
   return (
     <section className="w-full mt-12" aria-labelledby="blog-heading">
