@@ -391,3 +391,7 @@ myportfolio/
   - ContactForm 네트워크 오류 메시지를 영어로 개선
   - Projects 페이지 `PageProps` 타입 정의 추가
   - 테스트 파일의 `<img>` 사용에 대해 ESLint 예외 처리
+- 2025-07-06 (Codex) - GitHub API 유틸리티 리팩터링
+  - 가져올 저장소 수를 인자로 받을 수 있도록 getGithubStats 함수 개선
+  - StatsSection에서 새 유틸리티 사용하도록 수정
+  - 관련 단위 테스트 추가
