@@ -138,7 +138,7 @@ describe('ContactForm', () => {
 
     await waitFor(() =>
       expect(showMock).toHaveBeenCalledWith(
-        '이메일 서비스 설정이 잘못되었습니다.',
+        'Email service is not configured properly. Please check the environment variables.',
         'error',
       ),
     );

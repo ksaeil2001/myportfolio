@@ -35,12 +35,14 @@ export function ContactForm() {
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
-      console.error("Missing EmailJS environment variables", {
-        serviceId,
-        templateId,
-        publicKey,
-      });
-      show("이메일 서비스 설정이 잘못되었습니다.", "error");
+      console.error(
+        "Missing EmailJS environment variables. Ensure the following are set: NEXT_PUBLIC_EMAILJS_SERVICE_ID, NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, NEXT_PUBLIC_EMAILJS_PUBLIC_KEY",
+        { serviceId, templateId, publicKey },
+      );
+      show(
+        "Email service is not configured properly. Please check the environment variables.",
+        "error",
+      );
       setStatus("ERROR");
       return;
     }
