@@ -348,3 +348,6 @@ myportfolio/
   - ContactForm에서 서비스 ID, 템플릿 ID, 공개 키 값을 함께 출력해 디버깅 편의성 향상
 - 2025-06-24 (Codex) - ContactForm 테스트 보강
   - EmailJS 환경 변수 미설정 시 오류 토스트 표시 여부를 검증하는 테스트 추가
+- 2025-06-25 (Codex) - EmailJS 테스트 및 오류 로그 개선
+  - emailjs.send Mock 기본 성공 응답을 명시하도록 수정
+  - 네트워크 오류 발생 시 err.message를 포함한 구체적 로그 출력
