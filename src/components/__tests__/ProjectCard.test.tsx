@@ -1,11 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen } from '@testing-library/react'
 import { ProjectCard } from '../ProjectCard'
+import type { ComponentProps } from 'react'
+
+type MockProps = ComponentProps<'img'>
 
 jest.mock('next/image', () => ({
   __esModule: true,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  default: (props: any) => <img alt="" {...props} />,
+  default: (props: MockProps) => <img alt="" {...props} />,
 }))
 
 const project = {

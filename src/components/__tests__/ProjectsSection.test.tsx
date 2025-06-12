@@ -1,15 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen } from '@testing-library/react'
 import { ProjectsSection } from '../ProjectsSection'
+import type { ComponentProps } from 'react'
 
 jest.mock('next-intl/server', () => ({
   getTranslations: async () => (key: string) => ({ heading: '프로젝트 모음' }[key]),
 }))
 
+type MockProps = ComponentProps<'img'>
+
 jest.mock('next/image', () => ({
   __esModule: true,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  default: (props: any) => <img alt="" {...props} />,
+  default: (props: MockProps) => <img alt="" {...props} />,
 }))
 
 jest.mock('next-intl/server', () => ({
