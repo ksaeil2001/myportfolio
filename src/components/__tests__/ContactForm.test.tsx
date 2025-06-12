@@ -25,9 +25,9 @@ jest.mock('emailjs-com', () => ({
 
 beforeEach(() => {
   jest.clearAllMocks();
-  process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID = 'svc';
-  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID = 'tpl';
-  process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY = 'key';
+  process.env.EMAILJS_SERVICE_ID = 'svc';
+  process.env.EMAILJS_TEMPLATE_ID = 'tpl';
+  process.env.EMAILJS_USER_ID = 'key';
 });
 
 describe('ContactForm', () => {
@@ -118,9 +118,9 @@ describe('ContactForm', () => {
   });
 
   it('shows toast when email service env vars are missing', async () => {
-    delete process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    delete process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    delete process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    delete process.env.EMAILJS_SERVICE_ID;
+    delete process.env.EMAILJS_TEMPLATE_ID;
+    delete process.env.EMAILJS_USER_ID;
 
     render(<ContactForm />);
 

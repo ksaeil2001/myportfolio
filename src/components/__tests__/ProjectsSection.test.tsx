@@ -6,11 +6,15 @@ jest.mock('next-intl/server', () => ({
   getTranslations: async () => (key: string) => ({ heading: '프로젝트 모음' }[key]),
 }))
 
-type MockProps = ComponentProps<'img'>
+type MockProps = ComponentProps<'img'> & { fill?: boolean }
 
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: (props: MockProps) => <img alt="" {...props} />,
+  default: (props: MockProps) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { fill, ...rest } = props
+    return <img alt="" {...rest} />
+  },
 }))
 
 jest.mock('next-intl/server', () => ({

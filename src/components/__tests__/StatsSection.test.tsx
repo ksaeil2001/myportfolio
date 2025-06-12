@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen } from '@testing-library/react'
 
 jest.mock('next-intl/server', () => ({
@@ -54,9 +53,9 @@ jest.mock('@/lib/projects', () => ({
 beforeEach(() => {
   jest.resetModules()
   jest.resetAllMocks()
-  process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID = 'svc'
-  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID = 'tpl'
-  process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY = 'key'
+  process.env.EMAILJS_SERVICE_ID = 'svc'
+  process.env.EMAILJS_TEMPLATE_ID = 'tpl'
+  process.env.EMAILJS_USER_ID = 'key'
 })
 
 test('shows github stars on success', async () => {
