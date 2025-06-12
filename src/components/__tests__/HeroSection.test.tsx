@@ -1,10 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen } from '@testing-library/react'
 import { HeroSection } from '../HeroSection'
+import type { AnchorHTMLAttributes } from 'react'
+
+type MockProps = AnchorHTMLAttributes<HTMLAnchorElement>
 
 jest.mock('../ResumeDownloadLink', () => ({
   __esModule: true,
-  default: (props: any) => <a {...props} href="/resume.pdf" />,
+  default: (props: MockProps) => <a {...props} href="/resume.pdf" />,
 }))
 
 jest.mock('next-intl', () => ({

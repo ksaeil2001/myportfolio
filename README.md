@@ -326,3 +326,8 @@ myportfolio/
 - 홈 화면 ‘프로젝트 보기’ 버튼 동작 미구현 오류 수정  
   (목적에 따라 앵커 이동/페이지 이동 기능 구현 및 테스트 완료)
 - 2025-06-17 (Codex) - README에 기술 블로그 링크 추가
+- 2025-06-18 (Codex) - 테스트 코드 require 사용 개선 및 ESLint 설정 갱신
+  - BlogSection.test.tsx의 require 스타일 import를 ES6 import로 변경
+  - StatsSection.test.tsx의 불필요한 eslint-disable 지시어 수정
+  - __tests__ 폴더에 한해 no-require-imports 규칙 비활성화
+  - 테스트용 next/image, ResumeDownloadLink 모킹 타입 정의로 any 제거
