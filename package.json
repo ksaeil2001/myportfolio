@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "generate:resume": "ts-node scripts/generateResume.ts",
+    "generate:resume": "tsx scripts/generateResume.ts",
     "prebuild": "npm run generate:resume"
   },
   "dependencies": {
@@ -44,6 +44,7 @@
     "tailwindcss": "^4",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
+    "tsx": "^4.20.1",
     "typescript": "^5"
   }
 }
