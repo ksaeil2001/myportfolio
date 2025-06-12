@@ -15,7 +15,12 @@ jest.mock('../LoadingProvider', () => ({
 }));
 
 jest.mock('emailjs-com', () => ({
-  send: jest.fn(),
+  send: jest.fn(() =>
+    Promise.resolve({
+      status: 200,
+      text: 'OK',
+    })
+  ),
 }));
 
 beforeEach(() => {
