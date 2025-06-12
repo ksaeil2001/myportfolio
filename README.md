@@ -57,6 +57,7 @@
 > - `NEXT_PUBLIC_EMAILJS_SERVICE_ID`: EmailJS 서비스 ID
 > - `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`: EmailJS 템플릿 ID
 > - `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`: EmailJS 공개 키
+> GitHub Actions 사용 시 위 변수들을 `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`, `EMAILJS_PUBLIC_KEY` 이름의 secrets로 등록해야 합니다.
 
 <p>
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
@@ -338,3 +339,6 @@ myportfolio/
   - EmailJS 관련 환경 변수 문서화 및 예시 값 추가
   - CI에서 EmailJS 환경 변수를 secrets로 주입하도록 수정
   - 환경 변수 누락 시 오류 토스트 표시 로직 추가 및 테스트 반영
+- 2025-06-20 (Codex) - CI 환경변수 검증 단계 추가
+  - GitHub Actions 워크플로우에서 EmailJS 필수 변수를 미설정 시 빌드가 실패하도록 검증 단계 신설
+  - README에 secrets 설정 방법 안내 추가

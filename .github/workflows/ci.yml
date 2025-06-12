@@ -19,6 +19,11 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      - run: |
+          if [ -z "$NEXT_PUBLIC_EMAILJS_SERVICE_ID" ] || [ -z "$NEXT_PUBLIC_EMAILJS_TEMPLATE_ID" ] || [ -z "$NEXT_PUBLIC_EMAILJS_PUBLIC_KEY" ]; then
+            echo "Missing required EmailJS environment variables"
+            exit 1
+          fi
       - run: npm run lint
       - run: npm test
       - run: npm run build

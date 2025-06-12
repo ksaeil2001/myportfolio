@@ -82,4 +82,30 @@ describe('ContactForm', () => {
     expect(startMock).toHaveBeenCalled();
     expect(doneMock).toHaveBeenCalled();
   });
+
+  it('shows error when EmailJS env vars are missing', async () => {
+    delete process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    delete process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    delete process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    render(<ContactForm />);
+
+    fireEvent.change(screen.getByLabelText('이름'), {
+      target: { value: 'Jane Doe' },
+    });
+    fireEvent.change(screen.getByLabelText('이메일'), {
+      target: { value: 'jane@example.com' },
+    });
+    fireEvent.change(screen.getByLabelText('메시지'), {
+      target: { value: 'Hi' },
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: '보내기' }));
+
+    await waitFor(() => expect(showMock).toHaveBeenCalled());
+    expect(emailjs.send).not.toHaveBeenCalled();
+    expect(showMock).toHaveBeenCalledWith('이메일 서비스 설정이 잘못되었습니다.', 'error');
+    expect(startMock).not.toHaveBeenCalled();
+    expect(doneMock).not.toHaveBeenCalled();
+  });
 });
