@@ -54,6 +54,10 @@
 > Vercel을 통해 GitHub 연동 자동 배포를 수행하며, 환경변수는 `.env.local` 또는 Vercel 설정에서 관리합니다.
 > - `BLOG_RSS_URL`: 블로그 RSS 피드 주소를 지정하여 `/api/blog`에서 사용합니다.
 > - `GITHUB_TOKEN`: GitHub API 요청 시 인증 헤더에 사용하며, 미설정 시 비인증 요청으로 동작합니다.
+> - `NEXT_PUBLIC_EMAILJS_SERVICE_ID`: EmailJS 서비스 ID
+> - `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`: EmailJS 템플릿 ID
+> - `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`: EmailJS 공개 키
+> GitHub Actions 사용 시 위 변수들을 `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`, `EMAILJS_PUBLIC_KEY` 이름의 secrets로 등록해야 합니다.
 
 <p>
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
@@ -331,3 +335,10 @@ myportfolio/
   - StatsSection.test.tsx의 불필요한 eslint-disable 지시어 수정
   - __tests__ 폴더에 한해 no-require-imports 규칙 비활성화
   - 테스트용 next/image, ResumeDownloadLink 모킹 타입 정의로 any 제거
+- 2025-06-19 (Codex) - ContactForm 환경 변수 검증 및 테스트 개선
+  - EmailJS 관련 환경 변수 문서화 및 예시 값 추가
+  - CI에서 EmailJS 환경 변수를 secrets로 주입하도록 수정
+  - 환경 변수 누락 시 오류 토스트 표시 로직 추가 및 테스트 반영
+- 2025-06-20 (Codex) - CI 환경변수 검증 단계 추가
+  - GitHub Actions 워크플로우에서 EmailJS 필수 변수를 미설정 시 빌드가 실패하도록 검증 단계 신설
+  - README에 secrets 설정 방법 안내 추가
