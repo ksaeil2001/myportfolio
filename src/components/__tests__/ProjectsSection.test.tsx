@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { render, screen } from '@testing-library/react'
 import { ProjectsSection } from '../ProjectsSection'
 import type { ComponentProps } from 'react'

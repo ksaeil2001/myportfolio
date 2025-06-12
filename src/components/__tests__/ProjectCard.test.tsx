@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { render, screen } from '@testing-library/react'
 import { ProjectCard } from '../ProjectCard'
 import type { ComponentProps } from 'react'

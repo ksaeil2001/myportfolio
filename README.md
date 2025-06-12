@@ -386,3 +386,8 @@ myportfolio/
   - CI 워크플로우에 환경 변수 출력 및 누락 시 실패 단계 추가
   - getEmailJsEnv에서 경고 로그와 기본값 fallback 처리
   - 관련 유닛 테스트 추가
+- 2025-07-05 (Codex) - CI 환경 변수 매핑 및 오류 메시지 개선
+  - GitHub Actions에서 EmailJS secrets를 env에 직접 매핑
+  - ContactForm 네트워크 오류 메시지를 영어로 개선
+  - Projects 페이지 `PageProps` 타입 정의 추가
+  - 테스트 파일의 `<img>` 사용에 대해 ESLint 예외 처리
