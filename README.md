@@ -353,3 +353,8 @@ myportfolio/
   - 네트워크 오류 발생 시 err.message를 포함한 구체적 로그 출력
 - 2025-06-26 (Codex) - EmailJS 환경 변수 오류 메시지 영어화
   - ContactForm에서 환경 변수 미설정 시 영문 안내와 상세 로그 출력
+
+- 2025-06-27 (Codex) - Email service logging 개선 및 CI 환경 변수 검증
+  - EmailJS 오류 로그 메시지를 "Email service error details"로 변경
+  - .env.example의 EmailJS 값 가이드 형식 통일
+  - CI 워크플로우에서 환경 변수 매핑 상태 재확인
