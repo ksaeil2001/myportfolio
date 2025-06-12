@@ -362,3 +362,7 @@ myportfolio/
   - 네트워크 오류 로그에 err.message 우선 출력하도록 수정
   - .env.example에 EmailJS 설정 주석 추가
   - EmailJS 테스트용 scripts/testEmailService.ts 스크립트 추가
+- 2025-06-30 (Codex) - EmailJS 환경 변수 최종 점검
+  - CI 워크플로우에 변수 존재 여부 확인 단계 추가
+  - 로컬 `.env.local` 파일이 Git 관리 대상에서 제외되는지 재확인
+  - GitHub Secrets에 EmailJS 값이 정확히 등록되었는지 검증
