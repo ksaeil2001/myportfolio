@@ -6,6 +6,7 @@
 
 [![Deploy to Vercel](https://img.shields.io/badge/Vercel-Live-black?style=flat-square&logo=vercel)](https://myportfolio-kseail.vercel.app)
 [![GitHub Repo](https://img.shields.io/badge/Repository-myportfolio-blue?style=flat-square&logo=github)](https://github.com/ksaeil2001/myportfolio)
+[![Tech Blog](https://img.shields.io/badge/Blog-blog.saeil.dev-orange?style=flat-square&logo=rss)](https://blog.saeil.dev)
 
 ---
 
@@ -324,3 +325,4 @@ myportfolio/
 
 - 홈 화면 ‘프로젝트 보기’ 버튼 동작 미구현 오류 수정  
   (목적에 따라 앵커 이동/페이지 이동 기능 구현 및 테스트 완료)
+- 2025-06-17 (Codex) - README에 기술 블로그 링크 추가
