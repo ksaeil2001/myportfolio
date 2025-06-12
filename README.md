@@ -341,3 +341,6 @@ myportfolio/
 - 2025-06-20 (Codex) - Header와 HeroSection 컴포넌트 클라이언트 모드 명시
   - `useRouter` 등 클라이언트 훅 사용에 맞게 "use client" 지시문 추가
   - 빌드 오류를 유발하던 App Router 환경의 컴포넌트 초기화 문제 해결
+- 2025-06-22 (Codex) - ContactForm 이메일 서비스 오류 처리 강화
+  - emailjs.send 실패 시 구체적인 로그와 사용자 친화 메시지 표시
+  - 네트워크 오류 등 다양한 실패 케이스를 테스트에 추가
