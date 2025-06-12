@@ -17,9 +17,6 @@ jest.mock('next/image', () => ({
   },
 }))
 
-jest.mock('next-intl/server', () => ({
-  getTranslations: async () => (key: string) => ({ heading: '프로젝트 모음' }[key]),
-}))
 
 jest.mock('@/lib/projects', () => ({
   __esModule: true,
