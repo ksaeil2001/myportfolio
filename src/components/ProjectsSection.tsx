@@ -1,7 +1,9 @@
 import { ProjectCard } from "./ProjectCard";
 import { getProjects } from "@/lib/projects";
+import { getTranslations } from "next-intl/server";
 
 export async function ProjectsSection() {
+  const t = await getTranslations('projects');
   const projects = await getProjects();
   return (
     <section aria-labelledby="projects-heading" className="w-full mt-24">
@@ -9,7 +11,7 @@ export async function ProjectsSection() {
         id="projects-heading"
         className="text-2xl font-bold text-gray-900 dark:text-white mb-8"
       >
-        프로젝트 모음
+        {t('heading')}
       </h2>
       <div role="list" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (

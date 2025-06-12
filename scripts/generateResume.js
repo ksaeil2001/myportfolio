@@ -26,13 +26,23 @@ async function generate() {
   y -= 40;
 
   for (const p of projects) {
-    const line = `${p.slug} (${p.year})`;
-    page.drawText(line, { x: 50, y, size: 12, font });
-    y -= 20;
-    if (y < 50) {
-      page = doc.addPage([595, 842]);
-      y = 800;
+    const lines = [
+      `${p.title} (${p.year})`,
+      `- ${p.description}`,
+      `Stack: ${(p.stack || []).join(', ')}`,
+      ...((p.features || []).slice(0, 3).map((f) => `• ${f}`)),
+    ];
+
+    for (const line of lines) {
+      page.drawText(line, { x: 50, y, size: 12, font });
+      y -= 18;
+      if (y < 50) {
+        page = doc.addPage([595, 842]);
+        y = 800;
+      }
     }
+
+    y -= 10;
   }
 
   const pdfBytes = await doc.save();

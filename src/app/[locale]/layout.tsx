@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { Header } from "@/components/Header";
 import Providers from "@/components/Providers";
 import Analytics from "@/components/Analytics";
+import { getDictionary } from "@/lib/i18n";
+import { NextIntlClientProvider } from "next-intl";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,22 +56,30 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
+  const messages = await getDictionary(params.locale);
   return (
-    <html lang="ko">
+    <html lang={params.locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Providers>
-          <Analytics />
-          <a href="#main-content" className="sr-only focus:not-sr-only absolute top-0 left-0 m-2 rounded bg-white p-2 text-black z-50">
-            본문 바로가기
-          </a>
-          <Header />
-          {children}
-        </Providers>
+        <NextIntlClientProvider messages={messages} locale={params.locale}>
+          <Providers>
+            <Analytics />
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only absolute top-0 left-0 m-2 rounded bg-white p-2 text-black z-50"
+            >
+              본문 바로가기
+            </a>
+            <Header />
+            {children}
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
