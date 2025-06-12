@@ -78,7 +78,36 @@ describe('ContactForm', () => {
     fireEvent.click(screen.getByRole('button', { name: '보내기' }));
 
     await waitFor(() => expect(emailjs.send).toHaveBeenCalled());
-    expect(showMock).toHaveBeenCalledWith('전송 중 오류가 발생했습니다.', 'error');
+    expect(showMock).toHaveBeenCalledWith(
+      '전송 중 오류가 발생했습니다. 서비스 상태를 확인해주세요.',
+      'error'
+    );
+    expect(startMock).toHaveBeenCalled();
+    expect(doneMock).toHaveBeenCalled();
+  });
+
+  it('handles emailjs network failure gracefully', async () => {
+    (emailjs.send as jest.Mock).mockRejectedValue(new Error('Network Error'));
+
+    render(<ContactForm />);
+
+    fireEvent.change(screen.getByLabelText('이름'), {
+      target: { value: 'John Doe' },
+    });
+    fireEvent.change(screen.getByLabelText('이메일'), {
+      target: { value: 'john@example.com' },
+    });
+    fireEvent.change(screen.getByLabelText('메시지'), {
+      target: { value: 'Hello' },
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: '보내기' }));
+
+    await waitFor(() => expect(emailjs.send).toHaveBeenCalled());
+    expect(showMock).toHaveBeenCalledWith(
+      '전송 중 오류가 발생했습니다. 서비스 상태를 확인해주세요.',
+      'error'
+    );
     expect(startMock).toHaveBeenCalled();
     expect(doneMock).toHaveBeenCalled();
   });
