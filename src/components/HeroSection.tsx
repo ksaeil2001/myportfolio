@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import ResumeDownloadLink from "./ResumeDownloadLink";
 import { useTranslations, useLocale } from "next-intl";
