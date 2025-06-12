@@ -2,11 +2,13 @@
 import Link from "next/link";
 import { useToast } from "./Providers";
 import { AnchorHTMLAttributes, useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function ResumeDownloadLink(
   props: AnchorHTMLAttributes<HTMLAnchorElement>,
 ) {
   const { show } = useToast();
+  const t = useTranslations('resumeLink');
   const [available, setAvailable] = useState(true);
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export default function ResumeDownloadLink(
         aria-disabled="true"
         className="cursor-not-allowed text-gray-400"
       >
-        이력서 준비 중입니다
+        {t('unavailable')}
       </span>
     );
   }
@@ -34,7 +36,7 @@ export default function ResumeDownloadLink(
       download
       onClick={(e) => {
         props.onClick?.(e);
-        show("이력서 다운로드가 시작되었습니다.", "info");
+        show(t('toast'), "info");
       }}
     />
   );

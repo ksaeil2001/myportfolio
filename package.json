@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "generate:resume": "node scripts/generateResume.js"
+    "generate:resume": "ts-node scripts/generateResume.ts",
+    "prebuild": "npm run generate:resume"
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
@@ -41,6 +42,7 @@
     "jest-environment-jsdom": "^30.0.0",
     "tailwindcss": "^4",
     "ts-jest": "^29.1.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "ts-node": "^10.9.1"
   }
 }

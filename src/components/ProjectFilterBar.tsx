@@ -1,5 +1,6 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 export function ProjectFilterBar({
   stacks,
@@ -10,6 +11,7 @@ export function ProjectFilterBar({
 }) {
   const router = useRouter()
   const params = useSearchParams()
+  const t = useTranslations('filter')
 
   const selectedStacks = params.get('stack')?.split(',').filter(Boolean) ?? []
   const year = params.get('year') ?? ''
@@ -46,7 +48,7 @@ export function ProjectFilterBar({
 
   return (
     <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end">
-      <fieldset className="flex flex-wrap gap-2" aria-label="기술 스택 필터">
+      <fieldset className="flex flex-wrap gap-2" aria-label={t('stack')}>
         {stacks.map((s) => (
           <label key={s} className="flex items-center gap-1 text-sm">
             <input
@@ -61,13 +63,13 @@ export function ProjectFilterBar({
       </fieldset>
 
       <label className="text-sm">
-        연도
+        {t('year')}
         <select
           className="ml-2 rounded border p-1 text-sm"
           value={year}
           onChange={(e) => updateSearch('year', e.target.value || null)}
         >
-          <option value="">전체</option>
+          <option value="">{t('all')}</option>
           {years.map((y) => (
             <option key={y} value={y}>
               {y}
@@ -77,13 +79,13 @@ export function ProjectFilterBar({
       </label>
 
       <label className="text-sm">
-        기여도
+        {t('contribution')}
         <select
           className="ml-2 rounded border p-1 text-sm"
           value={contribution}
           onChange={(e) => updateSearch('contribution', e.target.value || null)}
         >
-          <option value="">전체</option>
+          <option value="">{t('all')}</option>
           <option value="30">30% 이상</option>
           <option value="50">50% 이상</option>
           <option value="70">70% 이상</option>
@@ -92,18 +94,18 @@ export function ProjectFilterBar({
       </label>
 
       <label className="text-sm">
-        정렬
+        {t('sort')}
         <select
           className="ml-2 rounded border p-1 text-sm"
           value={sort}
           onChange={(e) => updateSearch('sort', e.target.value || null)}
         >
           <option value="">선택</option>
-          <option value="latest">최신순</option>
-          <option value="oldest">오래된순</option>
-          <option value="name">이름순</option>
-          <option value="contribution">기여도순</option>
-          <option value="usage">사용 빈도순</option>
+          <option value="latest">{t('latest')}</option>
+          <option value="oldest">{t('oldest')}</option>
+          <option value="name">{t('name')}</option>
+          <option value="contribution">{t('contributionSort')}</option>
+          <option value="usage">{t('usage')}</option>
         </select>
       </label>
 
@@ -112,7 +114,7 @@ export function ProjectFilterBar({
         onClick={() => router.push('/projects')}
         className="text-sm text-blue-600 hover:underline"
       >
-        초기화
+        {t('reset')}
       </button>
     </div>
   )

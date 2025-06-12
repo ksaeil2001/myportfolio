@@ -14,17 +14,64 @@
     "error": "GitHub 정보를 불러오지 못했습니다."
   },
   "projects": {
-    "heading": "프로젝트 모음"
+    "heading": "프로젝트 모음",
+    "stack": "사용 기술",
+    "features": "주요 기능",
+    "team": "팀원 소개",
+    "reviews": "외부 리뷰",
+    "learnings": "배운 점",
+    "detail": "상세 설명"
   },
   "menu": {
     "home": "Home",
     "about": "About",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "language": "언어",
+    "korean": "한국어",
+    "english": "영어"
   },
   "notFound": {
     "title": "페이지를 찾을 수 없습니다.",
     "desc": "요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.",
     "home": "홈으로 돌아가기"
+  },
+  "blog": {
+    "heading": "최신 글",
+    "empty": "게시글이 없습니다.",
+    "error": "블로그 글을 불러오지 못했습니다."
+  },
+  "filter": {
+    "stack": "기술 스택 필터",
+    "year": "연도",
+    "contribution": "기여도",
+    "sort": "정렬",
+    "all": "전체",
+    "latest": "최신순",
+    "oldest": "오래된순",
+    "name": "이름순",
+    "contributionSort": "기여도순",
+    "usage": "사용 빈도순",
+    "reset": "초기화"
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "안녕하세요, 사람을 위한 UI를 고민하는 프론트엔드 개발자 김세일입니다. 아름답고 접근성 높은 인터페이스를 만들기 위해 꾸준히 노력하고 있습니다.",
+    "journey": "개발자 여정",
+    "philosophyTitle": "기술 철학 & 가치관",
+    "philosophyText": "사용자의 문제를 해결하는 도구로서의 기술을 추구합니다. 협업을 중시하며 지속적인 학습과 지식 공유를 통해 모두가 성장하는 문화를 지향합니다.",
+    "skills": "핵심 스킬"
+  },
+  "contact": {
+    "title": "연락처",
+    "desc": "아래 정보로 언제든지 연락해주세요.",
+    "email": "이메일",
+    "github": "GitHub",
+    "blog": "블로그",
+    "download": "PDF 이력서 다운로드"
+  },
+  "resumeLink": {
+    "unavailable": "이력서 준비 중입니다",
+    "toast": "이력서 다운로드가 시작되었습니다."
   }
 }

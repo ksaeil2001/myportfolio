@@ -1,10 +1,21 @@
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import { useTranslations, useLocale } from "next-intl";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export function Header() {
   const t = useTranslations('menu');
   const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const search = useSearchParams();
+
+  const switchLocale = (next: string) => {
+    const segments = pathname.split('/');
+    segments[1] = next;
+    const query = search.toString();
+    router.push(segments.join('/') + (query ? '?' + query : ''));
+  };
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur dark:border-gray-700 dark:bg-neutral-900/80">
       <div className="mx-auto flex max-w-5xl items-center justify-between p-4 sm:p-6">
@@ -25,7 +36,18 @@ export function Header() {
             {t('contact')}
           </Link>
         </nav>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <select
+            aria-label={t('language')}
+            value={locale}
+            onChange={(e) => switchLocale(e.target.value)}
+            className="rounded border p-1 text-sm"
+          >
+            <option value="ko">{t('korean')}</option>
+            <option value="en">{t('english')}</option>
+          </select>
+          <ThemeToggle />
+        </div>
         <details className="relative md:hidden">
           <summary tabIndex={0} className="flex h-8 w-8 items-center justify-center rounded hover:bg-gray-100 dark:hover:bg-neutral-800 cursor-pointer">
             <span className="sr-only">메뉴 열기</span>
