@@ -365,4 +365,7 @@ myportfolio/
 - 2025-06-30 (Codex) - EmailJS 환경 변수 최종 점검
   - CI 워크플로우에 변수 존재 여부 확인 단계 추가
   - 로컬 `.env.local` 파일이 Git 관리 대상에서 제외되는지 재확인
-  - GitHub Secrets에 EmailJS 값이 정확히 등록되었는지 검증
+- GitHub Secrets에 EmailJS 값이 정확히 등록되었는지 검증
+- 2025-07-01 (Codex) - 빌드 스크립트 tsx 사용으로 업데이트
+  - generateResume.ts 실행을 위해 devDependency로 tsx 추가
+  - package.json의 generate:resume 스크립트 수정
