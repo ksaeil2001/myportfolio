@@ -401,3 +401,7 @@ myportfolio/
 - 2025-07-08 (Codex) - GitHub Actions 빌드 오류 수정
   - EMAILJS 관련 Secrets 누락을 확인 후 재등록
   - ci.yml 변수 매핑 그대로 유지한 채 워크플로우 재실행
+- 2025-07-09 (Codex) - Resume script network error handling and secrets check
+  - scripts/generateResume.ts now catches network failures and skips PDF generation on fatal errors
+  - Verified EMAILJS_* secrets are registered in GitHub Actions
+  - CI check attempts: lint/test could not run (missing deps); build failed as tsx not found

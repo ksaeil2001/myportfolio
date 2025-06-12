@@ -31,6 +31,7 @@ async function generate() {
   doc.registerFontkit(fontkit)
   const fontPath = path.join(__dirname, '../public/fonts/NotoSansKR-Regular.otf')
   let font
+  let canGenerate = true
   try {
     let fontBytes = await fs.readFile(fontPath)
     font = await doc.embedFont(fontBytes)
@@ -47,14 +48,19 @@ async function generate() {
       await fs.writeFile(fontPath, fontBytes)
       font = await doc.embedFont(fontBytes)
     } catch (err) {
-      console.error('Font download failed:', err)
+      console.error('Font download failed:', (err as Error).message)
       try {
         const fallbackPath = path.join(__dirname, '../public/fonts/Fallback.ttf')
         const fallbackBytes = await fs.readFile(fallbackPath)
         font = await doc.embedFont(fallbackBytes)
       } catch {
         console.warn('Fallback font not found. Using standard font.')
-        font = await doc.embedFont(StandardFonts.Helvetica)
+        try {
+          font = await doc.embedFont(StandardFonts.Helvetica)
+        } catch (embedErr) {
+          console.error('Embedding standard font failed:', embedErr)
+          canGenerate = false
+        }
       }
     }
   }
@@ -81,12 +87,16 @@ async function generate() {
     y -= 10
   }
 
+  if (!canGenerate) {
+    console.warn('Skipping resume PDF generation due to font errors')
+    return
+  }
+
   const pdfBytes = await doc.save()
   await fs.writeFile(path.join(__dirname, '../public/resume.pdf'), pdfBytes)
   console.log('Resume PDF generated at public/resume.pdf')
 }
 
 generate().catch((err) => {
-  console.error(err)
-  process.exit(1)
+  console.error('Resume generation failed:', err)
 })
