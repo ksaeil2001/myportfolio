@@ -89,8 +89,9 @@ npm run test
 
 1. registry.npmjs.org 접근이 차단되어 있는지 확인하고, 차단 시 IT/보안팀에 허용을 요청합니다.
 2. 내부 npm 미러 또는 프록시가 있다면 `.npmrc`에 해당 주소를 지정하거나 `HTTP_PROXY` / `HTTPS_PROXY` 환경 변수를 설정합니다.
-3. CI 워크플로와 README에 EmailJS 등 환경 변수 설정 방법을 명확히 기록합니다.
-4. 접근 권한이 복구된 후 아래 명령어를 순서대로 실행하여 모든 단계가 통과하는지 확인합니다.
+3. `raw.githubusercontent.com` 도메인이 차단되어 있으면 이력서 PDF 생성 시 폰트 다운로드가 실패합니다. 허용이 어렵다면 `public/fonts` 폴더에 폰트를 미리 배치하고 스크립트 경로를 수정합니다.
+4. CI 워크플로와 README에 EmailJS 등 환경 변수 설정 방법을 명확히 기록합니다.
+5. 접근 권한이 복구된 후 아래 명령어를 순서대로 실행하여 모든 단계가 통과하는지 확인합니다.
 
    ```bash
    npm ci
@@ -99,7 +100,7 @@ npm run test
    npm run build
    ```
 
-5. 네트워크 정책, 장애 원인, 해결 과정을 Changelog 섹션에 상세히 기록합니다.
+6. 네트워크 정책, 장애 원인, 해결 과정을 Changelog 섹션에 상세히 기록합니다.
 ---
 
 ## 📌 주요 기능 및 UI 구성 요약
@@ -436,3 +437,6 @@ myportfolio/
   - Replaced "EmailJS public key" with "EmailJS 사용자 ID" in contact page section
  - 2025-07-14 (Codex) - Provide CI fallback for missing EmailJS secrets
   - ci.yml now assigns default EmailJS values if GitHub secrets are undefined
+
+- 2025-07-15 (Codex) - Document font download network policy
+  - Added docs/network-policy.md and updated network guide.
