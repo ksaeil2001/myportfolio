@@ -163,7 +163,7 @@ UI 컴포넌트는 `src/components/`에서 기능별로 분리 구성되어 있�
 - **기능 목적:** 이메일, GitHub, 블로그 등의 외부 채널 연결 및 실시간 메시지 전송
 - **주요 컴포넌트:**
   - `ContactForm.tsx`: EmailJS 연동 입력 폼 (이름/이메일/메시지 필드 포함)
-- **데이터 처리:** EmailJS public key를 `.env.local`에서 읽어 연동 처리
+- **데이터 처리:** EmailJS 사용자 ID를 `.env.local`에서 읽어 연동 처리
 - **기능 특징:**
   - 제출 성공/실패 안내 UI 표시
   - `public/resume.pdf` 존재 여부를 확인해 다운로드 버튼을 활성/비활성 처리
@@ -431,3 +431,6 @@ myportfolio/
 - 2025-07-12 (Codex) - Document network build/test troubleshooting
   - Added network restriction handling guide to README
 
+- 2025-07-13 (Codex) - Clarify EmailJS user ID docs
+  - Confirmed CI validates EmailJS secrets with strict step
+  - Replaced "EmailJS public key" with "EmailJS 사용자 ID" in contact page section
