@@ -405,3 +405,6 @@ myportfolio/
   - scripts/generateResume.ts now catches network failures and skips PDF generation on fatal errors
   - Verified EMAILJS_* secrets are registered in GitHub Actions
   - CI check attempts: lint/test could not run (missing deps); build failed as tsx not found
+- 2025-07-10 (Codex) - Replace deprecated EmailJS package and improve CI
+  - Swapped `emailjs-com` for `@emailjs/browser`
+  - Added npm cache and retry logic in ci.yml

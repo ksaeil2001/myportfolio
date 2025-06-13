@@ -15,7 +15,6 @@
     "@pdf-lib/fontkit": "^1.1.1",
     "@vercel/analytics": "^1.5.0",
     "@vercel/og": "^0.6.8",
-    "emailjs-com": "^3.2.0",
     "gray-matter": "^4.0.3",
     "next": "^15.3.3",
     "next-intl": "^4.1.0",
@@ -26,7 +25,8 @@
     "remark-html": "^16.0.1",
     "rss-parser": "^3.13.0",
     "sanitize-html": "^2.17.0",
-    "swr": "^2.3.3"
+    "swr": "^2.3.3",
+    "@emailjs/browser": "^4.4.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

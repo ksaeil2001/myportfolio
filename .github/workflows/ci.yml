@@ -18,7 +18,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
+      - uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm ci || npm ci
       - name: Validate Environment Variables
         run: |
           : "${EMAILJS_SERVICE_ID:?'Missing EMAILJS_SERVICE_ID'}"

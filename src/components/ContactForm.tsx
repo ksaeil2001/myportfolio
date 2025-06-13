@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent, ChangeEvent } from "react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { useToast } from "./Providers";
 import { useLoading } from "./LoadingProvider";
 import { getEmailJsEnv } from "@/lib/env";
