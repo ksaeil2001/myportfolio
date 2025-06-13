@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { ContactForm } from '../ContactForm';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 const startMock = jest.fn();
 const doneMock = jest.fn();
@@ -14,7 +14,7 @@ jest.mock('../LoadingProvider', () => ({
   useLoading: () => ({ start: startMock, done: doneMock }),
 }));
 
-jest.mock('emailjs-com', () => ({
+jest.mock('@emailjs/browser', () => ({
   send: jest.fn(() =>
     Promise.resolve({
       status: 200,
