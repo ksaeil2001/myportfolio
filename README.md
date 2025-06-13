@@ -83,6 +83,24 @@ npm run test
 - CI 환경에서도 자동으로 테스트가 수행됩니다.
 
 ---
+### 네트워크 제한 환경 가이드
+
+사내 보안 정책 등으로 외부 npm 레지스트리에 접근하지 못해 빌드나 테스트가 실패하는 경우 다음 절차를 따릅니다.
+
+1. registry.npmjs.org 접근이 차단되어 있는지 확인하고, 차단 시 IT/보안팀에 허용을 요청합니다.
+2. 내부 npm 미러 또는 프록시가 있다면 `.npmrc`에 해당 주소를 지정하거나 `HTTP_PROXY` / `HTTPS_PROXY` 환경 변수를 설정합니다.
+3. CI 워크플로와 README에 EmailJS 등 환경 변수 설정 방법을 명확히 기록합니다.
+4. 접근 권한이 복구된 후 아래 명령어를 순서대로 실행하여 모든 단계가 통과하는지 확인합니다.
+
+   ```bash
+   npm ci
+   npm run lint
+   npm test
+   npm run build
+   ```
+
+5. 네트워크 정책, 장애 원인, 해결 과정을 Changelog 섹션에 상세히 기록합니다.
+---
 
 ## 📌 주요 기능 및 UI 구성 요약
 
@@ -410,3 +428,6 @@ myportfolio/
   - Added npm cache and retry logic in ci.yml
 - 2025-07-11 (Codex) - Clarify EmailJS env variables in CI
   - Added comments explaining secrets usage in ci.yml
+- 2025-07-12 (Codex) - Document network build/test troubleshooting
+  - Added network restriction handling guide to README
+
