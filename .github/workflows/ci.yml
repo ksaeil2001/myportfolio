@@ -10,6 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      # EmailJS credentials provided via GitHub Secrets
       EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
       EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
       EMAILJS_USER_ID: ${{ secrets.EMAILJS_USER_ID }}
