@@ -408,3 +408,5 @@ myportfolio/
 - 2025-07-10 (Codex) - Replace deprecated EmailJS package and improve CI
   - Swapped `emailjs-com` for `@emailjs/browser`
   - Added npm cache and retry logic in ci.yml
+- 2025-07-11 (Codex) - Clarify EmailJS env variables in CI
+  - Added comments explaining secrets usage in ci.yml
