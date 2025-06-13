@@ -434,3 +434,5 @@ myportfolio/
 - 2025-07-13 (Codex) - Clarify EmailJS user ID docs
   - Confirmed CI validates EmailJS secrets with strict step
   - Replaced "EmailJS public key" with "EmailJS 사용자 ID" in contact page section
+ - 2025-07-14 (Codex) - Provide CI fallback for missing EmailJS secrets
+  - ci.yml now assigns default EmailJS values if GitHub secrets are undefined
