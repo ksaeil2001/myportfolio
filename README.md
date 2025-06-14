@@ -478,3 +478,5 @@ myportfolio/
   - Added docs/emailjs-secrets-report.md with inspection details
 - 2025-07-23 (Codex) - CI workflow EmailJS env order fixed
   - ci.yml env section reordered to match documented variable sequence
+ - 2025-07-24 (Codex) - CI 환경 변수 검증 메시지 개선
+   - EmailJS secrets 누락 시 구체적 안내 메시지를 출력하도록 ci.yml 수정
