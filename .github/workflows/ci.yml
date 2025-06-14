@@ -7,7 +7,24 @@ on:
     branches: ["main"]
 
 jobs:
+  check-secrets:
+    runs-on: ubuntu-latest
+    env:
+      EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
+      EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
+      EMAILJS_USER_ID: ${{ secrets.EMAILJS_USER_ID }}
+    steps:
+      - name: Check EmailJS Secrets
+        run: |
+          if [[ -z "$EMAILJS_SERVICE_ID" || -z "$EMAILJS_TEMPLATE_ID" || -z "$EMAILJS_USER_ID" ]]; then
+            echo "::error::EmailJS secrets are required. Add EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, and EMAILJS_USER_ID in repository secrets."
+            exit 1
+          else
+            echo "EmailJS secrets are correctly configured."
+          fi
+
   build:
+    needs: check-secrets
     runs-on: ubuntu-latest
     env:
       # EmailJS credentials should be configured as GitHub Secrets.
@@ -27,25 +44,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - run: npm ci || npm ci
-      - name: Validate Environment Variables
-        run: |
-          missing=false
-          if [ "${EMAILJS_SERVICE_ID}" = "placeholder" ]; then
-            echo "::warning::EMAILJS_SERVICE_ID secret is not configured."
-            missing=true
-          fi
-          if [ "${EMAILJS_TEMPLATE_ID}" = "placeholder" ]; then
-            echo "::warning::EMAILJS_TEMPLATE_ID secret is not configured."
-            missing=true
-          fi
-          if [ "${EMAILJS_USER_ID}" = "placeholder" ]; then
-            echo "::warning::EMAILJS_USER_ID secret is not configured."
-            missing=true
-          fi
-          if [ "$missing" = true ]; then
-            echo "::error::EmailJS secrets are required. Add EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, and EMAILJS_USER_ID in repository secrets. See README.md section 'EmailJS 시크릿 설정'."
-            exit 1
-          fi
       - run: npm run lint
       - run: npm test
       - run: npm run build
