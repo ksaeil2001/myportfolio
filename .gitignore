@@ -44,3 +44,6 @@ next-env.d.ts
 # resume
 public/resume.pdf
 public/fonts/
+
+# npm cache
+.npm_cache/

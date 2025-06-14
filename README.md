@@ -473,6 +473,7 @@ myportfolio/
   - Blog API returns cached sample posts when feed fetch fails
   - Resume generator sanitizes text if only ASCII fonts are available
   - Locale routes statically generated via `generateStaticParams`
+- 2025-08-01 (Codex) - AGENTS 규칙 강화: 바이너리 파일 및 네트워크 사용 금지
   - Added placeholder `next-intl.config.js` but build still fails without proper plugin
 - 2025-07-19 (Codex) - EmailJS env validation and intl config fixes
   - CI workflow now fails if EMAILJS secrets are missing
