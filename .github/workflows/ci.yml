@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # EmailJS credentials provided via GitHub Secrets
+      EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
       EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
       EMAILJS_USER_ID: ${{ secrets.EMAILJS_USER_ID }}
-      EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -28,9 +28,9 @@ jobs:
       - run: npm ci || npm ci
       - name: Validate Environment Variables
         run: |
-          : "${EMAILJS_SERVICE_ID:?'Missing EmailJS service ID'}"
-          : "${EMAILJS_TEMPLATE_ID:?'Missing EmailJS template ID'}"
-          : "${EMAILJS_USER_ID:?'Missing EmailJS user ID'}"
+          : "${EMAILJS_SERVICE_ID:?'Missing EmailJS service ID. Please set it in GitHub Secrets.'}"
+          : "${EMAILJS_TEMPLATE_ID:?'Missing EmailJS template ID. Please set it in GitHub Secrets.'}"
+          : "${EMAILJS_USER_ID:?'Missing EmailJS user ID. Please set it in GitHub Secrets.'}"
       - run: npm run lint
       - run: npm test
       - run: npm run build
