@@ -19,18 +19,14 @@ describe('getEmailJsEnv', () => {
     });
   });
 
-  it('falls back to defaults and warns when variables are missing', () => {
+  it('returns undefined values when variables are missing', () => {
     delete process.env.EMAILJS_SERVICE_ID;
     delete process.env.EMAILJS_TEMPLATE_ID;
     delete process.env.EMAILJS_USER_ID;
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
     expect(getEmailJsEnv()).toEqual({
-      serviceId: 'default_service_id',
-      templateId: 'default_template_id',
-      userId: 'default_user_id',
+      serviceId: undefined,
+      templateId: undefined,
+      userId: undefined,
     });
-    expect(warn).toHaveBeenCalledWith(
-      'Missing EmailJS environment variables. Using default values.'
-    );
   });
 });

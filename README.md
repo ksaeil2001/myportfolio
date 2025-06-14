@@ -452,3 +452,7 @@ myportfolio/
   - Resume generator sanitizes text if only ASCII fonts are available
   - Locale routes statically generated via `generateStaticParams`
   - Added placeholder `next-intl.config.js` but build still fails without proper plugin
+- 2025-07-19 (Codex) - EmailJS env validation and intl config fixes
+  - CI workflow now fails if EMAILJS secrets are missing
+  - next-intl.config.js exports locales and defaultLocale
+  - ContactForm validates missing EmailJS variables without defaults
