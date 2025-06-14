@@ -2,6 +2,10 @@ import { ContactForm } from "@/components/ContactForm";
 import ResumeDownloadLink from "@/components/ResumeDownloadLink";
 import { getTranslations } from "next-intl/server";
 
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
 export const metadata = {
   title: "Contact",
   openGraph: {
@@ -16,8 +20,9 @@ export const metadata = {
   },
 };
 
-export default async function ContactPage() {
-  const t = await getTranslations('contact');
+export default async function ContactPage({ params }: PageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'contact' });
   return (
     <main id="main-content" className="mx-auto w-full max-w-5xl p-8 sm:p-20">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{t('title')}</h1>
