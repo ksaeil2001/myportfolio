@@ -102,9 +102,10 @@ npm run test
 
 1. registry.npmjs.org 접근이 차단되어 있는지 확인하고, 차단 시 IT/보안팀에 허용을 요청합니다.
 2. 내부 npm 미러 또는 프록시가 있다면 `.npmrc`에 해당 주소를 지정하거나 `HTTP_PROXY` / `HTTPS_PROXY` 환경 변수를 설정합니다.
-3. `raw.githubusercontent.com` 도메인이 차단되어 있으면 이력서 PDF 생성 시 폰트 다운로드가 실패합니다. 허용이 어렵다면 `public/fonts` 폴더에 폰트를 미리 배치하고 스크립트 경로를 수정합니다.
-4. CI 워크플로와 README에 EmailJS 등 환경 변수 설정 방법을 명확히 기록합니다.
-5. 접근 권한이 복구된 후 아래 명령어를 순서대로 실행하여 모든 단계가 통과하는지 확인합니다.
+3. 로컬에 사전 캐시한 패키지가 있다면 `scripts/install_local.sh` 스크립트로 오프라인 설치를 수행합니다. 패키지 캐시는 `scripts/populate_cache.sh`로 생성할 수 있습니다.
+4. `raw.githubusercontent.com` 도메인이 차단되어 있으면 이력서 PDF 생성 시 폰트 다운로드가 실패합니다. 허용이 어렵다면 `public/fonts` 폴더에 폰트를 미리 배치하고 스크립트 경로를 수정합니다.
+5. CI 워크플로와 README에 EmailJS 등 환경 변수 설정 방법을 명확히 기록합니다.
+6. 접근 권한이 복구된 후 아래 명령어를 순서대로 실행하여 모든 단계가 통과하는지 확인합니다.
 
    ```bash
    npm ci
@@ -113,7 +114,7 @@ npm run test
    npm run build
    ```
 
-6. 네트워크 정책, 장애 원인, 해결 과정을 Changelog 섹션에 상세히 기록합니다.
+7. 네트워크 정책, 장애 원인, 해결 과정을 Changelog 섹션에 상세히 기록합니다.
 ---
 
 ## 📌 주요 기능 및 UI 구성 요약
@@ -483,3 +484,6 @@ myportfolio/
 - 2025-07-25 (Codex) - CI 환경 변수 검증 스크립트 업데이트
   - GitHub Actions에서 EmailJS 서비스/템플릿/사용자 ID가 비어 있으면 오류 메시지와 함께 즉시 실패하도록 스크립트 수정
 - 2025-07-26 (Codex) - Codex 기준: 환경 변수 정상 등록 및 워크플로 env 섹션 동기화 완료
+- 2025-07-27 (Codex) - Offline npm install scripts 및 문서 추가
+  - .npmrc로 로컬 캐시 기본값을 지정하고 `scripts/install_local.sh` 제공
+  - 네트워크 차단 시 `scripts/populate_cache.sh`로 캐시를 미리 생성해 오프라인 설치 가능
