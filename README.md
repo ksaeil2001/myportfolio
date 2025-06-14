@@ -517,3 +517,4 @@ myportfolio/
 - 2025-08-01 (Codex) - Offline resume generation option
   - `OFFLINE_MODE` 환경 변수를 추가해 네트워크 연결 없이 이력서 PDF 생성 가능
 main
+- 2025-08-02 (Codex) - Attempted build fix for next-intl

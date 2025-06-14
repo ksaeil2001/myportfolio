@@ -55,7 +55,7 @@ const { notFound } = require('next/navigation')
 
 describe('Project detail page', () => {
   it('renders project content', async () => {
-    const Comp = await Page({ params: Promise.resolve({ slug: 'proj-one' }) })
+    const Comp = await Page({ params: { slug: 'proj-one', locale: 'en' } })
     render(Comp)
     expect(screen.getByRole('heading', { name: 'Project One' })).toBeInTheDocument()
     expect(screen.getByText('Desc')).toBeInTheDocument()
@@ -65,7 +65,7 @@ describe('Project detail page', () => {
 
   it('calls notFound when slug missing', async () => {
     await expect(
-      Page({ params: Promise.resolve({ slug: 'missing' }) })
+      Page({ params: { slug: 'missing', locale: 'en' } })
     ).rejects.toThrow('not-found')
     expect(notFound).toHaveBeenCalled()
   })
