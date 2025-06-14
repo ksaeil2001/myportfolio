@@ -62,12 +62,19 @@
 > 저장소 **Settings > Secrets and variables > Actions** 메뉴에서 각각
 > `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`, `EMAILJS_USER_ID` 이름으로
 > 새 Secret을 등록해야 합니다.
-> 워크플로우에서는 다음 스크립트로 값 존재 여부를 검증합니다.
+> 워크플로우에서는 다음과 같이 기본값을 사용해도 경고 후 실패하도록 설정됩니다.
+>
+> ```yaml
+> EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID || 'placeholder' }}
+> EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID || 'placeholder' }}
+> EMAILJS_USER_ID: ${{ secrets.EMAILJS_USER_ID || 'placeholder' }}
+> ```
 >
 > ```bash
-> : "${EMAILJS_SERVICE_ID:?'Missing EmailJS service ID'}"
-> : "${EMAILJS_TEMPLATE_ID:?'Missing EmailJS template ID'}"
-> : "${EMAILJS_USER_ID:?'Missing EmailJS user ID'}"
+> if [ "${EMAILJS_SERVICE_ID}" = "placeholder" ]; then
+>   echo "::error::EmailJS secrets are required."
+>   exit 1
+> fi
 > ```
 > Secrets 등록 후 CI를 재실행하면 오류 없이 진행됩니다.
 
@@ -499,3 +506,6 @@ myportfolio/
 - 2025-07-30 (Codex) - Repository guidelines file and pretest lint script
   - AGENTS.md 파일을 추가해 작업 규칙 명세
   - `package.json`의 `pretest` 스크립트로 커밋 전 ESLint 자동 실행
+- 2025-07-31 (Codex) - CI 워크플로우 EmailJS 비밀값 기본값 및 경고 추가
+  - ci.yml에서 EmailJS secrets 미설정 시 'placeholder'로 대체 후 경고 출력
+  - README에 필수 secrets 설정 필요성을 강조
