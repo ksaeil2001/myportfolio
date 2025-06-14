@@ -41,19 +41,26 @@ async function generate() {
     let fontBytes = await fs.readFile(fontPath)
     font = await doc.embedFont(fontBytes)
   } catch {
-    console.log('Font not found locally. Downloading...')
-    try {
-      const res = await fetch(
-        'https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Korean/NotoSansCJKkr-Regular.otf'
-      )
-      if (!res.ok) throw new Error('Failed to download font')
-      const arrayBuf = await res.arrayBuffer()
-      const fontBytes = new Uint8Array(arrayBuf)
-      await fs.mkdir(path.dirname(fontPath), { recursive: true })
-      await fs.writeFile(fontPath, fontBytes)
-      font = await doc.embedFont(fontBytes)
-    } catch (err) {
-      console.error('Font download failed:', (err as Error).message)
+    const offline = process.env.OFFLINE_MODE === 'true'
+    if (!offline) {
+      console.log('Font not found locally. Downloading...')
+      try {
+        const res = await fetch(
+          'https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Korean/NotoSansCJKkr-Regular.otf'
+        )
+        if (!res.ok) throw new Error('Failed to download font')
+        const arrayBuf = await res.arrayBuffer()
+        const fontBytes = new Uint8Array(arrayBuf)
+        await fs.mkdir(path.dirname(fontPath), { recursive: true })
+        await fs.writeFile(fontPath, fontBytes)
+        font = await doc.embedFont(fontBytes)
+      } catch (err) {
+        console.error('Font download failed:', (err as Error).message)
+      }
+    } else {
+      console.warn('Offline mode enabled, skipping font download')
+    }
+    if (!font) {
       try {
         const fallbackPath = path.join(__dirname, '../public/fonts/Fallback.ttf')
         const fallbackBytes = await fs.readFile(fallbackPath)
