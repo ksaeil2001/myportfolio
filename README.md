@@ -474,3 +474,5 @@ myportfolio/
   - Added /login route and navigation links
 - 2025-07-21 (Codex) - Document GitHub Secrets setup for EmailJS
   - README에 EmailJS 환경 변수 설정 절차 및 CI 검증 스크립트 추가
+- 2025-07-22 (Codex) - EmailJS secrets inspection report added
+  - Added docs/emailjs-secrets-report.md with inspection details
