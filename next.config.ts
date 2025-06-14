@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -8,10 +9,6 @@ const nextConfig: NextConfig = {
       "images.unsplash.com",
       "cdn.example.com",
     ],
-  },
-  i18n: {
-    locales: ['ko', 'en'],
-    defaultLocale: 'ko',
   },
   env: {
     EMAILJS_SERVICE_ID: process.env.EMAILJS_SERVICE_ID,

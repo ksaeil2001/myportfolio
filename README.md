@@ -447,3 +447,8 @@ myportfolio/
   - /api/blog returned 502 due to network unreachable for feed URL
   - .env.local not found; EmailJS and other variables missing during runtime
   - Accessing /en routes responded 404, indicating locale routing misconfiguration
+- 2025-07-18 (Codex) - Connectivity follow-up fixes
+  - Blog API returns cached sample posts when feed fetch fails
+  - Resume generator sanitizes text if only ASCII fonts are available
+  - Locale routes statically generated via `generateStaticParams`
+  - Added placeholder `next-intl.config.js` but build still fails without proper plugin

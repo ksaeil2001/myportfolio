@@ -4,6 +4,10 @@ import matter from 'gray-matter'
 import { PDFDocument, StandardFonts } from 'pdf-lib'
 import fontkit from '@pdf-lib/fontkit'
 
+function toAscii(text: string) {
+  return text.replace(/[^\x00-\x7F]/g, '?')
+}
+
 interface ProjectFrontmatter {
   title: string
   description: string
@@ -32,6 +36,7 @@ async function generate() {
   const fontPath = path.join(__dirname, '../public/fonts/NotoSansKR-Regular.otf')
   let font
   let canGenerate = true
+  let asciiOnly = false
   try {
     let fontBytes = await fs.readFile(fontPath)
     font = await doc.embedFont(fontBytes)
@@ -53,10 +58,12 @@ async function generate() {
         const fallbackPath = path.join(__dirname, '../public/fonts/Fallback.ttf')
         const fallbackBytes = await fs.readFile(fallbackPath)
         font = await doc.embedFont(fallbackBytes)
+        asciiOnly = true
       } catch {
         console.warn('Fallback font not found. Using standard font.')
         try {
           font = await doc.embedFont(StandardFonts.Helvetica)
+          asciiOnly = true
         } catch (embedErr) {
           console.error('Embedding standard font failed:', embedErr)
           canGenerate = false
@@ -66,7 +73,7 @@ async function generate() {
   }
   let page = doc.addPage([595, 842])
   let y = 800
-  page.drawText('Resume Projects Overview', { x: 50, y, size: 20, font })
+  page.drawText(asciiOnly ? toAscii('Resume Projects Overview') : 'Resume Projects Overview', { x: 50, y, size: 20, font })
   y -= 40
 
   for (const p of projects) {
@@ -77,7 +84,8 @@ async function generate() {
       ...((p.features || []).slice(0, 3).map((f) => `• ${f}`)),
     ]
     for (const line of lines) {
-      page.drawText(line, { x: 50, y, size: 12, font })
+      const text = asciiOnly ? toAscii(line) : line
+      page.drawText(text, { x: 50, y, size: 12, font })
       y -= 18
       if (y < 50) {
         page = doc.addPage([595, 842])
