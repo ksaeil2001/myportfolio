@@ -28,9 +28,9 @@ jobs:
       - run: npm ci || npm ci
       - name: Validate Environment Variables
         run: |
-          : "${EMAILJS_SERVICE_ID:='default_service_id'}"
-          : "${EMAILJS_TEMPLATE_ID:='default_template_id'}"
-          : "${EMAILJS_USER_ID:='default_user_id'}"
+          : "${EMAILJS_SERVICE_ID:?'Missing EmailJS service ID'}"
+          : "${EMAILJS_TEMPLATE_ID:?'Missing EmailJS template ID'}"
+          : "${EMAILJS_USER_ID:?'Missing EmailJS user ID'}"
       - run: npm run lint
       - run: npm test
       - run: npm run build
