@@ -57,17 +57,25 @@
 > - `EMAILJS_SERVICE_ID`: EmailJS 서비스 ID
 > - `EMAILJS_TEMPLATE_ID`: EmailJS 템플릿 ID
 > - `EMAILJS_USER_ID`: EmailJS 사용자 ID
+> - `OFFLINE_MODE`: `npm run generate:resume` 실행 시 `true`로 설정하면 폰트 다운로드를 시도하지 않습니다.
 >   
 > GitHub Actions CI 환경에서 위 EmailJS 변수들이 누락되면 워크플로가 실패합니다.
 > 저장소 **Settings > Secrets and variables > Actions** 메뉴에서 각각
 > `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`, `EMAILJS_USER_ID` 이름으로
 > 새 Secret을 등록해야 합니다.
-> 워크플로우에서는 다음 스크립트로 값 존재 여부를 검증합니다.
+> 워크플로우에서는 다음과 같이 기본값을 사용해도 경고 후 실패하도록 설정됩니다.
+>
+> ```yaml
+> EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID || 'placeholder' }}
+> EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID || 'placeholder' }}
+> EMAILJS_USER_ID: ${{ secrets.EMAILJS_USER_ID || 'placeholder' }}
+> ```
 >
 > ```bash
-> : "${EMAILJS_SERVICE_ID:?'Missing EmailJS service ID'}"
-> : "${EMAILJS_TEMPLATE_ID:?'Missing EmailJS template ID'}"
-> : "${EMAILJS_USER_ID:?'Missing EmailJS user ID'}"
+> if [ "${EMAILJS_SERVICE_ID}" = "placeholder" ]; then
+>   echo "::error::EmailJS secrets are required."
+>   exit 1
+> fi
 > ```
 > Secrets 등록 후 CI를 재실행하면 오류 없이 진행됩니다.
 
@@ -496,5 +504,16 @@ myportfolio/
   - 빌드 과정에서 폰트 로딩을 제거하고 기본 글꼴로 대체
   - `public/fonts` 폴더 삭제 및 `.gitignore`에 다시 추가
   - `layout.tsx`와 `globals.css`에서 폰트 관련 설정 제거
+ z2ukb7-codex/create-agents.md-file
 - 2025-07-30 (Codex) - Added AGENTS.md with repository guidelines
 - 2025-07-31 (Codex) - AGENTS.md 업데이트: 네트워크와 바이너리 파일 사용 제한 명시
+=======
+- 2025-07-30 (Codex) - Repository guidelines file and pretest lint script
+  - AGENTS.md 파일을 추가해 작업 규칙 명세
+  - `package.json`의 `pretest` 스크립트로 커밋 전 ESLint 자동 실행
+- 2025-07-31 (Codex) - CI 워크플로우 EmailJS 비밀값 기본값 및 경고 추가
+  - ci.yml에서 EmailJS secrets 미설정 시 'placeholder'로 대체 후 경고 출력
+  - README에 필수 secrets 설정 필요성을 강조
+- 2025-08-01 (Codex) - Offline resume generation option
+  - `OFFLINE_MODE` 환경 변수를 추가해 네트워크 연결 없이 이력서 PDF 생성 가능
+main
