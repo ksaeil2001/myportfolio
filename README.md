@@ -496,3 +496,6 @@ myportfolio/
   - 빌드 과정에서 폰트 로딩을 제거하고 기본 글꼴로 대체
   - `public/fonts` 폴더 삭제 및 `.gitignore`에 다시 추가
   - `layout.tsx`와 `globals.css`에서 폰트 관련 설정 제거
+- 2025-07-30 (Codex) - Repository guidelines file and pretest lint script
+  - AGENTS.md 파일을 추가해 작업 규칙 명세
+  - `package.json`의 `pretest` 스크립트로 커밋 전 ESLint 자동 실행
