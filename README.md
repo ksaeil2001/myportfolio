@@ -440,3 +440,4 @@ myportfolio/
 
 - 2025-07-15 (Codex) - Document font download network policy
   - Added docs/network-policy.md and updated network guide.
+- 2025-07-16 (Codex) - npm audit fix applied for brace-expansion vulnerability
