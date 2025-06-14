@@ -482,3 +482,4 @@ myportfolio/
    - EmailJS secrets 누락 시 구체적 안내 메시지를 출력하도록 ci.yml 수정
 - 2025-07-25 (Codex) - CI 환경 변수 검증 스크립트 업데이트
   - GitHub Actions에서 EmailJS 서비스/템플릿/사용자 ID가 비어 있으면 오류 메시지와 함께 즉시 실패하도록 스크립트 수정
+- 2025-07-26 (Codex) - Codex 기준: 환경 변수 정상 등록 및 워크플로 env 섹션 동기화 완료
