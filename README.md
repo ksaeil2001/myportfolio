@@ -81,6 +81,7 @@ GitHub Actions CI 환경에서 위 EmailJS 변수들이 누락되면 워크플�
 > ```
 > 또한 워크플로우 시작 단계에서 secrets 존재 여부를 확인하는 `check-secrets` job이 추가되었습니다.
 > Secrets 등록 후 CI를 재실행하면 오류 없이 진행됩니다.
+> 누락된 항목은 `EMAILJS_SERVICE_ID: Not Set` 형식으로 표시되어 어떤 값이 비어 있는지 즉시 파악할 수 있습니다.
 
 <p>
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
@@ -522,3 +523,5 @@ myportfolio/
   - ci.yml의 누락 경고에 README 링크를 추가해 EmailJS 시크릿 설정 방법을 안내
 - 2025-08-04 (Codex) - CI workflow secret check job 추가
 - 2025-08-05 (Codex) - CI secret check clarifies which EmailJS values are missing
+- 2025-08-06 (Codex) - Secrets check provides placeholder details
+  - check-secrets job now prints `EMAILJS_SERVICE_ID: Not Set` style messages for each missing value

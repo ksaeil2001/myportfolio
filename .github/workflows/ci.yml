@@ -17,11 +17,11 @@ jobs:
       - name: Check EmailJS Secrets
         run: |
           missing=()
-          [[ -z "$EMAILJS_SERVICE_ID" ]] && missing+=("EMAILJS_SERVICE_ID")
-          [[ -z "$EMAILJS_TEMPLATE_ID" ]] && missing+=("EMAILJS_TEMPLATE_ID")
-          [[ -z "$EMAILJS_USER_ID" ]] && missing+=("EMAILJS_USER_ID")
+          [[ -z "$EMAILJS_SERVICE_ID" ]] && missing+=("EMAILJS_SERVICE_ID: Not Set")
+          [[ -z "$EMAILJS_TEMPLATE_ID" ]] && missing+=("EMAILJS_TEMPLATE_ID: Not Set")
+          [[ -z "$EMAILJS_USER_ID" ]] && missing+=("EMAILJS_USER_ID: Not Set")
           if [ ${#missing[@]} -ne 0 ]; then
-            echo "::error::Missing secrets: ${missing[*]}. Add them in repository settings."
+            echo "::error::Missing secrets: ${missing[*]}"
             exit 1
           fi
           echo "EmailJS secrets are correctly configured."
