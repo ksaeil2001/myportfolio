@@ -456,3 +456,6 @@ myportfolio/
   - CI workflow now fails if EMAILJS secrets are missing
   - next-intl.config.js exports locales and defaultLocale
   - ContactForm validates missing EmailJS variables without defaults
+- 2025-07-20 (Codex) - Added accessible login page
+  - Created LoginForm component with aria attributes and validation
+  - Added /login route and navigation links
