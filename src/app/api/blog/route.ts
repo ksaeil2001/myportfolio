@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import Parser from 'rss-parser'
 import { getBlogRssUrl } from '@/lib/env'
+import { fallbackBlogItems } from '@/data/blogFallback'
 
 export const dynamic = 'force-dynamic'
 
@@ -27,7 +28,9 @@ export async function GET() {
     return NextResponse.json({ items })
   } catch (err) {
     const message = (err as Error).message
-    const errorBody = { items: [], error: 'Feed fetch failed', detail: message }
-    return NextResponse.json(errorBody, { status: 502 })
+    console.error('Blog feed fetch failed:', message)
+    const items = fallbackBlogItems
+    cache = { data: { items }, timestamp: Date.now() }
+    return NextResponse.json({ items, error: 'Feed fetch failed', detail: message })
   }
 }

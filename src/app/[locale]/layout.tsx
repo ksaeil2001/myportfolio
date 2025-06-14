@@ -56,6 +56,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return ['ko', 'en'].map((l) => ({ locale: l }));
+}
+
 export default async function RootLayout({
   children,
   params,
