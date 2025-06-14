@@ -521,3 +521,4 @@ myportfolio/
 - 2025-08-03 (Codex) - CI 환경 변수 안내 메시지 개선
   - ci.yml의 누락 경고에 README 링크를 추가해 EmailJS 시크릿 설정 방법을 안내
 - 2025-08-04 (Codex) - CI workflow secret check job 추가
+- 2025-08-05 (Codex) - CI secret check clarifies which EmailJS values are missing
