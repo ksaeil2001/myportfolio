@@ -58,8 +58,10 @@
 > - `EMAILJS_TEMPLATE_ID`: EmailJS 템플릿 ID
 > - `EMAILJS_USER_ID`: EmailJS 사용자 ID
 > - `OFFLINE_MODE`: `npm run generate:resume` 실행 시 `true`로 설정하면 폰트 다운로드를 시도하지 않습니다.
->   
-> GitHub Actions CI 환경에서 위 EmailJS 변수들이 누락되면 워크플로가 실패합니다.
+
+### EmailJS 시크릿 설정
+
+GitHub Actions CI 환경에서 위 EmailJS 변수들이 누락되면 워크플로가 실패합니다.
 > 저장소 **Settings > Secrets and variables > Actions** 메뉴에서 각각
 > `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`, `EMAILJS_USER_ID` 이름으로
 > 새 Secret을 등록해야 합니다.
@@ -518,3 +520,5 @@ myportfolio/
   - `OFFLINE_MODE` 환경 변수를 추가해 네트워크 연결 없이 이력서 PDF 생성 가능
 main
 - 2025-08-02 (Codex) - Attempted build fix for next-intl
+- 2025-08-03 (Codex) - CI 환경 변수 안내 메시지 개선
+  - ci.yml의 누락 경고에 README 링크를 추가해 EmailJS 시크릿 설정 방법을 안내

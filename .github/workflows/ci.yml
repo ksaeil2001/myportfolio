@@ -43,7 +43,7 @@ jobs:
             missing=true
           fi
           if [ "$missing" = true ]; then
-            echo "::error::EmailJS secrets are required. Add EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, and EMAILJS_USER_ID in repository secrets."
+            echo "::error::EmailJS secrets are required. Add EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, and EMAILJS_USER_ID in repository secrets. See README.md section 'EmailJS 시크릿 설정'."
             exit 1
           fi
       - run: npm run lint
