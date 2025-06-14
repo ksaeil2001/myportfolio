@@ -441,3 +441,9 @@ myportfolio/
 - 2025-07-15 (Codex) - Document font download network policy
   - Added docs/network-policy.md and updated network guide.
 - 2025-07-16 (Codex) - npm audit fix applied for brace-expansion vulnerability
+- 2025-07-17 (Codex) - Backend/Frontend connectivity check
+  - npm test succeeded with 11 test suites
+  - Build ran but resume generation failed: WinAnsi cannot encode Korean characters
+  - /api/blog returned 502 due to network unreachable for feed URL
+  - .env.local not found; EmailJS and other variables missing during runtime
+  - Accessing /en routes responded 404, indicating locale routing misconfiguration
