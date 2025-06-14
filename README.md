@@ -57,6 +57,19 @@
 > - `EMAILJS_SERVICE_ID`: EmailJS 서비스 ID
 > - `EMAILJS_TEMPLATE_ID`: EmailJS 템플릿 ID
 > - `EMAILJS_USER_ID`: EmailJS 사용자 ID
+>   
+> GitHub Actions CI 환경에서 위 EmailJS 변수들이 누락되면 워크플로가 실패합니다.
+> 저장소 **Settings > Secrets and variables > Actions** 메뉴에서 각각
+> `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`, `EMAILJS_USER_ID` 이름으로
+> 새 Secret을 등록해야 합니다.
+> 워크플로우에서는 다음 스크립트로 값 존재 여부를 검증합니다.
+>
+> ```bash
+> : "${EMAILJS_SERVICE_ID:?'Missing EmailJS service ID'}"
+> : "${EMAILJS_TEMPLATE_ID:?'Missing EmailJS template ID'}"
+> : "${EMAILJS_USER_ID:?'Missing EmailJS user ID'}"
+> ```
+> Secrets 등록 후 CI를 재실행하면 오류 없이 진행됩니다.
 
 <p>
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
@@ -459,3 +472,5 @@ myportfolio/
 - 2025-07-20 (Codex) - Added accessible login page
   - Created LoginForm component with aria attributes and validation
   - Added /login route and navigation links
+- 2025-07-21 (Codex) - Document GitHub Secrets setup for EmailJS
+  - README에 EmailJS 환경 변수 설정 절차 및 CI 검증 스크립트 추가
