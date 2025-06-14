@@ -487,3 +487,12 @@ myportfolio/
 - 2025-07-27 (Codex) - Offline npm install scripts 및 문서 추가
   - .npmrc로 로컬 캐시 기본값을 지정하고 `scripts/install_local.sh` 제공
   - 네트워크 차단 시 `scripts/populate_cache.sh`로 캐시를 미리 생성해 오프라인 설치 가능
+- 2025-07-28 (Codex) - 구글 폰트 의존성 제거 및 로컬 폰트 사용
+  - `public/fonts` 폴더에 Geist, Geist Mono variable 폰트 추가
+  - `layout.tsx`의 폰트 import를 `next/font/local` 방식으로 변경
+  - `.gitignore`에서 `public/fonts/` 항목 제거해 폰트 파일을 버전 관리
+  - 프로덕션 환경에서는 폰트를 로컬 정적 자산으로 관리해 네트워크 장애에 대비해야 함
+- 2025-07-29 (Codex) - 바이너리 파일 제한으로 로컬 폰트 사용 중단
+  - 빌드 과정에서 폰트 로딩을 제거하고 기본 글꼴로 대체
+  - `public/fonts` 폴더 삭제 및 `.gitignore`에 다시 추가
+  - `layout.tsx`와 `globals.css`에서 폰트 관련 설정 제거
