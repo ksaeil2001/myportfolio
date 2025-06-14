@@ -28,9 +28,18 @@ jobs:
       - run: npm ci || npm ci
       - name: Validate Environment Variables
         run: |
-          : "${EMAILJS_SERVICE_ID:?'Missing EmailJS service ID. Please set it in GitHub Secrets.'}"
-          : "${EMAILJS_TEMPLATE_ID:?'Missing EmailJS template ID. Please set it in GitHub Secrets.'}"
-          : "${EMAILJS_USER_ID:?'Missing EmailJS user ID. Please set it in GitHub Secrets.'}"
+          if [ -z "${EMAILJS_SERVICE_ID}" ]; then
+            echo "::error::EMAILJS_SERVICE_ID is missing. Set it as a GitHub Secret."
+            exit 1
+          fi
+          if [ -z "${EMAILJS_TEMPLATE_ID}" ]; then
+            echo "::error::EMAILJS_TEMPLATE_ID is missing. Set it as a GitHub Secret."
+            exit 1
+          fi
+          if [ -z "${EMAILJS_USER_ID}" ]; then
+            echo "::error::EMAILJS_USER_ID is missing. Set it as a GitHub Secret."
+            exit 1
+          fi
       - run: npm run lint
       - run: npm test
       - run: npm run build
