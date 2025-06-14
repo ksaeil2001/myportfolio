@@ -496,3 +496,5 @@ myportfolio/
   - 빌드 과정에서 폰트 로딩을 제거하고 기본 글꼴로 대체
   - `public/fonts` 폴더 삭제 및 `.gitignore`에 다시 추가
   - `layout.tsx`와 `globals.css`에서 폰트 관련 설정 제거
+- 2025-07-30 (Codex) - Added AGENTS.md with repository guidelines
+- 2025-07-31 (Codex) - AGENTS.md 업데이트: 네트워크와 바이너리 파일 사용 제한 명시
