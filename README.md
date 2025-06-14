@@ -79,6 +79,7 @@ GitHub Actions CI 환경에서 위 EmailJS 변수들이 누락되면 워크플�
 >   exit 1
 > fi
 > ```
+> 또한 워크플로우 시작 단계에서 secrets 존재 여부를 확인하는 `check-secrets` job이 추가되었습니다.
 > Secrets 등록 후 CI를 재실행하면 오류 없이 진행됩니다.
 
 <p>
@@ -506,10 +507,8 @@ myportfolio/
   - 빌드 과정에서 폰트 로딩을 제거하고 기본 글꼴로 대체
   - `public/fonts` 폴더 삭제 및 `.gitignore`에 다시 추가
   - `layout.tsx`와 `globals.css`에서 폰트 관련 설정 제거
- z2ukb7-codex/create-agents.md-file
 - 2025-07-30 (Codex) - Added AGENTS.md with repository guidelines
 - 2025-07-31 (Codex) - AGENTS.md 업데이트: 네트워크와 바이너리 파일 사용 제한 명시
-=======
 - 2025-07-30 (Codex) - Repository guidelines file and pretest lint script
   - AGENTS.md 파일을 추가해 작업 규칙 명세
   - `package.json`의 `pretest` 스크립트로 커밋 전 ESLint 자동 실행
@@ -518,7 +517,7 @@ myportfolio/
   - README에 필수 secrets 설정 필요성을 강조
 - 2025-08-01 (Codex) - Offline resume generation option
   - `OFFLINE_MODE` 환경 변수를 추가해 네트워크 연결 없이 이력서 PDF 생성 가능
-main
 - 2025-08-02 (Codex) - Attempted build fix for next-intl
 - 2025-08-03 (Codex) - CI 환경 변수 안내 메시지 개선
   - ci.yml의 누락 경고에 README 링크를 추가해 EmailJS 시크릿 설정 방법을 안내
+- 2025-08-04 (Codex) - CI workflow secret check job 추가
