@@ -619,4 +619,5 @@ myportfolio/
 pgqpkx-codex/emailjs-환경-변수-체크-스크립트-개선
 - 2025-08-23 (Codex) - Repository guidelines update
   - AGENTS.md now forbids committing binary files entirely
-main
+- 2025-08-24 (Codex) - Repository guideline wording update
+  - AGENTS.md merge conflict marker warning now says "절대 사용하지 마세요"
