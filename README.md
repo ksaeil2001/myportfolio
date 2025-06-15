@@ -528,4 +528,7 @@ myportfolio/
 - 2025-08-07 (Codex) - CI workflow fallback values for EmailJS secrets
   - ci.yml assigns default values when secrets are missing and validates them accordingly
   - Added .npm_cache to .gitignore to prevent large cache files from being committed
+- 2025-08-08 (Codex) - Runtime validation for EmailJS secrets
+  - Added `validateEmailJsEnv()` in `src/lib/env.ts` and integrated with `ContactForm`
+  - Updated tests to cover the new validation logic
 

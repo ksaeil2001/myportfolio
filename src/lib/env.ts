@@ -9,6 +9,23 @@ export function getEmailJsEnv() {
   }
 }
 
+export function validateEmailJsEnv() {
+  const { serviceId, templateId, userId } = getEmailJsEnv()
+  const missing: string[] = []
+  if (!serviceId || serviceId === 'default_service_id' || serviceId === 'placeholder') {
+    missing.push('EMAILJS_SERVICE_ID')
+  }
+  if (!templateId || templateId === 'default_template_id' || templateId === 'placeholder') {
+    missing.push('EMAILJS_TEMPLATE_ID')
+  }
+  if (!userId || userId === 'default_user_id' || userId === 'placeholder') {
+    missing.push('EMAILJS_USER_ID')
+  }
+  if (missing.length) {
+    throw new Error(`Missing EmailJS environment variables: ${missing.join(', ')}`)
+  }
+}
+
 export function getGoogleAnalyticsId() {
   return process.env.NEXT_PUBLIC_GA_ID
 }
