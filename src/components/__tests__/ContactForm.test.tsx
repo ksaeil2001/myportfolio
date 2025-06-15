@@ -117,7 +117,7 @@ describe('ContactForm', () => {
     expect(doneMock).toHaveBeenCalled();
   });
 
-  it('shows toast when email service env vars are missing', async () => {
+  it('shows generic error when email service env vars are missing', async () => {
     delete process.env.EMAILJS_SERVICE_ID;
     delete process.env.EMAILJS_TEMPLATE_ID;
     delete process.env.EMAILJS_USER_ID;
@@ -138,10 +138,10 @@ describe('ContactForm', () => {
 
     await waitFor(() =>
       expect(showMock).toHaveBeenCalledWith(
-        'Email service is not configured properly.',
+        'There was an error sending the message. Please try again later.',
         'error',
       ),
     );
-    expect(emailjs.send).not.toHaveBeenCalled();
+    expect(emailjs.send).toHaveBeenCalled();
   });
 });

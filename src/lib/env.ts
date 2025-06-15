@@ -22,7 +22,11 @@ export function validateEmailJsEnv() {
     missing.push('EMAILJS_USER_ID')
   }
   if (missing.length) {
-    throw new Error(`Missing EmailJS environment variables: ${missing.join(', ')}`)
+    const message = `Missing EmailJS environment variables: ${missing.join(', ')}`
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error(message)
+    }
+    console.warn(message)
   }
 }
 
