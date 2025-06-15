@@ -82,6 +82,7 @@ GitHub Actions CI 환경에서 위 EmailJS 변수들이 누락되면 워크플�
 > 또한 워크플로우 시작 단계에서 secrets 존재 여부를 확인하는 `check-secrets` job이 추가되었습니다.
 > Secrets 등록 후 CI를 재실행하면 오류 없이 진행됩니다.
 > 누락된 항목은 `EMAILJS_SERVICE_ID: Not Set` 형식으로 표시되어 어떤 값이 비어 있는지 즉시 파악할 수 있습니다.
+> 로컬에서도 `npm run check:secrets` 명령어를 실행해 환경변수 설정 상태를 점검할 수 있습니다.
 > Secrets를 설정한 뒤에는 커밋을 다시 푸시하거나 PR을 열어 워크플로우가 정상적으로 실행되는지 확인하세요.
 > 필요 시 아래와 같이 CI 설정에 임시 디버그 단계를 추가해 값이 전달되는지 확인할 수 있습니다.
 >
@@ -551,3 +552,5 @@ myportfolio/
 - 2025-08-11 (Codex) - EmailJS env validation in Next config
   - next.config.ts validates EmailJS variables on load
   - ContactForm uses non-null assertions for emailjs.send
+- 2025-08-12 (Codex) - Local script for EmailJS secrets validation
+  - Added `scripts/checkEmailJsSecrets.ts` and `npm run check:secrets`
