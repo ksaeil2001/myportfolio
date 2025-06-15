@@ -60,6 +60,18 @@
 > - `OFFLINE_MODE`: `npm run generate:resume` 실행 시 `true`로 설정하면 폰트 다운로드를 시도하지 않습니다.
 > - `NEXT_PUBLIC_CONTACT_EMAIL`: Contact 페이지에 표시할 이메일 주소
 
+### GitHub Actions EmailJS Secret 등록
+
+GitHub Actions에서 EmailJS 연동을 사용하려면 아래 세 가지 값을 반드시
+`Settings > Secrets and variables > Actions`에 등록해야 합니다.
+
+- `EMAILJS_SERVICE_ID`
+- `EMAILJS_TEMPLATE_ID`
+- `EMAILJS_USER_ID`
+
+등록되지 않으면 CI 단계에서 `scripts/checkEmailJsSecrets.ts`가 오류를 출력하고
+빌드가 중단됩니다.
+
 ### EmailJS 시크릿 설정
 
 GitHub Actions CI 환경에서 위 EmailJS 변수들이 누락되면 워크플로가 실패합니다.
@@ -579,3 +591,7 @@ myportfolio/
 - 2025-08-19 (Codex) - Contact page email address via env variable
   - Added `NEXT_PUBLIC_CONTACT_EMAIL` entry in `.env.example`
   - Contact page reads email from this variable
+- 2025-08-20 (Codex) - Improve EmailJS secret check script and docs
+  - `scripts/checkEmailJsSecrets.ts` now prints each variable status and friendly
+    setup guide
+  - Added "GitHub Actions EmailJS Secret 등록" section in README
