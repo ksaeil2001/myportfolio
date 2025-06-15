@@ -616,3 +616,7 @@ myportfolio/
   - checkEmailJsSecrets.ts detects mistyped EMAILJS_* variables
 - 2025-08-22 (Codex) - Docs cleanup for binary policy
   - Removed screenshot file and replaced with textual guide
+pgqpkx-codex/emailjs-환경-변수-체크-스크립트-개선
+- 2025-08-23 (Codex) - Repository guidelines update
+  - AGENTS.md now forbids committing binary files entirely
+main
