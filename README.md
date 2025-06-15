@@ -82,6 +82,16 @@ GitHub Actions CI 환경에서 위 EmailJS 변수들이 누락되면 워크플�
 > 또한 워크플로우 시작 단계에서 secrets 존재 여부를 확인하는 `check-secrets` job이 추가되었습니다.
 > Secrets 등록 후 CI를 재실행하면 오류 없이 진행됩니다.
 > 누락된 항목은 `EMAILJS_SERVICE_ID: Not Set` 형식으로 표시되어 어떤 값이 비어 있는지 즉시 파악할 수 있습니다.
+> Secrets를 설정한 뒤에는 커밋을 다시 푸시하거나 PR을 열어 워크플로우가 정상적으로 실행되는지 확인하세요.
+> 필요 시 아래와 같이 CI 설정에 임시 디버그 단계를 추가해 값이 전달되는지 확인할 수 있습니다.
+>
+> ```yaml
+> - name: Debug Secrets
+>   run: |
+>     echo "EMAILJS_SERVICE_ID=${EMAILJS_SERVICE_ID}"
+>     echo "EMAILJS_TEMPLATE_ID=${EMAILJS_TEMPLATE_ID}"
+>     echo "EMAILJS_USER_ID=${EMAILJS_USER_ID}"
+> ```
 
 <p>
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
@@ -531,4 +541,7 @@ myportfolio/
 - 2025-08-08 (Codex) - Runtime validation for EmailJS secrets
   - Added `validateEmailJsEnv()` in `src/lib/env.ts` and integrated with `ContactForm`
   - Updated tests to cover the new validation logic
+- 2025-08-09 (Codex) - Document EmailJS secret setup and debug step
+  - Added CI job step to log EmailJS secrets for troubleshooting
+  - Explained secret creation process in README
 
