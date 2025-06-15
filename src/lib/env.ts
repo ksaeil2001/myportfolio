@@ -45,3 +45,7 @@ export function getBlogRssUrl() {
   }
   return BLOG_RSS_URL
 }
+
+export function getContactEmail() {
+  return process.env.NEXT_PUBLIC_CONTACT_EMAIL
+}
