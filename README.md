@@ -548,3 +548,6 @@ myportfolio/
 - 2025-08-10 (Codex) - CI workflow now strictly requires EmailJS secrets
   - Removed placeholder defaults from ci.yml
   - Secrets must be set in GitHub settings for the workflow to pass
+- 2025-08-11 (Codex) - EmailJS env validation in Next config
+  - next.config.ts validates EmailJS variables on load
+  - ContactForm uses non-null assertions for emailjs.send

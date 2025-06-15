@@ -43,14 +43,14 @@ export function ContactForm() {
     start();
     try {
       await emailjs.send(
-        serviceId,
-        templateId,
+        serviceId!,
+        templateId!,
         {
           from_name: form.name,
           reply_to: form.email,
           message: form.message,
         },
-        userId
+        userId!
       );
       setStatus("SUCCESS");
       setForm({ name: "", email: "", message: "" });
