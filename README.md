@@ -214,6 +214,7 @@ UI 컴포넌트는 `src/components/`에서 기능별로 분리 구성되어 있�
 - **기능 특징:**
   - 제출 성공/실패 안내 UI 표시
   - `public/resume.pdf` 존재 여부를 확인해 다운로드 버튼을 활성/비활성 처리
+  - 현재 로그인이나 이메일 인증 기능은 제공하지 않습니다.
   - 파일이 없을 경우 안내 문구 "이력서 준비 중입니다" 표시
 - **UI 구성:** 
   - 좌측은 정보 링크, 우측은 입력 폼
@@ -502,9 +503,6 @@ myportfolio/
   - CI workflow now fails if EMAILJS secrets are missing
   - next-intl.config.js exports locales and defaultLocale
   - ContactForm validates missing EmailJS variables without defaults
-- 2025-07-20 (Codex) - Added accessible login page
-  - Created LoginForm component with aria attributes and validation
-  - Added /login route and navigation links
 - 2025-07-21 (Codex) - Document GitHub Secrets setup for EmailJS
   - README에 EmailJS 환경 변수 설정 절차 및 CI 검증 스크립트 추가
 - 2025-07-22 (Codex) - EmailJS secrets inspection report added
@@ -574,3 +572,6 @@ myportfolio/
   - Moved EmailJS secret mapping to top-level `env` in ci.yml
 - 2025-08-17 (Codex) - CI secrets debug step added
   - check-secrets job now prints EmailJS secret status before validation
+- 2025-08-18 (Codex) - Removed login page and email authentication
+  - Deleted /login route, LoginForm component, and related tests
+  - Header navigation no longer includes a login link
