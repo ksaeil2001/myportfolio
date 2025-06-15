@@ -1,6 +1,7 @@
 import { ContactForm } from "@/components/ContactForm";
 import ResumeDownloadLink from "@/components/ResumeDownloadLink";
 import { getTranslations } from "next-intl/server";
+import { getContactEmail } from "@/lib/env";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -23,6 +24,7 @@ export const metadata = {
 export default async function ContactPage({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'contact' });
+  const email = getContactEmail() ?? 'contact@example.com';
   return (
     <main id="main-content" className="mx-auto w-full max-w-5xl p-8 sm:p-20">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{t('title')}</h1>
@@ -32,7 +34,7 @@ export default async function ContactPage({ params }: PageProps) {
           Contact Info
         </h2>
           <p className="text-lg text-gray-700 dark:text-gray-300">
-            {t('email')}: <a href="mailto:contact@saeil.dev" className="text-blue-600 dark:text-blue-400 hover:underline">contact@saeil.dev</a>
+            {t('email')}: <a href={`mailto:${email}`} className="text-blue-600 dark:text-blue-400 hover:underline">{email}</a>
           </p>
           <p className="text-lg text-gray-700 dark:text-gray-300">
             {t('github')}: <a href="https://github.com/saeil" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">github.com/saeil</a>

@@ -58,6 +58,7 @@
 > - `EMAILJS_TEMPLATE_ID`: EmailJS 템플릿 ID
 > - `EMAILJS_USER_ID`: EmailJS 사용자 ID
 > - `OFFLINE_MODE`: `npm run generate:resume` 실행 시 `true`로 설정하면 폰트 다운로드를 시도하지 않습니다.
+> - `NEXT_PUBLIC_CONTACT_EMAIL`: Contact 페이지에 표시할 이메일 주소
 
 ### EmailJS 시크릿 설정
 
@@ -575,3 +576,6 @@ myportfolio/
 - 2025-08-18 (Codex) - Removed login page and email authentication
   - Deleted /login route, LoginForm component, and related tests
   - Header navigation no longer includes a login link
+- 2025-08-19 (Codex) - Contact page email address via env variable
+  - Added `NEXT_PUBLIC_CONTACT_EMAIL` entry in `.env.example`
+  - Contact page reads email from this variable
