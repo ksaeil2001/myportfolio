@@ -525,3 +525,7 @@ myportfolio/
 - 2025-08-05 (Codex) - CI secret check clarifies which EmailJS values are missing
 - 2025-08-06 (Codex) - Secrets check provides placeholder details
   - check-secrets job now prints `EMAILJS_SERVICE_ID: Not Set` style messages for each missing value
+- 2025-08-07 (Codex) - CI workflow fallback values for EmailJS secrets
+  - ci.yml assigns default values when secrets are missing and validates them accordingly
+  - Added .npm_cache to .gitignore to prevent large cache files from being committed
+
