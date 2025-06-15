@@ -7,6 +7,10 @@ function checkEmailJsSecrets() {
     { name: 'EMAILJS_TEMPLATE_ID', value: templateId },
     { name: 'EMAILJS_USER_ID', value: userId },
   ]
+  const requiredNames = variables.map((v) => v.name)
+  const unknownNames = Object.keys(process.env).filter(
+    (key) => key.startsWith('EMAILJS_') && !requiredNames.includes(key),
+  )
   const invalid = variables.filter(
     ({ value }) => !value || value === 'placeholder' || value.startsWith('default_'),
   )
@@ -19,6 +23,17 @@ function checkEmailJsSecrets() {
     console.log(`- ${name}: ${status}`)
   })
 
+  let hasError = false
+
+  if (unknownNames.length) {
+    console.error('\n❌ Unrecognized EmailJS environment variables found:')
+    unknownNames.forEach((name) => console.error(`- ${name}`))
+    console.error(
+      `Please check for typos. Valid names are: ${requiredNames.join(', ')}`,
+    )
+    hasError = true
+  }
+
   if (invalid.length) {
     console.error('\n❌ Missing EmailJS secrets detected.')
     console.error(
@@ -27,6 +42,10 @@ function checkEmailJsSecrets() {
     console.error(
       'For detailed instructions, see the "GitHub Actions EmailJS Secret 등록" section in README.md.',
     )
+    hasError = true
+  }
+
+  if (hasError) {
     process.exit(1)
   }
 
