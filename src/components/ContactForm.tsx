@@ -4,7 +4,7 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import emailjs from "@emailjs/browser";
 import { useToast } from "./Providers";
 import { useLoading } from "./LoadingProvider";
-import { getEmailJsEnv } from "@/lib/env";
+import { getEmailJsEnv, validateEmailJsEnv } from "@/lib/env";
 
 export function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -32,12 +32,11 @@ export function ContactForm() {
     }
     setErrors({});
     const { serviceId, templateId, userId } = getEmailJsEnv()
-    if (!serviceId || !templateId || !userId) {
-      console.error('Missing EmailJS environment variables.')
-      show(
-        'Email service is not configured properly.',
-        'error',
-      )
+    try {
+      validateEmailJsEnv()
+    } catch (err) {
+      console.error((err as Error).message)
+      show('Email service is not configured properly.', 'error')
       setStatus('ERROR')
       return
     }
