@@ -572,3 +572,5 @@ myportfolio/
   - `scripts/checkEmailJsSecrets.ts` outputs missing variables in friendly format and fails the build if any are absent
 - 2025-08-16 (Codex) - CI workflow secret env centralization
   - Moved EmailJS secret mapping to top-level `env` in ci.yml
+- 2025-08-17 (Codex) - CI secrets debug step added
+  - check-secrets job now prints EmailJS secret status before validation

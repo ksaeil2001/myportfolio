@@ -20,6 +20,11 @@ jobs:
         with:
           node-version: 20
       - run: npm ci --prefer-offline --no-audit --progress=false
+      - name: Display EmailJS secret status
+        run: |
+          echo "EMAILJS_SERVICE_ID: ${EMAILJS_SERVICE_ID:-Not Set}"
+          echo "EMAILJS_TEMPLATE_ID: ${EMAILJS_TEMPLATE_ID:-Not Set}"
+          echo "EMAILJS_USER_ID: ${EMAILJS_USER_ID:-Not Set}"
       - run: npm run check:secrets
 
   build:
