@@ -69,6 +69,22 @@ GitHub Actions에서 EmailJS 연동을 사용하려면 아래 세 가지 값을 
 - `EMAILJS_TEMPLATE_ID`
 - `EMAILJS_USER_ID`
 
+등록 절차는 다음과 같습니다.
+
+1. 저장소의 **Settings** 탭으로 이동합니다.
+2. 좌측 메뉴에서 **Secrets and variables > Actions** 를 선택합니다.
+3. **New repository secret** 버튼을 눌러 위 세 이름으로 값을 입력합니다.
+
+예시 값은 다음과 같이 입력할 수 있습니다.
+
+| Name | Example |
+| --- | --- |
+| EMAILJS_SERVICE_ID | `service_xxxxx` |
+| EMAILJS_TEMPLATE_ID | `template_xxxxx` |
+| EMAILJS_USER_ID | `user_xxxxx` |
+
+해당 입력 화면은 GitHub 웹 UI의 "Settings > Secrets and variables > Actions" 페이지에서 확인할 수 있습니다.
+
 등록되지 않으면 CI 단계에서 `scripts/checkEmailJsSecrets.ts`가 오류를 출력하고
 빌드가 중단됩니다.
 
@@ -595,3 +611,10 @@ myportfolio/
   - `scripts/checkEmailJsSecrets.ts` now prints each variable status and friendly
     setup guide
   - Added "GitHub Actions EmailJS Secret 등록" section in README
+- 2025-08-21 (Codex) - EmailJS secret docs expanded
+  - Step-by-step registration guide and example screenshot added
+  - checkEmailJsSecrets.ts detects mistyped EMAILJS_* variables
+- 2025-08-22 (Codex) - Docs cleanup for binary policy
+  - Removed screenshot file and replaced with textual guide
+- 2025-08-23 (Codex) - Repository guidelines update
+  - AGENTS.md now forbids committing binary files entirely
