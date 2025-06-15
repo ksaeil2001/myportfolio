@@ -570,3 +570,5 @@ myportfolio/
   - Local and CI secret validation logic now share the same script
 - 2025-08-15 (Codex) - EmailJS secrets auto check enhancement
   - `scripts/checkEmailJsSecrets.ts` outputs missing variables in friendly format and fails the build if any are absent
+- 2025-08-16 (Codex) - CI workflow secret env centralization
+  - Moved EmailJS secret mapping to top-level `env` in ci.yml
