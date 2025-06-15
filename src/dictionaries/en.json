@@ -29,8 +29,7 @@
     "contact": "Contact",
     "language": "Language",
     "korean": "Korean",
-    "english": "English",
-    "login": "Login"
+    "english": "English"
   },
   "notFound": {
     "title": "Page not found",
@@ -70,15 +69,6 @@
     "github": "GitHub",
     "blog": "Blog",
     "download": "Download PDF Resume"
-  },
-  "login": {
-    "title": "Login",
-    "email": "Email",
-    "password": "Password",
-    "submit": "Log In",
-    "emailRequired": "Please enter your email",
-    "passwordRequired": "Please enter your password",
-    "success": "Login submitted"
   },
   "resumeLink": {
     "unavailable": "Resume is not ready yet",

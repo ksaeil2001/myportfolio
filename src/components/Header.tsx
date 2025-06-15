@@ -37,9 +37,6 @@ export function Header() {
           <Link href={{ pathname: '/contact' }} locale={locale} className="hover:underline">
             {t('contact')}
           </Link>
-          <Link href={{ pathname: '/login' }} locale={locale} className="hover:underline">
-            {t('login')}
-          </Link>
         </nav>
         <div className="flex items-center gap-2">
           <select
@@ -80,11 +77,6 @@ export function Header() {
               <li>
                 <Link href={{ pathname: '/contact' }} locale={locale} className="block px-2 py-2 hover:underline">
                   {t('contact')}
-                </Link>
-              </li>
-              <li>
-                <Link href={{ pathname: '/login' }} locale={locale} className="block px-2 py-2 hover:underline">
-                  {t('login')}
                 </Link>
               </li>
             </ul>
