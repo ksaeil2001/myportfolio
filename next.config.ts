@@ -3,7 +3,9 @@ import path from "path";
 import createNextIntlPlugin from 'next-intl/plugin';
 import { validateEmailJsEnv } from './src/lib/env';
 
-validateEmailJsEnv();
+if (process.env.npm_lifecycle_event === 'build') {
+  validateEmailJsEnv();
+}
 
 const withNextIntl = createNextIntlPlugin('./next-intl.config.js');
 

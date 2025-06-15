@@ -57,6 +57,8 @@
 > - `EMAILJS_SERVICE_ID`: EmailJS 서비스 ID
 > - `EMAILJS_TEMPLATE_ID`: EmailJS 템플릿 ID
 > - `EMAILJS_USER_ID`: EmailJS 사용자 ID
+>   - 개발 환경에서 누락되면 빌드가 중단되지 않고 경고만 출력됩니다.
+>   - 프로덕션 빌드에서는 위 값들이 모두 필요하며, 누락 시 오류로 처리됩니다.
 > - `OFFLINE_MODE`: `npm run generate:resume` 실행 시 `true`로 설정하면 폰트 다운로드를 시도하지 않습니다.
 > - `NEXT_PUBLIC_CONTACT_EMAIL`: Contact 페이지에 표시할 이메일 주소
 
@@ -176,6 +178,16 @@ npm run test
    ```
 
 7. 네트워크 정책, 장애 원인, 해결 과정을 Changelog 섹션에 상세히 기록합니다.
+
+### 머지 충돌 방지 가이드
+
+코드 병합 시 `<<<<<<<`, `=======`, `>>>>>>>` 와 같은 충돌 마커가 남아있지 않도록 꼭 확인하세요.
+PR 생성 전 다음 명령어로 전체 소스에서 충돌 마커를 검색하면 좋습니다.
+
+```bash
+grep -R "<<<<<<<" -n
+```
+
 ---
 
 ## 📌 주요 기능 및 UI 구성 요약
@@ -621,3 +633,7 @@ pgqpkx-codex/emailjs-환경-변수-체크-스크립트-개선
   - AGENTS.md now forbids committing binary files entirely
 - 2025-08-24 (Codex) - Repository guideline wording update
   - AGENTS.md merge conflict marker warning now says "절대 사용하지 마세요"
+- 2025-08-25 (Codex) - EmailJS env validation dev fallback
+  - `validateEmailJsEnv` now logs warnings in development instead of throwing
+  - Build process still fails in production when variables are missing
+  - README에 머지 충돌 방지 가이드와 EmailJS 변수 경고 동작을 추가

@@ -30,7 +30,20 @@ describe('getEmailJsEnv', () => {
     });
   });
 
-  it('throws when required variables are missing', () => {
+  it('warns but does not throw when variables are missing in development', () => {
+    process.env.NODE_ENV = 'development';
+    delete process.env.EMAILJS_SERVICE_ID;
+    delete process.env.EMAILJS_TEMPLATE_ID;
+    delete process.env.EMAILJS_USER_ID;
+    const spy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    expect(() => validateEmailJsEnv()).not.toThrow();
+    expect(spy).toHaveBeenCalledWith(
+      'Missing EmailJS environment variables: EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID',
+    );
+  });
+
+  it('throws when required variables are missing in production', () => {
+    process.env.NODE_ENV = 'production';
     delete process.env.EMAILJS_SERVICE_ID;
     delete process.env.EMAILJS_TEMPLATE_ID;
     delete process.env.EMAILJS_USER_ID;
