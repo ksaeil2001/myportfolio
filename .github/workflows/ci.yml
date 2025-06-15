@@ -10,9 +10,9 @@ jobs:
   check-secrets:
     runs-on: ubuntu-latest
     env:
-      EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID || 'default_service_id' }}
-      EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID || 'default_template_id' }}
-      EMAILJS_USER_ID: ${{ secrets.EMAILJS_USER_ID || 'default_user_id' }}
+      EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
+      EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
+      EMAILJS_USER_ID: ${{ secrets.EMAILJS_USER_ID }}
     steps:
       - name: Debug Secrets
         run: |
@@ -36,10 +36,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # EmailJS credentials should be configured as GitHub Secrets.
-      # CI will fail if these values remain as the fallback 'placeholder'.
-      EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID || 'placeholder' }}
-      EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID || 'placeholder' }}
-      EMAILJS_USER_ID: ${{ secrets.EMAILJS_USER_ID || 'placeholder' }}
+      EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
+      EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
+      EMAILJS_USER_ID: ${{ secrets.EMAILJS_USER_ID }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
