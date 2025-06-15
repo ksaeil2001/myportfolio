@@ -99,6 +99,15 @@ GitHub Actions CI 환경에서 위 EmailJS 변수들이 누락되면 워크플�
   <img src="https://img.shields.io/badge/.env 관리-lightgrey?style=for-the-badge" />
 </p>
 
+### GitHub Actions 워크플로 실행 가이드
+
+1. 커밋 또는 PR 생성 시 `check-secrets` 작업이 먼저 실행됩니다.
+2. 이 작업에서 `scripts/checkEmailJsSecrets.ts`가 EmailJS 시크릿 존재 여부를 검사합니다.
+3. 누락된 변수가 있으면 `EMAILJS_SERVICE_ID: Not Set` 형식으로 표시하고 워크플로가 실패합니다.
+4. 시크릿을 추가한 뒤 워크플로를 다시 실행하면 이후 lint · test · build 단계가 진행됩니다.
+
+로컬 환경에서도 `npm run check:secrets` 명령으로 동일한 검사를 수행할 수 있습니다.
+
 ## 🧪 테스트 환경
 
 본 프로젝트는 [Jest](https://jestjs.io/) 및 [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) 기반의 단위 테스트 환경이 구축되어 있습니다.
@@ -559,3 +568,5 @@ myportfolio/
 - 2025-08-14 (Codex) - CI secrets validation script integration
   - check-secrets job installs dependencies and runs `npm run check:secrets`
   - Local and CI secret validation logic now share the same script
+- 2025-08-15 (Codex) - EmailJS secrets auto check enhancement
+  - `scripts/checkEmailJsSecrets.ts` outputs missing variables in friendly format and fails the build if any are absent
