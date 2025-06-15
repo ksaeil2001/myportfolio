@@ -556,3 +556,6 @@ myportfolio/
   - Added `scripts/checkEmailJsSecrets.ts` and `npm run check:secrets`
 - 2025-08-13 (Codex) - CI secrets check instructions improved
   - `check-secrets` job now prompts to add EmailJS values via Settings > Secrets and variables > Actions
+- 2025-08-14 (Codex) - CI secrets validation script integration
+  - check-secrets job installs dependencies and runs `npm run check:secrets`
+  - Local and CI secret validation logic now share the same script

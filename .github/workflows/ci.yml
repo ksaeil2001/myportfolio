@@ -14,23 +14,12 @@ jobs:
       EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
       EMAILJS_USER_ID: ${{ secrets.EMAILJS_USER_ID }}
     steps:
-      - name: Debug Secrets
-        run: |
-          echo "EMAILJS_SERVICE_ID=${EMAILJS_SERVICE_ID}"
-          echo "EMAILJS_TEMPLATE_ID=${EMAILJS_TEMPLATE_ID}"
-          echo "EMAILJS_USER_ID=${EMAILJS_USER_ID}"
-      - name: Check EmailJS Secrets
-        run: |
-          missing=()
-          [[ -z "$EMAILJS_SERVICE_ID" || "$EMAILJS_SERVICE_ID" == 'default_service_id' ]] && missing+=("EMAILJS_SERVICE_ID: Not Set")
-          [[ -z "$EMAILJS_TEMPLATE_ID" || "$EMAILJS_TEMPLATE_ID" == 'default_template_id' ]] && missing+=("EMAILJS_TEMPLATE_ID: Not Set")
-          [[ -z "$EMAILJS_USER_ID" || "$EMAILJS_USER_ID" == 'default_user_id' ]] && missing+=("EMAILJS_USER_ID: Not Set")
-          if [ ${#missing[@]} -ne 0 ]; then
-            echo "::error::Missing secrets: ${missing[*]}"
-            echo "Please add them in GitHub repository Settings > Secrets and variables > Actions."
-            exit 1
-          fi
-          echo "EmailJS secrets are correctly configured."
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci --prefer-offline --no-audit --progress=false
+      - run: npm run check:secrets
 
   build:
     needs: check-secrets
