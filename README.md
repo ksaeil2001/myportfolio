@@ -554,3 +554,5 @@ myportfolio/
   - ContactForm uses non-null assertions for emailjs.send
 - 2025-08-12 (Codex) - Local script for EmailJS secrets validation
   - Added `scripts/checkEmailJsSecrets.ts` and `npm run check:secrets`
+- 2025-08-13 (Codex) - CI secrets check instructions improved
+  - `check-secrets` job now prompts to add EmailJS values via Settings > Secrets and variables > Actions

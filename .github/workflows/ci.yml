@@ -27,6 +27,7 @@ jobs:
           [[ -z "$EMAILJS_USER_ID" || "$EMAILJS_USER_ID" == 'default_user_id' ]] && missing+=("EMAILJS_USER_ID: Not Set")
           if [ ${#missing[@]} -ne 0 ]; then
             echo "::error::Missing secrets: ${missing[*]}"
+            echo "Please add them in GitHub repository Settings > Secrets and variables > Actions."
             exit 1
           fi
           echo "EmailJS secrets are correctly configured."
