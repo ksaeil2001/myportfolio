@@ -14,6 +14,11 @@ jobs:
       EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID || 'default_template_id' }}
       EMAILJS_USER_ID: ${{ secrets.EMAILJS_USER_ID || 'default_user_id' }}
     steps:
+      - name: Debug Secrets
+        run: |
+          echo "EMAILJS_SERVICE_ID=${EMAILJS_SERVICE_ID}"
+          echo "EMAILJS_TEMPLATE_ID=${EMAILJS_TEMPLATE_ID}"
+          echo "EMAILJS_USER_ID=${EMAILJS_USER_ID}"
       - name: Check EmailJS Secrets
         run: |
           missing=()
