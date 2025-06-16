@@ -135,7 +135,7 @@ GitHub Actions CI 환경에서 위 EmailJS 변수들이 누락되면 워크플�
 1. 커밋 또는 PR 생성 시 `check-secrets` 작업이 먼저 실행됩니다.
 2. 이 작업에서 `scripts/checkEmailJsSecrets.ts`가 EmailJS 시크릿 존재 여부를 검사합니다.
 3. 누락된 변수가 있으면 `EMAILJS_SERVICE_ID: Not Set` 형식으로 표시하고 워크플로가 실패합니다.
-4. 시크릿을 추가한 뒤 워크플로를 다시 실행하면 이후 lint · test · build 단계가 진행됩니다.
+4. 시크릿을 추가한 뒤 워크플로를 다시 실행하면 이후 lint 및 lint:fix · test · build 단계가 진행됩니다.
 
 로컬 환경에서도 `npm run check:secrets` 명령으로 동일한 검사를 수행할 수 있습니다.
 
@@ -173,6 +173,7 @@ npm run test
    ```bash
    npm ci
    npm run lint
+   npm run lint:fix
    npm test
    npm run build
    ```
@@ -420,6 +421,7 @@ myportfolio/
 | 2025-06-14 | 테스트 & CI 강화: `resume.pdf` 존재 확인, Jest+RTL 환경 구성, GitHub Actions 워크플로우 추가, 소개 페이지 애니메이션 |
 | 2025-06-15 | i18n 및 기능 개선: 다국어 라우팅, GitHub 통계 안내 개선, PDF 이력서 확장, 컴포넌트 테스트 확대 |
 | 2025-06-16 | UI/로직 품질 및 국제화 개선: BlogSection·ProjectFilterBar 테스트, 로케일 스위처, 전 페이지 다국어화, 이력서 스크립트 TS 전환 |
+| 2025-06-16 | lint:fix 스크립트 추가 및 문서 가이드 업데이트 |
 
 ### 2025-06-17
 
