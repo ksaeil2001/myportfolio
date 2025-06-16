@@ -1,3 +1,4 @@
+import React from 'react';
 import { ContactForm } from "@/components/ContactForm";
 import ResumeDownloadLink from "@/components/ResumeDownloadLink";
 import { getTranslations } from "next-intl/server";

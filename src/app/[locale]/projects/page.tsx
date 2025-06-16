@@ -1,3 +1,4 @@
+import React from 'react';
 import { getProjects } from "@/lib/projects";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ProjectFilterBar } from "@/components/ProjectFilterBar";

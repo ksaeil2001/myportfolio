@@ -1,3 +1,4 @@
+import React from 'react';
 import { TimelineItem } from "@/components/TimelineItem";
 import { getTranslations } from "next-intl/server";
 import type { TimelineEntry } from "@/data/types";

@@ -426,26 +426,25 @@ myportfolio/
 | 날짜 | 주요 변경 사항 |
 | --- | --- |
 | 2025-06-17 | App Router 비동기 params 타입 적용 및 README 가이드 추가 |
+| 2025-06-18 | App Router page 컴포넌트 구조 가이드 수정 및 빌드 오류 해결 |
 
 ### 다국어 전환 방법
 기본 언어는 한국어이며 `/en` 경로로 접속하면 영어 페이지가 제공됩니다. 예) `/en/projects`.
 
-### App Router 비동기 params 사용 가이드
-Next.js 15부터 `params`와 `searchParams`가 비동기 프라미스로 전달됩니다.
-페이지 컴포넌트에서는 다음과 같이 `await` 키워드를 사용하여 값을 추출해야
-합니다.
+### App Router 사용 가이드
+App Router에서 `page.tsx` 파일의 `export default`는 반드시 함수형 컴포넌트여야 합니다.
+또한 `params` 와 `searchParams` 는 일반 객체로 전달되므로 `await` 를 사용할 필요가 없습니다.
 
 ```tsx
+import React from 'react'
+
 interface PageProps {
-  params: Promise<{ locale: string }>
+  params: { locale: string }
 }
 
 export default async function AboutPage({ params }: PageProps) {
-  const { locale } = await params
+  const { locale } = params
   // ...
 }
 ```
-
-타입 오류를 방지하기 위해 제너레이트된 타입 정의를 참고하여 위와 같이
-프라미스 형태로 선언하는 것을 권장합니다.
 

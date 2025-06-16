@@ -1,3 +1,4 @@
+import React from 'react';
 import { getProjects } from "@/lib/projects";
 import Image from "next/image";
 import { notFound } from "next/navigation";
