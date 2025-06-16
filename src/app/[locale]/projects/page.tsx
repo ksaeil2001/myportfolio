@@ -5,7 +5,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 
 interface PageProps {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProjectsPage({ searchParams }: PageProps) {
-  const params = await searchParams;
+  const params = searchParams;
   const projects = await getProjects();
   const stackParam = Array.isArray(params.stack) ? params.stack[0] : params.stack;
   const yearParam = Array.isArray(params.year) ? params.year[0] : params.year;

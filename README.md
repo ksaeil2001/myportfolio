@@ -637,3 +637,7 @@ pgqpkx-codex/emailjs-환경-변수-체크-스크립트-개선
   - `validateEmailJsEnv` now logs warnings in development instead of throwing
   - Build process still fails in production when variables are missing
   - README에 머지 충돌 방지 가이드와 EmailJS 변수 경고 동작을 추가
+- 2025-08-26 (Codex) - 국제화 페이지 타입 정의 수정
+  - `[locale]/about`, `[locale]/contact`, `[locale]/projects` 하위 페이지의 `PageProps`
+    타입에서 `Promise` 제거
+  - Vercel 빌드 시 `TypeError: e is not a function` 오류가 발생하던 문제 해결
