@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { getContactEmail } from "@/lib/env";
 
 interface PageProps {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }
 
 export const metadata = {
@@ -22,7 +22,7 @@ export const metadata = {
 };
 
 export default async function ContactPage({ params }: PageProps) {
-  const { locale } = await params;
+  const { locale } = params;
   const t = await getTranslations({ locale, namespace: 'contact' });
   const email = getContactEmail() ?? 'contact@example.com';
   return (
