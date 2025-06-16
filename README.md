@@ -188,6 +188,25 @@ PR 생성 전 다음 명령어로 전체 소스에서 충돌 마커를 검색하
 grep -R "<<<<<<<" -n
 ```
 
+### App Router 페이지 타입 가이드
+
+Next.js 15부터는 App Router의 `PageProps`가 비동기 형태로 전달됩니다. `params`
+와 `searchParams` 모두 `Promise` 타입이므로 아래와 같이 `await`해 사용하세요.
+
+```ts
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function Page({ params }: PageProps) {
+  const { locale } = await params;
+  // ...
+}
+```
+
+`searchParams` 사용 시에도 동일하게 `const query = await searchParams;` 형태로
+작성하면 빌드 타임 타입 오류를 방지할 수 있습니다.
+
 ---
 
 ## 📌 주요 기능 및 UI 구성 요약
@@ -641,3 +660,7 @@ pgqpkx-codex/emailjs-환경-변수-체크-스크립트-개선
   - `[locale]/about`, `[locale]/contact`, `[locale]/projects` 하위 페이지의 `PageProps`
     타입에서 `Promise` 제거
   - Vercel 빌드 시 `TypeError: e is not a function` 오류가 발생하던 문제 해결
+- 2025-08-27 (Codex) - Next.js 15 대응 PageProps 수정
+  - Next.js 15의 App Router 타입 업데이트에 맞춰 `PageProps`의 `params`와
+    `searchParams`를 `Promise` 타입으로 재정의
+  - about, contact, projects 관련 페이지 함수 시그니처 수정 및 ESLint/테스트 통과 확인
