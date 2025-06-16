@@ -207,6 +207,10 @@ export default async function Page({ params }: PageProps) {
 `searchParams` 사용 시에도 동일하게 `const query = await searchParams;` 형태로
 작성하면 빌드 타임 타입 오류를 방지할 수 있습니다.
 
+**주의:** 다국어 경로(`[locale]/...`)의 페이지 파일은 반드시 `export default`로
+React 함수 컴포넌트를 반환해야 합니다. 객체나 변수 등을 기본 내보내기로 지정하면
+빌드 시 `TypeError: e is not a function` 오류가 발생합니다.
+
 ---
 
 ## 📌 주요 기능 및 UI 구성 요약
@@ -664,3 +668,7 @@ pgqpkx-codex/emailjs-환경-변수-체크-스크립트-개선
   - Next.js 15의 App Router 타입 업데이트에 맞춰 `PageProps`의 `params`와
     `searchParams`를 `Promise` 타입으로 재정의
   - about, contact, projects 관련 페이지 함수 시그니처 수정 및 ESLint/테스트 통과 확인
+- 2025-08-28 (Codex) - 다국어 페이지 기본 내보내기 규칙 명시 및 빌드 오류 수정
+  - `[locale]` 하위 페이지 `PageProps`에서 `Promise` 타입을 제거하고 기본 객체 타입으로 변경
+  - 모든 다국어 페이지에서 `export default`가 React 함수 컴포넌트를 반환하도록 검증 로직 추가
+  - README에 "다국어 페이지 작성 시 export default 함수 필수" 가이드라인 추가
