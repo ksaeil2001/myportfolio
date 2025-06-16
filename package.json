@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "pretest": "npm run lint",
     "test": "jest",
     "generate:resume": "tsx scripts/generateResume.ts",
