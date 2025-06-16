@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Metadata } from "next";
 // 시스템 기본 글꼴 사용을 위해 폰트 로딩 제거
 import "../globals.css";
