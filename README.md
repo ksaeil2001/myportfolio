@@ -421,6 +421,31 @@ myportfolio/
 | 2025-06-15 | i18n 및 기능 개선: 다국어 라우팅, GitHub 통계 안내 개선, PDF 이력서 확장, 컴포넌트 테스트 확대 |
 | 2025-06-16 | UI/로직 품질 및 국제화 개선: BlogSection·ProjectFilterBar 테스트, 로케일 스위처, 전 페이지 다국어화, 이력서 스크립트 TS 전환 |
 
+### 2025-06-17
+
+| 날짜 | 주요 변경 사항 |
+| --- | --- |
+| 2025-06-17 | App Router 비동기 params 타입 적용 및 README 가이드 추가 |
+
 ### 다국어 전환 방법
 기본 언어는 한국어이며 `/en` 경로로 접속하면 영어 페이지가 제공됩니다. 예) `/en/projects`.
+
+### App Router 비동기 params 사용 가이드
+Next.js 15부터 `params`와 `searchParams`가 비동기 프라미스로 전달됩니다.
+페이지 컴포넌트에서는 다음과 같이 `await` 키워드를 사용하여 값을 추출해야
+합니다.
+
+```tsx
+interface PageProps {
+  params: Promise<{ locale: string }>
+}
+
+export default async function AboutPage({ params }: PageProps) {
+  const { locale } = await params
+  // ...
+}
+```
+
+타입 오류를 방지하기 위해 제너레이트된 타입 정의를 참고하여 위와 같이
+프라미스 형태로 선언하는 것을 권장합니다.
 
