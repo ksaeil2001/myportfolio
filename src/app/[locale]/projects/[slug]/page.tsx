@@ -6,11 +6,11 @@ import type { JSX } from "react";
 import type { Metadata } from "next";
 
 interface PageProps {
-  params: { slug: string | string[] | undefined; locale: string };
+  params: Promise<{ slug: string | string[] | undefined; locale: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   const slugValue = Array.isArray(slug) ? slug[0] : slug;
   const projects = await getProjects();
   const project = projects.find((p) => p.slug === slugValue);
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 export default async function Page({ params }: PageProps): Promise<JSX.Element> {
-  const { slug, locale } = params;
+  const { slug, locale } = await params;
   const slugValue = Array.isArray(slug) ? slug[0] : slug;
   const projects = await getProjects();
   const project = projects.find((p) => p.slug === slugValue);
