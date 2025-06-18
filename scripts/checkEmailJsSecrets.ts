@@ -35,7 +35,8 @@ function checkEmailJsSecrets() {
   }
 
   if (invalid.length) {
-    console.error('\n❌ Missing EmailJS secrets detected.')
+    console.error('\n❌ Missing EmailJS secrets detected:')
+    invalid.forEach(({ name }) => console.error(`- ${name}`))
     console.error(
       'Please add the above variables via GitHub > Settings > Secrets and variables > Actions.',
     )

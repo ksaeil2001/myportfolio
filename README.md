@@ -76,6 +76,7 @@ GitHub Actions에서 EmailJS 연동을 사용하려면 아래 세 가지 값을 
 1. 저장소의 **Settings** 탭으로 이동합니다.
 2. 좌측 메뉴에서 **Secrets and variables > Actions** 를 선택합니다.
 3. **New repository secret** 버튼을 눌러 위 세 이름으로 값을 입력합니다.
+4. 변경 사항을 커밋하기 전 `npm run check:secrets` 명령으로 로컬에서도 누락 여부를 확인합니다.
 
 예시 값은 다음과 같이 입력할 수 있습니다.
 
@@ -89,6 +90,10 @@ GitHub Actions에서 EmailJS 연동을 사용하려면 아래 세 가지 값을 
 
 등록되지 않으면 CI 단계에서 `scripts/checkEmailJsSecrets.ts`가 오류를 출력하고
 빌드가 중단됩니다.
+
+CI 실패가 반복되면 [`actions/github-script`](https://github.com/actions/github-script)
+등을 활용해 누락된 시크릿 정보를 Pull Request에 자동 코멘트하거나
+이슈를 생성하도록 설정하면 협업에 도움이 됩니다.
 
 ### EmailJS 시크릿 설정
 
@@ -431,6 +436,12 @@ myportfolio/
 | 2025-06-18 | App Router page 컴포넌트 구조 가이드 수정 및 빌드 오류 해결 |
 | 2025-06-19 | next-intl `getRequestConfig` 사용으로 빌드 오류 수정 |
 | 2025-06-20 | App Router params가 Promise로 전달됨을 문서에 명시 |
+
+### 2025-06-21
+
+| 날짜 | 주요 변경 사항 |
+| --- | --- |
+| 2025-06-21 | EmailJS 시크릿 검사 스크립트 개선 및 등록 가이드 보강 |
 
 ### 다국어 전환 방법
 기본 언어는 한국어이며 `/en` 경로로 접속하면 영어 페이지가 제공됩니다. 예) `/en/projects`.
