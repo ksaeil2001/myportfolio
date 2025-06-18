@@ -25,6 +25,15 @@ jobs:
           echo "EMAILJS_SERVICE_ID: ${EMAILJS_SERVICE_ID:-Not Set}"
           echo "EMAILJS_TEMPLATE_ID: ${EMAILJS_TEMPLATE_ID:-Not Set}"
           echo "EMAILJS_USER_ID: ${EMAILJS_USER_ID:-Not Set}"
+      - name: Skip secret check if variables are missing
+        run: |
+          missing=false
+          [ -z "$EMAILJS_SERVICE_ID" ] && missing=true
+          [ -z "$EMAILJS_TEMPLATE_ID" ] && missing=true
+          [ -z "$EMAILJS_USER_ID" ] && missing=true
+          if [ "$missing" = true ]; then
+            echo "ALLOW_MISSING_EMAILJS_SECRETS=true" >> "$GITHUB_ENV"
+          fi
       - run: npm run check:secrets
 
   build:

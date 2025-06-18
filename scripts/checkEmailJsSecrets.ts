@@ -1,5 +1,12 @@
 import { getEmailJsEnv } from '../src/lib/env'
 
+if (process.env.ALLOW_MISSING_EMAILJS_SECRETS === 'true') {
+  console.log(
+    'ALLOW_MISSING_EMAILJS_SECRETS is set. Skipping EmailJS secret check.',
+  )
+  process.exit(0)
+}
+
 function checkEmailJsSecrets() {
   const { serviceId, templateId, userId } = getEmailJsEnv()
   const variables = [

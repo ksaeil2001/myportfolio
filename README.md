@@ -61,6 +61,7 @@
 >   - 프로덕션 빌드에서는 위 값들이 모두 필요하며, 누락 시 오류로 처리됩니다.
 > - `OFFLINE_MODE`: `npm run generate:resume` 실행 시 `true`로 설정하면 폰트 다운로드를 시도하지 않습니다.
 > - `NEXT_PUBLIC_CONTACT_EMAIL`: Contact 페이지에 표시할 이메일 주소
+> - `ALLOW_MISSING_EMAILJS_SECRETS`: CI에서 값이 없을 때 검사를 건너뜁니다.
 
 ### GitHub Actions EmailJS Secret 등록
 
@@ -449,6 +450,12 @@ myportfolio/
 | 날짜 | 주요 변경 사항 |
 | --- | --- |
 | 2025-06-22 | `prebuild` 단계에 EmailJS 시크릿 검사를 추가하여 누락 시 빌드가 실패하도록 개선 |
+
+### 2025-06-23
+
+| 날짜 | 주요 변경 사항 |
+| --- | --- |
+| 2025-06-23 | `ALLOW_MISSING_EMAILJS_SECRETS` 변수로 CI 시크릿 검사를 선택적으로 건너뜀 |
 
 ### 다국어 전환 방법
 기본 언어는 한국어이며 `/en` 경로로 접속하면 영어 페이지가 제공됩니다. 예) `/en/projects`.
