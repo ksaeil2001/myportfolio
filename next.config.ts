@@ -3,7 +3,11 @@ import path from "path";
 import createNextIntlPlugin from 'next-intl/plugin';
 import { validateEmailJsEnv } from './src/lib/env';
 
-if (process.env.npm_lifecycle_event === 'build') {
+const skipEmailJsCheck =
+  process.env.ALLOW_MISSING_EMAILJS_SECRETS &&
+  process.env.ALLOW_MISSING_EMAILJS_SECRETS.toLowerCase().trim() === 'true'
+
+if (process.env.npm_lifecycle_event === 'build' && !skipEmailJsCheck) {
   validateEmailJsEnv();
 }
 
