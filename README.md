@@ -429,23 +429,26 @@ myportfolio/
 | --- | --- |
 | 2025-06-17 | App Router 비동기 params 타입 적용 및 README 가이드 추가 |
 | 2025-06-18 | App Router page 컴포넌트 구조 가이드 수정 및 빌드 오류 해결 |
+| 2025-06-19 | next-intl `getRequestConfig` 사용으로 빌드 오류 수정 |
+| 2025-06-20 | App Router params가 Promise로 전달됨을 문서에 명시 |
 
 ### 다국어 전환 방법
 기본 언어는 한국어이며 `/en` 경로로 접속하면 영어 페이지가 제공됩니다. 예) `/en/projects`.
 
 ### App Router 사용 가이드
 App Router에서 `page.tsx` 파일의 `export default`는 반드시 함수형 컴포넌트여야 합니다.
-또한 `params` 와 `searchParams` 는 일반 객체로 전달되므로 `await` 를 사용할 필요가 없습니다.
+객체나 `undefined`를 기본 내보내기로 사용하면 빌드 타임에 `TypeError: e is not a function` 오류가 발생합니다.
+Next.js 15.3.3 기준으로 `params` 와 `searchParams` 는 `Promise` 로 전달되므로 함수 내부에서 `await` 하여 값을 얻어야 합니다.
 
 ```tsx
 import React from 'react'
 
 interface PageProps {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
 export default async function AboutPage({ params }: PageProps) {
-  const { locale } = params
+  const { locale } = await params
   // ...
 }
 ```
