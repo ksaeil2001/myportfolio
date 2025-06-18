@@ -14,6 +14,8 @@ env:
 jobs:
   check-secrets:
     runs-on: ubuntu-latest
+    outputs:
+      allow_missing: ${{ steps.set-env.outputs.allow_missing }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -26,6 +28,7 @@ jobs:
           echo "EMAILJS_TEMPLATE_ID: ${EMAILJS_TEMPLATE_ID:-Not Set}"
           echo "EMAILJS_USER_ID: ${EMAILJS_USER_ID:-Not Set}"
       - name: Skip secret check if variables are missing
+        id: set-env
         run: |
           missing=false
           [ -z "$EMAILJS_SERVICE_ID" ] && missing=true
@@ -33,12 +36,17 @@ jobs:
           [ -z "$EMAILJS_USER_ID" ] && missing=true
           if [ "$missing" = true ]; then
             echo "ALLOW_MISSING_EMAILJS_SECRETS=true" >> "$GITHUB_ENV"
+            echo "allow_missing=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "allow_missing=false" >> "$GITHUB_OUTPUT"
           fi
       - run: npm run check:secrets
 
   build:
     needs: check-secrets
     runs-on: ubuntu-latest
+    env:
+      ALLOW_MISSING_EMAILJS_SECRETS: ${{ needs.check-secrets.outputs.allow_missing }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
