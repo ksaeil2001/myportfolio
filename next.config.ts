@@ -7,7 +7,7 @@ if (process.env.npm_lifecycle_event === 'build') {
   validateEmailJsEnv();
 }
 
-const withNextIntl = createNextIntlPlugin('./next-intl.config.js');
+const withNextIntl = createNextIntlPlugin('./next-intl.config.mjs');
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
