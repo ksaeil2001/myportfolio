@@ -11,7 +11,7 @@
     "pretest": "npm run lint",
     "test": "jest",
     "generate:resume": "tsx scripts/generateResume.ts",
-    "prebuild": "npm run generate:resume",
+    "prebuild": "npm run check:secrets && npm run generate:resume",
     "check:secrets": "tsx scripts/checkEmailJsSecrets.ts",
     "show:changelog-summary": "tsx scripts/printChangelogSummary.ts"
   },
