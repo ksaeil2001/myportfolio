@@ -1,6 +1,10 @@
 import { getEmailJsEnv } from '../src/lib/env'
 
-if (process.env.ALLOW_MISSING_EMAILJS_SECRETS === 'true') {
+const allowSkip =
+  process.env.ALLOW_MISSING_EMAILJS_SECRETS &&
+  process.env.ALLOW_MISSING_EMAILJS_SECRETS.toLowerCase().trim() === 'true'
+
+if (allowSkip) {
   console.log(
     'ALLOW_MISSING_EMAILJS_SECRETS is set. Skipping EmailJS secret check.',
   )
