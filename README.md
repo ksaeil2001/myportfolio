@@ -490,3 +490,65 @@ export default async function AboutPage({ params }: PageProps) {
 }
 ```
 
+codex/emailjs-환경-변수-및-ci-개선
+- 외부 CDN 이미지 사용 시 next/image `Invalid src prop` 오류 수정  
+  (next.config.js `images.domains`에 `cdn.example.com` 추가)
+
+- 홈 화면 ‘프로젝트 보기’ 버튼 동작 미구현 오류 수정  
+  (목적에 따라 앵커 이동/페이지 이동 기능 구현 및 테스트 완료)
+- 2025-06-17 (Codex) - README에 기술 블로그 링크 추가
+- 2025-06-18 (Codex) - 테스트 코드 require 사용 개선 및 ESLint 설정 갱신
+  - BlogSection.test.tsx의 require 스타일 import를 ES6 import로 변경
+  - StatsSection.test.tsx의 불필요한 eslint-disable 지시어 수정
+  - __tests__ 폴더에 한해 no-require-imports 규칙 비활성화
+  - 테스트용 next/image, ResumeDownloadLink 모킹 타입 정의로 any 제거
+- 2025-06-19 (Codex) - ContactForm 환경 변수 검증 및 테스트 개선
+  - EmailJS 관련 환경 변수 문서화 및 예시 값 추가
+  - CI에서 EmailJS 환경 변수를 secrets로 주입하도록 수정
+  - 환경 변수 누락 시 오류 토스트 표시 로직 추가 및 테스트 반영
+- 2025-06-20 (Codex) - Header와 HeroSection 컴포넌트 클라이언트 모드 명시
+  - `useRouter` 등 클라이언트 훅 사용에 맞게 "use client" 지시문 추가
+  - 빌드 오류를 유발하던 App Router 환경의 컴포넌트 초기화 문제 해결
+- 2025-06-22 (Codex) - ContactForm 이메일 서비스 오류 처리 강화
+  - emailjs.send 실패 시 구체적인 로그와 사용자 친화 메시지 표시
+  - 네트워크 오류 등 다양한 실패 케이스를 테스트에 추가
+- 2025-06-23 (Codex) - EmailJS 환경 변수 누락 로그 개선
+  - ContactForm에서 서비스 ID, 템플릿 ID, 공개 키 값을 함께 출력해 디버깅 편의성 향상
+- 2025-06-24 (Codex) - ContactForm 테스트 보강
+  - EmailJS 환경 변수 미설정 시 오류 토스트 표시 여부를 검증하는 테스트 추가
+- 2025-06-25 (Codex) - EmailJS 테스트 및 오류 로그 개선
+  - emailjs.send Mock 기본 성공 응답을 명시하도록 수정
+  - 네트워크 오류 발생 시 err.message를 포함한 구체적 로그 출력
+- 2025-06-26 (Codex) - EmailJS 환경 변수 오류 메시지 영어화
+  - ContactForm에서 환경 변수 미설정 시 영문 안내와 상세 로그 출력
+
+- 2025-06-27 (Codex) - Email service logging 개선 및 CI 환경 변수 검증
+  - EmailJS 오류 로그 메시지를 "Email service error details"로 변경
+  - .env.example의 EmailJS 값 가이드 형식 통일
+  - CI 워크플로우에서 환경 변수 매핑 상태 재확인
+- 2025-06-28 (Codex) - EmailJS 디버그 스크립트 및 오류 메시지 개선
+  - 네트워크 오류 로그에 err.message 우선 출력하도록 수정
+  - .env.example에 EmailJS 설정 주석 추가
+  - EmailJS 테스트용 scripts/testEmailService.ts 스크립트 추가
+- 2025-06-30 (Codex) - EmailJS 환경 변수 최종 점검
+  - CI 워크플로우에 변수 존재 여부 확인 단계 추가
+  - 로컬 `.env.local` 파일이 Git 관리 대상에서 제외되는지 재확인
+- GitHub Secrets에 EmailJS 값이 정확히 등록되었는지 검증
+- 2025-07-01 (Codex) - 빌드 스크립트 tsx 사용으로 업데이트
+  - generateResume.ts 실행을 위해 devDependency로 tsx 추가
+  - package.json의 generate:resume 스크립트 수정
+- 2025-07-02 (Codex) - 보안 및 품질 개선
+  - Markdown HTML 변환 결과 sanitize-html 적용
+  - 환경 변수 로딩 로직을 src/lib/env.ts로 통합
+  - 프로젝트 상세 페이지 테스트 추가
+  - Blog API 결과 메모리 캐싱 및 오류 메시지 강화
+  - 이력서 스크립트 폰트 다운로드 실패 시 대체 폰트/기본 글꼴 사용
+- 2025-07-03 (Codex) - EmailJS 변수명 및 타입 오류 수정
+  - EMAILJS_* 환경 변수명으로 통일하고 env.ts 검증 로직 업데이트
+  - sanitize-html 타입 정의 추가
+  - StatsSection 테스트의 eslint-disable 주석 제거
+- 2025-07-04 (Codex) - EmailJS CI 검증 및 fallback 로직 강화
+  - CI 워크플로우에 환경 변수 출력 및 누락 시 실패 단계 추가
+  - getEmailJsEnv에서 경고 로그와 기본값 fallback 처리
+  - 관련 유닛 테스트 추가
+main

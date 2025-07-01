@@ -32,11 +32,28 @@ export function ContactForm() {
     }
     setErrors({});
     const { serviceId, templateId, userId } = getEmailJsEnv()
+codex/emailjs-환경-변수-및-ci-개선
+    if (
+      serviceId === 'default_service_id' ||
+      templateId === 'default_template_id' ||
+      userId === 'default_user_id'
+    ) {
+      console.error('Missing EmailJS environment variables.', {
+        serviceId,
+        templateId,
+        userId,
+      })
+      show(
+        'Email service is not configured properly. Please check the environment variables.',
+        'error',
+      )
+
     try {
       validateEmailJsEnv()
     } catch (err) {
       console.error((err as Error).message)
       show('Email service is not configured properly.', 'error')
+ main
       setStatus('ERROR')
       return
     }

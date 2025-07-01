@@ -1,7 +1,19 @@
 export function getEmailJsEnv() {
+ codex/emailjs-환경-변수-및-ci-개선
+  const { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID } = process.env
+  if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_USER_ID) {
+    console.warn('Missing EmailJS environment variables. Using default values.')
+    return {
+      serviceId: EMAILJS_SERVICE_ID || 'default_service_id',
+      templateId: EMAILJS_TEMPLATE_ID || 'default_template_id',
+      userId: EMAILJS_USER_ID || 'default_user_id',
+    }
+  }
+
   const { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID } =
     process.env
 
+ main
   return {
     serviceId: EMAILJS_SERVICE_ID,
     templateId: EMAILJS_TEMPLATE_ID,

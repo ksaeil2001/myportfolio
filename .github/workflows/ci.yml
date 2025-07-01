@@ -52,6 +52,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+codex/emailjs-환경-변수-및-ci-개선
+      - run: npm ci
+      - run: echo "Checking environment variables"
+      - run: echo $EMAILJS_SERVICE_ID && echo $EMAILJS_TEMPLATE_ID && echo $EMAILJS_USER_ID
+      - name: Validate Environment Variables
+        run: |
+          if [ -z "$EMAILJS_SERVICE_ID" ] || [ -z "$EMAILJS_TEMPLATE_ID" ] || [ -z "$EMAILJS_USER_ID" ]; then
+            echo "Missing one or more EmailJS environment variables.";
+            exit 1;
+          fi
+
       - uses: actions/cache@v3
         with:
           path: ~/.npm
@@ -59,6 +70,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - run: npm ci || npm ci
+ main
       - run: npm run lint
       - run: npm test
       - run: npm run build
