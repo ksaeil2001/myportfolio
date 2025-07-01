@@ -57,11 +57,94 @@
 > - `EMAILJS_SERVICE_ID`: EmailJS 서비스 ID
 > - `EMAILJS_TEMPLATE_ID`: EmailJS 템플릿 ID
 > - `EMAILJS_USER_ID`: EmailJS 사용자 ID
+>   - 개발 환경에서 누락되면 빌드가 중단되지 않고 경고만 출력됩니다.
+>   - 프로덕션 빌드에서는 위 값들이 모두 필요하며, 누락 시 오류로 처리됩니다.
+> - `OFFLINE_MODE`: `npm run generate:resume` 실행 시 `true`로 설정하면 폰트 다운로드를 시도하지 않습니다.
+> - `NEXT_PUBLIC_CONTACT_EMAIL`: Contact 페이지에 표시할 이메일 주소
+> - `ALLOW_MISSING_EMAILJS_SECRETS`: CI에서 값이 없을 때 검사를 건너뜁니다.
+
+### GitHub Actions EmailJS Secret 등록
+
+GitHub Actions에서 EmailJS 연동을 사용하려면 아래 세 가지 값을 반드시
+`Settings > Secrets and variables > Actions`에 등록해야 합니다.
+
+- `EMAILJS_SERVICE_ID`
+- `EMAILJS_TEMPLATE_ID`
+- `EMAILJS_USER_ID`
+
+등록 절차는 다음과 같습니다.
+
+1. 저장소의 **Settings** 탭으로 이동합니다.
+2. 좌측 메뉴에서 **Secrets and variables > Actions** 를 선택합니다.
+3. **New repository secret** 버튼을 눌러 위 세 이름으로 값을 입력합니다.
+4. 변경 사항을 커밋하기 전 `npm run check:secrets` 명령으로 로컬에서도 누락 여부를 확인합니다.
+5. `npm run build` 실행 시 `prebuild` 단계에서 자동으로 시크릿 검사가 이뤄지므로, 누락된 값이 있으면 빌드가 즉시 중단됩니다.
+
+예시 값은 다음과 같이 입력할 수 있습니다.
+
+| Name | Example |
+| --- | --- |
+| EMAILJS_SERVICE_ID | `service_xxxxx` |
+| EMAILJS_TEMPLATE_ID | `template_xxxxx` |
+| EMAILJS_USER_ID | `user_xxxxx` |
+
+해당 입력 화면은 GitHub 웹 UI의 "Settings > Secrets and variables > Actions" 페이지에서 확인할 수 있습니다.
+
+등록되지 않으면 CI 단계에서 `scripts/checkEmailJsSecrets.ts`가 오류를 출력하고
+빌드가 중단됩니다.
+
+CI 실패가 반복되면 [`actions/github-script`](https://github.com/actions/github-script)
+등을 활용해 누락된 시크릿 정보를 Pull Request에 자동 코멘트하거나
+이슈를 생성하도록 설정하면 협업에 도움이 됩니다.
+
+### EmailJS 시크릿 설정
+
+GitHub Actions CI 환경에서 위 EmailJS 변수들이 누락되면 워크플로가 실패합니다.
+> 저장소 **Settings > Secrets and variables > Actions** 메뉴에서 각각
+> `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`, `EMAILJS_USER_ID` 이름으로
+> 새 Secret을 등록해야 합니다.
+> 워크플로우에서는 다음과 같이 기본값을 사용해도 경고 후 실패하도록 설정됩니다.
+>
+> ```yaml
+> EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID || 'placeholder' }}
+> EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID || 'placeholder' }}
+> EMAILJS_USER_ID: ${{ secrets.EMAILJS_USER_ID || 'placeholder' }}
+> ```
+>
+> ```bash
+> if [ "${EMAILJS_SERVICE_ID}" = "placeholder" ]; then
+>   echo "::error::EmailJS secrets are required."
+>   exit 1
+> fi
+> ```
+> 또한 워크플로우 시작 단계에서 secrets 존재 여부를 확인하는 `check-secrets` job이 추가되었습니다.
+> Secrets 등록 후 CI를 재실행하면 오류 없이 진행됩니다.
+> 누락된 항목은 `EMAILJS_SERVICE_ID: Not Set` 형식으로 표시되어 어떤 값이 비어 있는지 즉시 파악할 수 있습니다.
+> 로컬에서도 `npm run check:secrets` 명령어를 실행해 환경변수 설정 상태를 점검할 수 있습니다.
+> Secrets를 설정한 뒤에는 커밋을 다시 푸시하거나 PR을 열어 워크플로우가 정상적으로 실행되는지 확인하세요.
+> 필요 시 아래와 같이 CI 설정에 임시 디버그 단계를 추가해 값이 전달되는지 확인할 수 있습니다.
+>
+> ```yaml
+> - name: Debug Secrets
+>   run: |
+>     echo "EMAILJS_SERVICE_ID=${EMAILJS_SERVICE_ID}"
+>     echo "EMAILJS_TEMPLATE_ID=${EMAILJS_TEMPLATE_ID}"
+>     echo "EMAILJS_USER_ID=${EMAILJS_USER_ID}"
+> ```
 
 <p>
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
   <img src="https://img.shields.io/badge/.env 관리-lightgrey?style=for-the-badge" />
 </p>
+
+### GitHub Actions 워크플로 실행 가이드
+
+1. 커밋 또는 PR 생성 시 `check-secrets` 작업이 먼저 실행됩니다.
+2. 이 작업에서 `scripts/checkEmailJsSecrets.ts`가 EmailJS 시크릿 존재 여부를 검사합니다.
+3. 누락된 변수가 있으면 `EMAILJS_SERVICE_ID: Not Set` 형식으로 표시하고 워크플로가 실패합니다.
+4. 시크릿을 추가한 뒤 워크플로를 다시 실행하면 이후 lint 및 lint:fix · test · build 단계가 진행됩니다.
+
+로컬 환경에서도 `npm run check:secrets` 명령으로 동일한 검사를 수행할 수 있습니다.
 
 ## 🧪 테스트 환경
 
@@ -81,6 +164,60 @@ npm run test
 
 - 모든 PR 및 배포 전, 위 명령어로 테스트를 실행하여 통과 여부를 반드시 확인하시기 바랍니다.
 - CI 환경에서도 자동으로 테스트가 수행됩니다.
+
+---
+### 네트워크 제한 환경 가이드
+
+사내 보안 정책 등으로 외부 npm 레지스트리에 접근하지 못해 빌드나 테스트가 실패하는 경우 다음 절차를 따릅니다.
+
+1. registry.npmjs.org 접근이 차단되어 있는지 확인하고, 차단 시 IT/보안팀에 허용을 요청합니다.
+2. 내부 npm 미러 또는 프록시가 있다면 `.npmrc`에 해당 주소를 지정하거나 `HTTP_PROXY` / `HTTPS_PROXY` 환경 변수를 설정합니다.
+3. 로컬에 사전 캐시한 패키지가 있다면 `scripts/install_local.sh` 스크립트로 오프라인 설치를 수행합니다. 패키지 캐시는 `scripts/populate_cache.sh`로 생성할 수 있습니다.
+4. `raw.githubusercontent.com` 도메인이 차단되어 있으면 이력서 PDF 생성 시 폰트 다운로드가 실패합니다. 허용이 어렵다면 `public/fonts` 폴더에 폰트를 미리 배치하고 스크립트 경로를 수정합니다.
+5. CI 워크플로와 README에 EmailJS 등 환경 변수 설정 방법을 명확히 기록합니다.
+6. 접근 권한이 복구된 후 아래 명령어를 순서대로 실행하여 모든 단계가 통과하는지 확인합니다.
+
+   ```bash
+   npm ci
+   npm run lint
+   npm run lint:fix
+   npm test
+   npm run build
+   ```
+
+7. 네트워크 정책, 장애 원인, 해결 과정을 Changelog 섹션에 상세히 기록합니다.
+
+### 머지 충돌 방지 가이드
+
+코드 병합 시 `<<<<<<<`, `=======`, `>>>>>>>` 와 같은 충돌 마커가 남아있지 않도록 꼭 확인하세요.
+PR 생성 전 다음 명령어로 전체 소스에서 충돌 마커를 검색하면 좋습니다.
+
+```bash
+grep -R "<<<<<<<" -n
+```
+
+### App Router 페이지 타입 가이드
+
+Next.js 15부터는 App Router의 `PageProps`가 비동기 형태로 전달됩니다. `params`
+와 `searchParams` 모두 `Promise` 타입이므로 아래와 같이 `await`해 사용하세요.
+
+```ts
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function Page({ params }: PageProps) {
+  const { locale } = await params;
+  // ...
+}
+```
+
+`searchParams` 사용 시에도 동일하게 `const query = await searchParams;` 형태로
+작성하면 빌드 타임 타입 오류를 방지할 수 있습니다.
+
+**주의:** 다국어 경로(`[locale]/...`)의 페이지 파일은 반드시 `export default`로
+React 함수 컴포넌트를 반환해야 합니다. 객체나 변수 등을 기본 내보내기로 지정하면
+빌드 시 `TypeError: e is not a function` 오류가 발생합니다.
 
 ---
 
@@ -145,10 +282,11 @@ UI 컴포넌트는 `src/components/`에서 기능별로 분리 구성되어 있�
 - **기능 목적:** 이메일, GitHub, 블로그 등의 외부 채널 연결 및 실시간 메시지 전송
 - **주요 컴포넌트:**
   - `ContactForm.tsx`: EmailJS 연동 입력 폼 (이름/이메일/메시지 필드 포함)
-- **데이터 처리:** EmailJS public key를 `.env.local`에서 읽어 연동 처리
+- **데이터 처리:** EmailJS 사용자 ID를 `.env.local`에서 읽어 연동 처리
 - **기능 특징:**
   - 제출 성공/실패 안내 UI 표시
   - `public/resume.pdf` 존재 여부를 확인해 다운로드 버튼을 활성/비활성 처리
+  - 현재 로그인이나 이메일 인증 기능은 제공하지 않습니다.
   - 파일이 없을 경우 안내 문구 "이력서 준비 중입니다" 표시
 - **UI 구성:** 
   - 좌측은 정보 링크, 우측은 입력 폼
@@ -280,49 +418,79 @@ myportfolio/
 - [x] 프로젝트 상세 스크린샷 lazy loading 적용
 - [x] 소개 페이지에 기술 스택 애니메이션 추가
 
-## Patch Notes
-- Added dark mode toggle with localStorage persistence.
-- Implemented page loading progress bar using Next.js router events.
-- Introduced global toast system and integrated with contact form.
-- Enhanced accessibility: skip link, form validation messages with ARIA live, and improved focus order.
-- 2025-06-11 (Codex) 프로젝트 데이터 구조 개선, Markdown 기반 관리 도입, PDF 이력서 자동 생성 스크립트 추가.
-1. 2025-06-12 (Codex) - SEO 및 CI/CD 고도화
-   - 동적 OG 이미지 API 추가 및 각 페이지 메타데이터 연동
-   - sitemap.xml과 robots.txt 자동 생성 라우트 구현
-   - Google Analytics와 Vercel Analytics 통합
-   - 프로젝트 이미지 lazy loading 적용
-   - GitHub Actions 워크플로우로 lint · build 자동화
-2. 2025-06-11 (Codex) - 블로그 RSS 연동 및 데이터 구조 확장
-   - `/api/blog` 라우트에서 RSS 파싱 후 최신 글 제공
-   - 홈 페이지 `BlogSection` 컴포넌트로 최근 글 5개 표시
-   - 프로젝트 타입에 팀원(`team`)과 리뷰(`reviews`) 필드 추가
-   - 프로젝트 상세 페이지에 팀원 소개 및 외부 리뷰 섹션 노출
-3. 2025-06-13 (Codex) - UI/UX 개선 및 로딩 관리
-   - `LoadingProvider` 컨텍스트 도입으로 페이지 전환과 폼 제출 시 상단 로딩 바 표시
-   - 이력서 다운로드 링크 클릭 시 토스트 알림 제공
-   - 기존 `ProgressBar` 컴포넌트 삭제 및 레이아웃 구조 정리
-4. 2025-06-14 (Codex) - 테스트 & CI 강화
-   - resume.pdf 존재 여부 확인 후 버튼 비활성화 및 안내 처리
-   - Jest + React Testing Library 환경 도입 및 기본 테스트 추가
-   - GitHub Actions 워크플로우로 lint · test · build 자동화
-   - 소개 페이지 기술 스택 애니메이션 구현
-- 사용되지 않던 `src/data/projects.ts` 파일 삭제
-- 2025-06-15 (Codex) - i18n 및 기능 개선
-  - 한국어/영어 다국어 라우팅 구조 도입
-  - GitHub 통계 조회 실패 시 명확한 안내 메시지 표시
-  - PDF 이력서에 프로젝트 설명과 기술 스택 추가
-- 주요 컴포넌트 테스트 확대 및 프로젝트 데이터 캐싱 적용
-- 2025-06-16 (Codex) - UI/로직 품질 및 국제화 개선
-  - BlogSection 및 ProjectFilterBar 단위 테스트 추가
-  - Header 로케일 스위처 구현
-  - 전 페이지 정적 텍스트 다국어화
-  - 이력서 생성 스크립트 TypeScript 전환 및 빌드 전 자동 실행
+## Changelog
+
+### 2025-06-13 ~ 2025-06-16
+
+| 날짜 | 주요 변경 사항 |
+| --- | --- |
+| 2025-06-13 | UI/UX 개선 및 로딩 관리: `LoadingProvider` 도입, 이력서 다운로드 토스트 알림, `ProgressBar` 제거 |
+| 2025-06-14 | 테스트 & CI 강화: `resume.pdf` 존재 확인, Jest+RTL 환경 구성, GitHub Actions 워크플로우 추가, 소개 페이지 애니메이션 |
+| 2025-06-15 | i18n 및 기능 개선: 다국어 라우팅, GitHub 통계 안내 개선, PDF 이력서 확장, 컴포넌트 테스트 확대 |
+| 2025-06-16 | UI/로직 품질 및 국제화 개선: BlogSection·ProjectFilterBar 테스트, 로케일 스위처, 전 페이지 다국어화, 이력서 스크립트 TS 전환 |
+| 2025-06-16 | lint:fix 스크립트 추가 및 문서 가이드 업데이트 |
+
+### 2025-06-17
+
+| 날짜 | 주요 변경 사항 |
+| --- | --- |
+| 2025-06-17 | App Router 비동기 params 타입 적용 및 README 가이드 추가 |
+| 2025-06-18 | App Router page 컴포넌트 구조 가이드 수정 및 빌드 오류 해결 |
+| 2025-06-19 | next-intl `getRequestConfig` 사용으로 빌드 오류 수정 |
+| 2025-06-20 | App Router params가 Promise로 전달됨을 문서에 명시 |
+
+### 2025-06-21
+
+| 날짜 | 주요 변경 사항 |
+| --- | --- |
+| 2025-06-21 | EmailJS 시크릿 검사 스크립트 개선 및 등록 가이드 보강 |
+
+### 2025-06-22
+
+| 날짜 | 주요 변경 사항 |
+| --- | --- |
+| 2025-06-22 | `prebuild` 단계에 EmailJS 시크릿 검사를 추가하여 누락 시 빌드가 실패하도록 개선 |
+
+### 2025-06-23
+
+| 날짜 | 주요 변경 사항 |
+| --- | --- |
+| 2025-06-23 | `ALLOW_MISSING_EMAILJS_SECRETS` 변수로 CI 시크릿 검사를 선택적으로 건너뜀 |
+
+### 2025-06-24
+
+| 날짜 | 주요 변경 사항 |
+| --- | --- |
+| 2025-06-24 | GitHub Actions에서 EmailJS 시크릿 누락 시 빌드 단계에도 건너뛰도록 워크플로우 개선 |
+
+### 2025-06-25
+
+| 날짜 | 주요 변경 사항 |
+| --- | --- |
+| 2025-06-25 | `ALLOW_MISSING_EMAILJS_SECRETS` 값의 대소문자/공백을 무시하도록 시크릿 검사 스크립트 개선 |
 
 ### 다국어 전환 방법
 기본 언어는 한국어이며 `/en` 경로로 접속하면 영어 페이지가 제공됩니다. 예) `/en/projects`.
 
-## Changelog
+### App Router 사용 가이드
+App Router에서 `page.tsx` 파일의 `export default`는 반드시 함수형 컴포넌트여야 합니다.
+객체나 `undefined`를 기본 내보내기로 사용하면 빌드 타임에 `TypeError: e is not a function` 오류가 발생합니다.
+Next.js 15.3.3 기준으로 `params` 와 `searchParams` 는 `Promise` 로 전달되므로 함수 내부에서 `await` 하여 값을 얻어야 합니다.
 
+```tsx
+import React from 'react'
+
+interface PageProps {
+  params: Promise<{ locale: string }>
+}
+
+export default async function AboutPage({ params }: PageProps) {
+  const { locale } = await params
+  // ...
+}
+```
+
+codex/emailjs-환경-변수-및-ci-개선
 - 외부 CDN 이미지 사용 시 next/image `Invalid src prop` 오류 수정  
   (next.config.js `images.domains`에 `cdn.example.com` 추가)
 
@@ -383,3 +551,4 @@ myportfolio/
   - CI 워크플로우에 환경 변수 출력 및 누락 시 실패 단계 추가
   - getEmailJsEnv에서 경고 로그와 기본값 fallback 처리
   - 관련 유닛 테스트 추가
+main

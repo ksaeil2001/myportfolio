@@ -1,3 +1,4 @@
+import React from 'react';
 import { getProjects } from "@/lib/projects";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -5,7 +6,11 @@ import { getTranslations } from "next-intl/server";
 import type { JSX } from "react";
 import type { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string | string[] | undefined }> }): Promise<Metadata> {
+interface PageProps {
+  params: Promise<{ slug: string | string[] | undefined; locale: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const slugValue = Array.isArray(slug) ? slug[0] : slug;
   const projects = await getProjects();
@@ -25,12 +30,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
   };
 }
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ slug: string | string[] | undefined }>;
-}): Promise<JSX.Element> {
-  const { slug } = await params;
+export default async function Page({ params }: PageProps): Promise<JSX.Element> {
+  const { slug, locale } = await params;
   const slugValue = Array.isArray(slug) ? slug[0] : slug;
   const projects = await getProjects();
   const project = projects.find((p) => p.slug === slugValue);
@@ -39,7 +40,7 @@ export default async function Page({
     notFound();
   }
 
-  const t = await getTranslations('projects');
+  const t = await getTranslations({ locale, namespace: 'projects' });
   return (
     <main id="main-content" className="mx-auto w-full max-w-5xl p-8">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white">

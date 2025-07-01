@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { ContactForm } from '../ContactForm';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 const startMock = jest.fn();
 const doneMock = jest.fn();
@@ -14,7 +14,7 @@ jest.mock('../LoadingProvider', () => ({
   useLoading: () => ({ start: startMock, done: doneMock }),
 }));
 
-jest.mock('emailjs-com', () => ({
+jest.mock('@emailjs/browser', () => ({
   send: jest.fn(() =>
     Promise.resolve({
       status: 200,
@@ -84,7 +84,7 @@ describe('ContactForm', () => {
 
     await waitFor(() => expect(emailjs.send).toHaveBeenCalled());
     expect(showMock).toHaveBeenCalledWith(
-      '전송 중 오류가 발생했습니다. 서비스 상태를 확인해주세요.',
+      'There was an error sending the message. Please try again later.',
       'error'
     );
     expect(startMock).toHaveBeenCalled();
@@ -110,14 +110,14 @@ describe('ContactForm', () => {
 
     await waitFor(() => expect(emailjs.send).toHaveBeenCalled());
     expect(showMock).toHaveBeenCalledWith(
-      '전송 중 오류가 발생했습니다. 서비스 상태를 확인해주세요.',
+      'There was an error sending the message. Please try again later.',
       'error'
     );
     expect(startMock).toHaveBeenCalled();
     expect(doneMock).toHaveBeenCalled();
   });
 
-  it('shows toast when email service env vars are missing', async () => {
+  it('shows generic error when email service env vars are missing', async () => {
     delete process.env.EMAILJS_SERVICE_ID;
     delete process.env.EMAILJS_TEMPLATE_ID;
     delete process.env.EMAILJS_USER_ID;
@@ -138,10 +138,10 @@ describe('ContactForm', () => {
 
     await waitFor(() =>
       expect(showMock).toHaveBeenCalledWith(
-        'Email service is not configured properly. Please check the environment variables.',
+        'There was an error sending the message. Please try again later.',
         'error',
       ),
     );
-    expect(emailjs.send).not.toHaveBeenCalled();
+    expect(emailjs.send).toHaveBeenCalled();
   });
 });

@@ -1,7 +1,12 @@
+import React from 'react';
 import { TimelineItem } from "@/components/TimelineItem";
 import { getTranslations } from "next-intl/server";
 import type { TimelineEntry } from "@/data/types";
 import timelineData from "../../../../content/about/timeline.json";
+
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
 
 export const metadata = {
   title: "About",
@@ -19,8 +24,9 @@ export const metadata = {
 
 const timeline: TimelineEntry[] = timelineData;
 
-export default async function AboutPage() {
-  const t = await getTranslations('about');
+export default async function AboutPage({ params }: PageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'about' });
   return (
     <main id="main-content" className="mx-auto w-full max-w-5xl space-y-16 p-8 sm:p-20">
       <section aria-labelledby="about-heading">

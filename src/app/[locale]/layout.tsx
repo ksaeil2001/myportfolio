@@ -1,5 +1,6 @@
+import React from 'react';
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// 시스템 기본 글꼴 사용을 위해 폰트 로딩 제거
 import "../globals.css";
 import { Header } from "@/components/Header";
 import Providers from "@/components/Providers";
@@ -7,15 +8,7 @@ import Analytics from "@/components/Analytics";
 import { getDictionary } from "@/lib/i18n";
 import { NextIntlClientProvider } from "next-intl";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// 기본 시스템 글꼴을 사용하므로 폰트 설정이 필요하지 않음
 
 export const metadata: Metadata = {
   title: {
@@ -56,6 +49,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return ['ko', 'en'].map((l) => ({ locale: l }));
+}
+
 export default async function RootLayout({
   children,
   params,
@@ -66,7 +65,7 @@ export default async function RootLayout({
   const messages = await getDictionary(params.locale);
   return (
     <html lang={params.locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className="antialiased">
         <NextIntlClientProvider messages={messages} locale={params.locale}>
           <Providers>
             <Analytics />

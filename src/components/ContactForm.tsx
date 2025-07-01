@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, FormEvent, ChangeEvent } from "react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { useToast } from "./Providers";
 import { useLoading } from "./LoadingProvider";
-import { getEmailJsEnv } from "@/lib/env";
+import { getEmailJsEnv, validateEmailJsEnv } from "@/lib/env";
 
 export function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -32,6 +32,7 @@ export function ContactForm() {
     }
     setErrors({});
     const { serviceId, templateId, userId } = getEmailJsEnv()
+codex/emailjs-환경-변수-및-ci-개선
     if (
       serviceId === 'default_service_id' ||
       templateId === 'default_template_id' ||
@@ -46,20 +47,27 @@ export function ContactForm() {
         'Email service is not configured properly. Please check the environment variables.',
         'error',
       )
+
+    try {
+      validateEmailJsEnv()
+    } catch (err) {
+      console.error((err as Error).message)
+      show('Email service is not configured properly.', 'error')
+ main
       setStatus('ERROR')
       return
     }
     start();
     try {
       await emailjs.send(
-        serviceId,
-        templateId,
+        serviceId!,
+        templateId!,
         {
           from_name: form.name,
           reply_to: form.email,
           message: form.message,
         },
-        userId
+        userId!
       );
       setStatus("SUCCESS");
       setForm({ name: "", email: "", message: "" });
@@ -70,7 +78,10 @@ export function ContactForm() {
         (err as Error).message || err,
       );
       setStatus("ERROR");
-      show("전송 중 오류가 발생했습니다. 서비스 상태를 확인해주세요.", "error");
+      show(
+        "There was an error sending the message. Please try again later.",
+        "error",
+      );
     } finally {
       done();
     }

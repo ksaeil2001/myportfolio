@@ -1,4 +1,17 @@
 import type { NextConfig } from "next";
+import path from "path";
+import createNextIntlPlugin from 'next-intl/plugin';
+import { validateEmailJsEnv } from './src/lib/env';
+
+const skipEmailJsCheck =
+  process.env.ALLOW_MISSING_EMAILJS_SECRETS &&
+  process.env.ALLOW_MISSING_EMAILJS_SECRETS.toLowerCase().trim() === 'true'
+
+if (process.env.npm_lifecycle_event === 'build' && !skipEmailJsCheck) {
+  validateEmailJsEnv();
+}
+
+const withNextIntl = createNextIntlPlugin('./next-intl.config.mjs');
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -8,10 +21,6 @@ const nextConfig: NextConfig = {
       "images.unsplash.com",
       "cdn.example.com",
     ],
-  },
-  i18n: {
-    locales: ['ko', 'en'],
-    defaultLocale: 'ko',
   },
   env: {
     EMAILJS_SERVICE_ID: process.env.EMAILJS_SERVICE_ID,
@@ -36,4 +45,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

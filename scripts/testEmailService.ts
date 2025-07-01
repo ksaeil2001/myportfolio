@@ -1,4 +1,4 @@
-import emailjs from 'emailjs-com'
+import emailjs from '@emailjs/browser'
 
 const serviceId = process.env.EMAILJS_SERVICE_ID as string
 const templateId = process.env.EMAILJS_TEMPLATE_ID as string
