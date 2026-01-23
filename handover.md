@@ -28,33 +28,37 @@
 
 ```mermaid
 graph TD
-    subgraph "Frontend (Vercel)"
-        F[React + Vite + TypeScript]
-    end
+  subgraph Frontend_Vercel[Frontend (Vercel)]
+    F[React + Vite + TypeScript]
+  end
 
-    subgraph "Backend (Railway/Render)"
-        B[FastAPI + Python 3.11]
-    end
+  subgraph Backend_Railway_Render[Backend (Railway/Render)]
+    B[FastAPI + Python 3.11]
+  end
 
-    subgraph "Database & Auth (Supabase)"
-        DB[PostgreSQL + Auth]
-    end
+  subgraph Supabase[Database & Auth (Supabase)]
+    DB[PostgreSQL + Auth]
+  end
 
-    subgraph "AI Pipeline (Hybrid)"
-        P1[Azure Read API: Primary OCR]
-        P2[Gemini Multimodal: Fallback OCR]
-        P3[MobileSAM: Masking]
-        P4[Gemini API: Translation]
-        P5[LaMa + PIL: Inpainting & Rendering]
-    end
+  subgraph AI_Pipeline_Hybrid[AI Pipeline (Hybrid)]
+    P1[Azure Read API: Primary OCR]
+    P2[Gemini Multimodal: Fallback OCR]
+    P3[MobileSAM: Masking]
+    P4[Gemini API: Translation]
+    P5[LaMa + PIL: Inpainting & Rendering]
+  end
 
-    F --"REST API"--> B
-    B --"JWT Auth & DB Query"--> DB
-    B --"AI Task"--> P1
-    P1 --"Error?"--> P2
-    B --"AI Task"--> P3
-    B --"AI Task"--> P4
-    B --"AI Task"--> P5
+  F -->|REST API| B
+  B -->|JWT Auth & DB Query| DB
+
+  B -->|OCR Task| P1
+  P1 -->|Success| P3
+  P1 -->|Error| P2
+  P2 -->|Success| P3
+
+  P3 -->|Mask Output| P4
+  P4 -->|Translated Text| P5
+
 ```
 
 #### 2.2. 기술 스택 요약
