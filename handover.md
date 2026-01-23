@@ -27,19 +27,24 @@
 
 ```mermaid
 graph TD
-  subgraph Frontend_Vercel[Frontend (Vercel)]
+
+  subgraph Frontend_Vercel
+    FT[Frontend (Vercel)]
     F[React + Vite + TypeScript]
   end
 
-  subgraph Backend_Railway_Render[Backend (Railway/Render)]
+  subgraph Backend_Railway_Render
+    BT[Backend (Railway/Render)]
     B[FastAPI + Python 3.11]
   end
 
-  subgraph Supabase[Database & Auth (Supabase)]
+  subgraph Database_Auth_Supabase
+    DT[Database & Auth (Supabase)]
     DB[PostgreSQL + Auth]
   end
 
-  subgraph AI_Pipeline_Hybrid[AI Pipeline (Hybrid)]
+  subgraph AI_Pipeline_Hybrid
+    AT[AI Pipeline (Hybrid)]
     P1[Azure Read API: Primary OCR]
     P2[Gemini Multimodal: Fallback OCR]
     P3[MobileSAM: Masking]
@@ -51,12 +56,13 @@ graph TD
   B -->|JWT Auth & DB Query| DB
 
   B -->|OCR Task| P1
-  P1 -->|Success| P3
   P1 -->|Error| P2
+  P1 -->|Success| P3
   P2 -->|Success| P3
 
   P3 -->|Mask Output| P4
   P4 -->|Translated Text| P5
+
 
 ```
 
